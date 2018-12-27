@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Qu80oAoTEem48p0qskF1qw" name="model">
+  <eAnnotations xmi:id="_Qu80oQoTEem48p0qskF1qw" source="genmymodel">
+    <details xmi:id="_Qu80ogoTEem48p0qskF1qw" key="uuid" value="_uivC8AoSEem48p0qskF1qw"/>
+    <details xmi:id="_Qu80owoTEem48p0qskF1qw" key="author" value="zappEngl"/>
+  </eAnnotations>
+  <packageImport xmi:id="_Qu80pAoTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_Qu80pQoTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_Qu80pgoTEem48p0qskF1qw" key="uuid" value="_uivC8QoSEem48p0qskF1qw"/>
+    </eAnnotations>
+    <importedPackage href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#/"/>
+  </packageImport>
+  <packagedElement xsi:type="uml:InstanceSpecification" xmi:id="_Qu80pwoTEem48p0qskF1qw" name="p1" classifier="_Qu80qgoTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_Qu80qAoTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_Qu80qQoTEem48p0qskF1qw" key="uuid" value="_tGepkOxAEDaVK9sRkgDoSA"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_Qu80qgoTEem48p0qskF1qw" name="Pile" isAbstract="true">
+    <eAnnotations xmi:id="_Qu80qwoTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_Qu80rAoTEem48p0qskF1qw" key="uuid" value="_ywdJ0OxAEDaVK9sRkgDoSA"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xsi:type="uml:InstanceSpecification" xmi:id="_Qu80rQoTEem48p0qskF1qw" name="c1" classifier="_Qu80sAoTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_Qu80rgoTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_Qu80rwoTEem48p0qskF1qw" key="uuid" value="_BqSr4exBEDaVK9sRkgDoSA"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_Qu80sAoTEem48p0qskF1qw" name="Counter">
+    <eAnnotations xmi:id="_Qu80sQoTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_Qu80sgoTEem48p0qskF1qw" key="uuid" value="_Dh7i8OxBEDaVK9sRkgDoSA"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xsi:type="uml:InstanceSpecification" xmi:id="_Qu80swoTEem48p0qskF1qw" name="InstanceLink">
+    <eAnnotations xmi:id="_Qu80tAoTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_Qu80tQoTEem48p0qskF1qw" key="uuid" value="_Ff8u0OxBEDaVK9sRkgDoSA"/>
+    </eAnnotations>
+    <slot xmi:id="_Qu80tgoTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_Qu80twoTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_Qu80uAoTEem48p0qskF1qw" key="uuid" value="_FgC1cOxBEDaVK9sRkgDoSA"/>
+      </eAnnotations>
+      <value xsi:type="uml:InstanceValue" xmi:id="_Qu80uQoTEem48p0qskF1qw" instance="_Qu80pwoTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_Qu80ugoTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_Qu80uwoTEem48p0qskF1qw" key="uuid" value="_FgDcgOxBEDaVK9sRkgDoSA"/>
+        </eAnnotations>
+      </value>
+    </slot>
+    <slot xmi:id="_Qu80vAoTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_Qu80vQoTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_Qu80vgoTEem48p0qskF1qw" key="uuid" value="_FgEDkOxBEDaVK9sRkgDoSA"/>
+      </eAnnotations>
+      <value xsi:type="uml:InstanceValue" xmi:id="_Qu80vwoTEem48p0qskF1qw" instance="_Qu80rQoTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_Qu80wAoTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_Qu80wQoTEem48p0qskF1qw" key="uuid" value="_FgFRsOxBEDaVK9sRkgDoSA"/>
+        </eAnnotations>
+      </value>
+    </slot>
+  </packagedElement>
+</uml:Model>

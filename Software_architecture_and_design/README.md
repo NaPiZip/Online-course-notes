@@ -192,7 +192,7 @@ Assuming the precondition is as followed:
 ```
 `X` has the same length as `Y`.
 
-The permutation postconditions for the following cases are:<b>
+The permutation postconditions for the following cases are:
   1. None empty case
   ```
   |x| = 0 =>

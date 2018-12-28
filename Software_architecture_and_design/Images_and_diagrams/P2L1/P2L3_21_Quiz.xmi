@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_gAz7QAq6Eem48p0qskF1qw" name="model">
+  <eAnnotations xmi:id="_gAz7QQq6Eem48p0qskF1qw" source="genmymodel">
+    <details xmi:id="_gAz7Qgq6Eem48p0qskF1qw" key="uuid" value="_vwWuoAn8Eem48p0qskF1qw"/>
+    <details xmi:id="_gAz7Qwq6Eem48p0qskF1qw" key="author" value="zappEngl"/>
+  </eAnnotations>
+  <packageImport xmi:id="_gAz7RAq6Eem48p0qskF1qw">
+    <eAnnotations xmi:id="_gAz7RQq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7Rgq6Eem48p0qskF1qw" key="uuid" value="_vwWuoQn8Eem48p0qskF1qw"/>
+    </eAnnotations>
+    <importedPackage href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#/"/>
+  </packageImport>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7Rwq6Eem48p0qskF1qw" name="Structure Diagram">
+    <eAnnotations xmi:id="_gAz7SAq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7SQq6Eem48p0qskF1qw" key="uuid" value="_x-YOoOwqEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7Sgq6Eem48p0qskF1qw" general="_gAz7swq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7Swq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7TAq6Eem48p0qskF1qw" key="uuid" value="_Y-dcEezoEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7TQq6Eem48p0qskF1qw" name="Behaviour Diagram">
+    <eAnnotations xmi:id="_gAz7Tgq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7Twq6Eem48p0qskF1qw" key="uuid" value="_CFvTwOwrEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7UAq6Eem48p0qskF1qw" general="_gAz7swq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7UQq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7Ugq6Eem48p0qskF1qw" key="uuid" value="_ZocNMezoEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7Uwq6Eem48p0qskF1qw" name="Class Model Diagram">
+    <eAnnotations xmi:id="_gAz7VAq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7VQq6Eem48p0qskF1qw" key="uuid" value="_lgA0AewrEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7Vgq6Eem48p0qskF1qw" general="_gAz7fQq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7Vwq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7WAq6Eem48p0qskF1qw" key="uuid" value="_aXikUOznEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7WQq6Eem48p0qskF1qw" name="Component Diagram">
+    <eAnnotations xmi:id="_gAz7Wgq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7Wwq6Eem48p0qskF1qw" key="uuid" value="_njlOQewrEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7XAq6Eem48p0qskF1qw" general="_gAz7Uwq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7XQq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7Xgq6Eem48p0qskF1qw" key="uuid" value="_8RyRsuzmEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7Xwq6Eem48p0qskF1qw" name="Composite Structure Diagram">
+    <eAnnotations xmi:id="_gAz7YAq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7YQq6Eem48p0qskF1qw" key="uuid" value="_qt7DUOwrEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7Ygq6Eem48p0qskF1qw" general="_gAz7Uwq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7Ywq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7ZAq6Eem48p0qskF1qw" key="uuid" value="_q44sMOzmEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7ZQq6Eem48p0qskF1qw" name="Deployment Diagram">
+    <eAnnotations xmi:id="_gAz7Zgq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7Zwq6Eem48p0qskF1qw" key="uuid" value="_tfyG8ewrEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7aAq6Eem48p0qskF1qw" general="_gAz7Xwq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7aQq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7agq6Eem48p0qskF1qw" key="uuid" value="_uK8S0OzmEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+    <generalization xmi:id="_gAz7awq6Eem48p0qskF1qw" general="_gAz7WQq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7bAq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7bQq6Eem48p0qskF1qw" key="uuid" value="_T16DUOznEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7bgq6Eem48p0qskF1qw" name="Object Diagram">
+    <eAnnotations xmi:id="_gAz7bwq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7cAq6Eem48p0qskF1qw" key="uuid" value="_xaEyQewrEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7cQq6Eem48p0qskF1qw" general="_gAz7Uwq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7cgq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7cwq6Eem48p0qskF1qw" key="uuid" value="_yNQRsOzmEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7dAq6Eem48p0qskF1qw" name="Package Diagram">
+    <eAnnotations xmi:id="_gAz7dQq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7dgq6Eem48p0qskF1qw" key="uuid" value="_zIcYkewrEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7dwq6Eem48p0qskF1qw" general="_gAz7Xwq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7eAq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7eQq6Eem48p0qskF1qw" key="uuid" value="_shCVwOzmEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+    <generalization xmi:id="_gAz7egq6Eem48p0qskF1qw" general="_gAz7WQq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7ewq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7fAq6Eem48p0qskF1qw" key="uuid" value="_V2sPUOznEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7fQq6Eem48p0qskF1qw" name="Profile Diagram">
+    <eAnnotations xmi:id="_gAz7fgq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7fwq6Eem48p0qskF1qw" key="uuid" value="_06FVUOwrEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7gAq6Eem48p0qskF1qw" general="_gAz7Rwq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7gQq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7ggq6Eem48p0qskF1qw" key="uuid" value="_aB4dYOznEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7gwq6Eem48p0qskF1qw" name="Activity Diagram">
+    <eAnnotations xmi:id="_gAz7hAq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7hQq6Eem48p0qskF1qw" key="uuid" value="_2wTQEOwrEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7hgq6Eem48p0qskF1qw" general="_gAz7rQq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7hwq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7iAq6Eem48p0qskF1qw" key="uuid" value="_CmBacOzoEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7iQq6Eem48p0qskF1qw" name="Communication Diagram">
+    <eAnnotations xmi:id="_gAz7igq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7iwq6Eem48p0qskF1qw" key="uuid" value="_8u3gQOwrEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7jAq6Eem48p0qskF1qw" general="_gAz7rQq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7jQq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7jgq6Eem48p0qskF1qw" key="uuid" value="_1AVA0OznEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7jwq6Eem48p0qskF1qw" name="Interaction Overview Diagram">
+    <eAnnotations xmi:id="_gAz7kAq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7kQq6Eem48p0qskF1qw" key="uuid" value="_9609EewrEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7kgq6Eem48p0qskF1qw" general="_gAz7ngq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7kwq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7lAq6Eem48p0qskF1qw" key="uuid" value="_s7uRMOznEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+    <generalization xmi:id="_gAz7lQq6Eem48p0qskF1qw" general="_gAz7mAq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7lgq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7lwq6Eem48p0qskF1qw" key="uuid" value="_tXQWoOznEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7mAq6Eem48p0qskF1qw" name="Sequence Diagram">
+    <eAnnotations xmi:id="_gAz7mQq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7mgq6Eem48p0qskF1qw" key="uuid" value="__8bocOwrEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7mwq6Eem48p0qskF1qw" general="_gAz7rQq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7nAq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7nQq6Eem48p0qskF1qw" key="uuid" value="_0vHVAOznEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7ngq6Eem48p0qskF1qw" name="State Diagram">
+    <eAnnotations xmi:id="_gAz7nwq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7oAq6Eem48p0qskF1qw" key="uuid" value="_BmsK0OwsEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7oQq6Eem48p0qskF1qw" general="_gAz7rQq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7ogq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7owq6Eem48p0qskF1qw" key="uuid" value="_0boYUOznEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7pAq6Eem48p0qskF1qw" name="Timing Diagram">
+    <eAnnotations xmi:id="_gAz7pQq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7pgq6Eem48p0qskF1qw" key="uuid" value="_C7D8wewsEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7pwq6Eem48p0qskF1qw" general="_gAz7mAq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7qAq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7qQq6Eem48p0qskF1qw" key="uuid" value="_IISwMOzoEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+    <generalization xmi:id="_gAz7qgq6Eem48p0qskF1qw" general="_gAz7ngq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7qwq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7rAq6Eem48p0qskF1qw" key="uuid" value="_IeH2QezoEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7rQq6Eem48p0qskF1qw" name="Use Case Diagram">
+    <eAnnotations xmi:id="_gAz7rgq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7rwq6Eem48p0qskF1qw" key="uuid" value="_EkW10ewsEDaPOIK_quKYdQ"/>
+    </eAnnotations>
+    <generalization xmi:id="_gAz7sAq6Eem48p0qskF1qw" general="_gAz7TQq6Eem48p0qskF1qw">
+      <eAnnotations xmi:id="_gAz7sQq6Eem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_gAz7sgq6Eem48p0qskF1qw" key="uuid" value="_pm0x8OznEDai2snkPhcTDA"/>
+      </eAnnotations>
+    </generalization>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Class" xmi:id="_gAz7swq6Eem48p0qskF1qw" name="Diagram">
+    <eAnnotations xmi:id="_gAz7tAq6Eem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_gAz7tQq6Eem48p0qskF1qw" key="uuid" value="_WCc98OzoEDai2snkPhcTDA"/>
+    </eAnnotations>
+  </packagedElement>
+</uml:Model>

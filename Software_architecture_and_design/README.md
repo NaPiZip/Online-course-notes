@@ -41,7 +41,7 @@ Object diagram<br>
 The object diagram is similar to the class diagram, the only major difference is the fact that the object diagram is referring to instances of particular class objects.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P2L1/ObjectDiagram_example.JPG" alt="Object diagram example" width="70%" height="70%" /></p>
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P2L1/ObjectDiagram_example.JPG" alt="Object diagram example"/></p>
 
 The example shows the instance `p1` of class type `Pile` and it has an instance `c1` of class type `Counter`.
 

@@ -1,4 +1,4 @@
-<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.l8H7yN_ZVoz_SCzv3qD4ngHaFd%26pid%3D15.1&f=1" alt="Udacity Logo" height="42px" width="42px" align="left">
+Exercise<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.l8H7yN_ZVoz_SCzv3qD4ngHaFd%26pid%3D15.1&f=1" alt="Udacity Logo" height="42px" width="42px" align="left">
 
 # Software Architecture and Design
 <div>
@@ -142,6 +142,102 @@ UML state machine diagrams depict the various states that an object may be in an
 <img src="https://upload.wikimedia.org/wikipedia/en/4/45/UML_state_machine_Fig1.png" alt="Timing diagram example"/></p>
 
 A detailed example can be found [here](https://en.wikipedia.org/wiki/UML_state_machine#Basic_UML_state_diagrams).
+
+###  P2L3 UML Class Models
+This chapter is a more detailed explanation of classes within a class model, I am not going to reproduce the same content as in the previous chapter. The following image shows my solution for the #21 Quiz.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P2L3/P2L3_21_Quiz.JPG" alt="P2L3_21_Quiz solution"/></p>
+
+The top element is the `Diagram` class which has two children `Structured Diagram` and the `Behavioral Diagram`. The `Structured Diagram` has a main child the `Profile Diagram`, I picked it as the first child because `Profile Diagrams` are a mechanism to extend standard UML stereotypes etc.. The next child is the `Class Model Diagram`, whit it's children `Composite Structure Diagram` and `Component Diagram`, which are diagram types who give more detailed information about a class or a component. The `Object Diagram` is a representation of instantiated classes, which was the reason for making it a child of the `Class Diagram`. The last entities are the `Package Diagram` and the `Deployment Diagram`, both of them represent an aggregation of components or classes.
+
+The `Behavioral Diagram` has one direct child which is the `Use Case Diagram`, it is one of the most important diagram types because it describes the behavior of a component or a system. The `Interaction Overview Diagram` and the `Timing Diagram` both have the `State Diagram` and the `Sequence Diagram` as parents. The `Interaction Overview Diagram` is a hybrid of it's parents, where as the `Timing Diagram` represents more the behavior in certain states in a sequence.
+
+###  P2L5 Library Exercise
+Shows an example on how to design a system based on requirements, by using the approach described in the earlier sections. The following steps are used:
+
+  - Analyzing the requirements<br>
+  Based on the given text all relevant nouns where identified and captured. It is important to capture as many elements as possible since the outcome is used for refinement in later stages.
+
+  - Refining and adding attributes
+  Here the allocation of additional attribute takes place, by grouping content which could be logically grouped to a different element and eliminating afterwards. A noticeable fact also is that the concept of each class need to be understood to make sure the later on created interactions make sense.
+
+  - Operations<br>
+  The specification is checked for action verbs and the operations are created based on the findings and allocated to the respective elements.
+
+  - Adding and refining relationships<br>
+  Finding associations between classes consists of linking the operations between those entities, seeing how those elements are associated with each other, for example the `Patron` has a operation  called `checkOut` which is an association between the Item class, meaning the `Patron` can perform the operation of checking out an `Item`. It also makes sense to add generalization dependencies to similar classes.
+
+  - Refining the diagram<br>
+  In this step the whole diagram is checked for consistency and relationships between associations in addition association classes can be created for interaction based on associations.
+
+###  P2L6 Formal Specification Exercise
+First order logic FOL / predicate calculus notation in order to specify the propositions. Object constraint language is part of UML which can be used to annotate FOL.
+The process contains of three stages:<br>
+  1. Signature
+  Describes the input, output parameters and the function name.
+  2. Precondition
+  Are assumption which are made in order to generate a behavior.
+  3. Postcondition
+  Describes how the output relates to the input, as well as side effects of the function.
+
+**Permutation example**<br>
+Given a function called `PERMUTATION` which has the following signature in C++:
+```
+bool PERMUTATION(std::vector<int> X, std::vector<int> Y);
+```
+Assuming the precondition is as followed:
+```
+  |X| = |Y|
+```
+`X` has the same length as `Y`.
+
+The permutation postconditions for the following cases are:<b>
+  1. None empty case
+  ```
+  |x| = 0 =>
+  PERMUTATION(X, Y)
+  ```
+  If the length of the vector `X` is empty, then we have a valid permutation (based on the precondition of `X` having the same length then `Y`).
+
+  2. No matching case
+  The problem is divided into three segments:
+  ```
+                          |<- first ->|j|<-second->|     
+  std::vector<int> X = {1,  2,  3,  4,  5,  6};
+  std::vector<int> Y = {1,  2,  3,  4,  8,  9};
+  ```
+  The FOL notation is:
+  ```
+  Ǝ j: 1 < j < |Y| ^ (X[1] = Y[j])
+  ```
+  There exist some position called `j` which is greater than 1 up to the length of `Y` and the value of `Y` at position `j` must be equal to the first element of `X`. The rest of `Y` comes from concatenating `⌢` with the first and second segment:
+  ```
+  Y[1..j-1] ⌢ Y[j+1..|Y|]
+  ```
+  Followed by checking if the rest of `X` aka. `tail(X)` is a permutation:
+  ```
+  PERMUTATION(tail(X), (Y[1..j-1] ⌢ Y[j+1..|Y|]))
+  ```
+  3. Third case
+  ```
+  (X[1] != Y[1]) ^
+  ((Ǝ j: 1 < j < |Y|) ^ X[1] = Y[j]) ^
+  PERMUTATION(tail(X), (Y[1..j-1] ⌢ Y[j+1..|Y|]))
+  ```
+  `X` at position one must not equal the value of `Y` at position on and there exist some position called `j` which is greater than 1 up to the length of `Y` where `X` at position one is equal to some `Y` at position `j` and there is a permutation of the `tail(x)` concatenating the first and second segment of `Y`.
+
+The full postcondition is as followed:
+
+```
+PERMUTATION(X, Y) <=>
+|X| = 0 v
+(|X| > 0) =>
+(X[1] = Y[1] ^ PERMUTATION(tail(X), tail(y))) v
+(X[1] != Y[1] ^ (Ǝ j: 1 < j < |Y| ^ (X[1] = Y[j])) ^
+PERMUTATION(tail(X), (Y[1..j-1] ⌢ Y[j+1..|Y|]))
+```
+`X` is permutation of `Y` if and only if one of the three conditions is true. First case is for having a empty vector, or if the length of `X` is greaten than 0 and `X` at position 1 is equal to `Y` at position 1 and the tails of `X` and `Y` are both permutations or when `X` at position 1 is not equal to `Y` at position 1 and there exists a `j` which is greater than 1 but smaller then the length of `Y` and the value of `Y` at position `j` must be equal to the first element of `X` and the permutation of the tail of `X` and the concatenation of the rest of the elements of `Y` is a premutation.
 
 
 ## Conclusions

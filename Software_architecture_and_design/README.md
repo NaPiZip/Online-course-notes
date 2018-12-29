@@ -1,4 +1,4 @@
-Exercise<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.l8H7yN_ZVoz_SCzv3qD4ngHaFd%26pid%3D15.1&f=1" alt="Udacity Logo" height="42px" width="42px" align="left">
+explanatorymannerasynchronousinstantaneous<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.l8H7yN_ZVoz_SCzv3qD4ngHaFd%26pid%3D15.1&f=1" alt="Udacity Logo" height="42px" width="42px" align="left">
 
 # Software Architecture and Design
 <div>
@@ -279,7 +279,40 @@ body: self.mariages->select( m | m.ended = false ).spouse
 
 More details and additional examples can be found in the  full specification pdf here [OCL V2.4](https://www.omg.org/spec/OCL/2.4/PDF).
 
-### P2L8 Library Exercise (OCL)
+### P2L9 Behavior Modeling
+Difference between a state and an event is described here:
+
+State<br>
+Is a description of a system at a given time. The set of states a system can occupy is known as its state space.
+
+Event<br>
+An event is a occurrence which is singly and instantaneous, the occurrence could be synchronous or asynchronous. An event can trigger actions e.g. a state transition.
+
+Modelling technics:
+  - Combinatorial<br>
+  Do not have events but states. The input only determine the subsequence states, not the previous state.
+    - Decision tables<br>
+    Are used for example in digital logic and showing the states of the outputs depending on the inputs.
+    - Decision tree<br>
+    Is the graphical representation of a decision table.    
+  - Sequential<br>
+  Do have states which are in a linearly order of traverse. They have memory about previous activities / states. A variant is the finite state machine which only has a fixed number of states (finite number).
+    - State transition table<br>
+    Contains additional information about the previous state as well as the next state depending on the stimuli.
+    - State transition diagram<br>
+    A more concise representation of the state transition table. The downside of this type of diagram is that there is no concept of nesting and the diagram could end up messy very quick.
+    - State chart<br>
+    Provide several mechanism in order to deal with higher complexity.   
+  - Concurrent<br>
+  Do have states with unconstrained events, in nondeterministic manner.
+
+Example of an all containing state chart!
+tbd.
+
+
+This chapter is pretty self explanatory  or most information can be looked up online, which was the reason for me to just take minimal notes.
+
+
 
 
 ## Conclusions

@@ -153,7 +153,7 @@ The top element is the `Diagram` class which has two children `Structured Diagra
 
 The `Behavioral Diagram` has one direct child which is the `Use Case Diagram`, it is one of the most important diagram types because it describes the behavior of a component or a system. The `Interaction Overview Diagram` and the `Timing Diagram` both have the `State Diagram` and the `Sequence Diagram` as parents. The `Interaction Overview Diagram` is a hybrid of it's parents, where as the `Timing Diagram` represents more the behavior in certain states in a sequence.
 
-###  P2L5 Library Exercise
+### P2L5 Library Exercise
 Shows an example on how to design a system based on requirements, by using the approach described in the earlier sections. The following steps are used:
 
   - Analyzing the requirements<br>
@@ -228,7 +228,6 @@ The permutation postconditions for the following cases are:
   `X` at position one must not equal the value of `Y` at position on and there exist some position called `j` which is greater than 1 up to the length of `Y` where `X` at position one is equal to some `Y` at position `j` and there is a permutation of the `tail(x)` concatenating the first and second segment of `Y`.
 
 The full postcondition is as followed:
-
 ```
 PERMUTATION(X, Y) <=>
 |X| = 0 v
@@ -239,6 +238,46 @@ PERMUTATION(tail(X), (Y[1..j-1] ⌢ Y[j+1..|Y|]))
 ```
 `X` is permutation of `Y` if and only if one of the three conditions is true. First case is for having a empty vector, or if the length of `X` is greaten than 0 and `X` at position 1 is equal to `Y` at position 1 and the tails of `X` and `Y` are both permutations or when `X` at position 1 is not equal to `Y` at position 1 and there exists a `j` which is greater than 1 but smaller then the length of `Y` and the value of `Y` at position `j` must be equal to the first element of `X` and the permutation of the tail of `X` and the concatenation of the rest of the elements of `Y` is a premutation.
 
+### P2L7 OCL
+OCL is declarative not procedural notation, it's main purpose is to overcome the limitations of UML in terms of precisely specifying detailed information's of a design. Declarative means OCL does not include constructs like assignments, it also does not contain any implementation details. The syntax of OCL looks as followed:
+
+```
+context <identifier> <constraintType>:
+<Boolean expression>
+```
+  - Context <identifier>
+  Where are we in the diagram, it's usually the class name.
+  - <constraintType>
+  Either invariant `inv`, precondition `pre` or postcondition `post`.
+  - <Boolean expression>
+  The actual constraint the statement is expressing.
+
+**Invariants**<br>
+Integrity constraints in OCL are represented as invariants defined in the context of a specific type, named the context type of the constraint. The statement must be always true, and usually expresses key system requirements. Integrity constrains are also handled by invariants.
+```
+context LargeCompany
+inv: numberofEmployees > 50
+```
+The example shows in order to be a `LargeCompany` the `numberofEmployees` must always be greater than 50.
+
+**Pre- and postconditions**<br>
+Expressing the conditions which need to be fulfilled before the operation `precondition` and the behavior afterwards `postcondition` usually what the relationship between inputs and outputs.
+```
+context Real::squareRoot(): Real
+pre: self >=0
+post self = result * result
+```
+The example is showing that the precondition for the `squareRoot` function is having a value which is 0 or greater, the result then should equal the value feed in multiplied by itself.
+
+**Expressions**<br>
+An OCL expression may be used to indicate the result of a query operation. The expression must conform to the result type of the operation. Like in the pre- and postconditions, the parameters maybe used in the expression. Pre-, and postconditions, and body expressions may be mixed together after one operation context.
+```
+context Person::getCurrentSpouse() : Person
+pre: self.isMarried = true
+body: self.mariages->select( m | m.ended = false ).spouse
+```
+
+More details and additional examples can be found in the  full specification pdf here [OCL V2.4](https://www.omg.org/spec/OCL/2.4/PDF).
 
 ## Conclusions
 Answers to the following questions:

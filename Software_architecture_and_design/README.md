@@ -245,11 +245,11 @@ OCL is declarative not procedural notation, it's main purpose is to overcome the
 context <identifier> <constraintType>:
 <Boolean expression>
 ```
-  - Context <identifier>
+  - `context <identifier>`<br>
   Where are we in the diagram, it's usually the class name.
-  - <constraintType>
+  - `<constraintType>`<br>
   Either invariant `inv`, precondition `pre` or postcondition `post`.
-  - <Boolean expression>
+  - `<Boolean expression>`<br>
   The actual constraint the statement is expressing.
 
 **Invariants**<br>
@@ -278,6 +278,9 @@ body: self.mariages->select( m | m.ended = false ).spouse
 ```
 
 More details and additional examples can be found in the  full specification pdf here [OCL V2.4](https://www.omg.org/spec/OCL/2.4/PDF).
+
+### P2L8 Library Exercise (OCL)
+
 
 ## Conclusions
 Answers to the following questions:

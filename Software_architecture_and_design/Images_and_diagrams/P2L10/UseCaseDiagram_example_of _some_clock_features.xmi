@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_5DCZwAxTEem48p0qskF1qw" name="model">
+  <eAnnotations xmi:id="_5DCZwQxTEem48p0qskF1qw" source="genmymodel">
+    <details xmi:id="_5DCZwgxTEem48p0qskF1qw" key="uuid" value="_oF-toAxREem48p0qskF1qw"/>
+    <details xmi:id="_5DCZwwxTEem48p0qskF1qw" key="author" value="zappEngl"/>
+  </eAnnotations>
+  <packageImport xmi:id="_5DCZxAxTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_5DCZxQxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DCZxgxTEem48p0qskF1qw" key="uuid" value="_oF_UsAxREem48p0qskF1qw"/>
+    </eAnnotations>
+    <importedPackage href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#/"/>
+  </packageImport>
+  <packagedElement xsi:type="uml:Component" xmi:id="_5DCZxwxTEem48p0qskF1qw" name="Radio">
+    <eAnnotations xmi:id="_5DCZyAxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DCZyQxTEem48p0qskF1qw" key="uuid" value="_L7yckO6AEDadipFQNStR0w"/>
+    </eAnnotations>
+    <ownedUseCase xmi:id="_5DCZygxTEem48p0qskF1qw" name="Play music">
+      <eAnnotations xmi:id="_5DCZywxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DCZzAxTEem48p0qskF1qw" key="uuid" value="_NtLhsO6AEDadipFQNStR0w"/>
+      </eAnnotations>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_5DCZzQxTEem48p0qskF1qw" name="Enable Alarm">
+      <eAnnotations xmi:id="_5DDA0AxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDA0QxTEem48p0qskF1qw" key="uuid" value="_SKEjwe6AEDadipFQNStR0w"/>
+      </eAnnotations>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_5DDA0gxTEem48p0qskF1qw" name="Display time">
+      <eAnnotations xmi:id="_5DDA0wxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDA1AxTEem48p0qskF1qw" key="uuid" value="_X0nrwO6AEDadipFQNStR0w"/>
+      </eAnnotations>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_5DDA1QxTEem48p0qskF1qw" name="Set alarm time">
+      <eAnnotations xmi:id="_5DDA1gxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDA1wxTEem48p0qskF1qw" key="uuid" value="_XqtsYO6BEDadipFQNStR0w"/>
+      </eAnnotations>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_5DDA2AxTEem48p0qskF1qw" name="Set sleep time">
+      <eAnnotations xmi:id="_5DDA2QxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDA2gxTEem48p0qskF1qw" key="uuid" value="_ZOCgUe6BEDadipFQNStR0w"/>
+      </eAnnotations>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_5DDA2wxTEem48p0qskF1qw" name="Set display time">
+      <eAnnotations xmi:id="_5DDA3AxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDA3QxTEem48p0qskF1qw" key="uuid" value="_bx4WEO6BEDadipFQNStR0w"/>
+      </eAnnotations>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_5DDA3gxTEem48p0qskF1qw" name="Cange frequency band">
+      <eAnnotations xmi:id="_5DDA3wxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDA4AxTEem48p0qskF1qw" key="uuid" value="_ij41YO6BEDadipFQNStR0w"/>
+      </eAnnotations>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_5DDA4QxTEem48p0qskF1qw" name="Change channel">
+      <eAnnotations xmi:id="_5DDA4gxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDA4wxTEem48p0qskF1qw" key="uuid" value="_mEw7Ie6BEDadipFQNStR0w"/>
+      </eAnnotations>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_5DDA5AxTEem48p0qskF1qw" name="Change volume">
+      <eAnnotations xmi:id="_5DDA5QxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDA5gxTEem48p0qskF1qw" key="uuid" value="_p_8-UO6BEDadipFQNStR0w"/>
+      </eAnnotations>
+    </ownedUseCase>
+    <ownedUseCase xmi:id="_5DDA5wxTEem48p0qskF1qw" name="Snooze">
+      <eAnnotations xmi:id="_5DDA6AxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDA6QxTEem48p0qskF1qw" key="uuid" value="_xbXnAO6BEDadipFQNStR0w"/>
+      </eAnnotations>
+    </ownedUseCase>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Actor" xmi:id="_5DDA6gxTEem48p0qskF1qw" name="Actor">
+    <eAnnotations xmi:id="_5DDA6wxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DDA7AxTEem48p0qskF1qw" key="uuid" value="_Mwyx8O6AEDadipFQNStR0w"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_5DDA7QxTEem48p0qskF1qw" name="Actor_Listen to music" memberEnd="_5DDA8AxTEem48p0qskF1qw _5DDA-QxTEem48p0qskF1qw" navigableOwnedEnd="_5DDA8AxTEem48p0qskF1qw _5DDA-QxTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_5DDA7gxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DDA7wxTEem48p0qskF1qw" key="uuid" value="_O-LPgO6AEDadipFQNStR0w"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_5DDA8AxTEem48p0qskF1qw" name="listen to music" type="_5DCZygxTEem48p0qskF1qw" association="_5DDA7QxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDA8QxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDA8gxTEem48p0qskF1qw" key="uuid" value="_O-KBYO6AEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDA8wxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDA9AxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDA9QxTEem48p0qskF1qw" key="uuid" value="_O-KocO6AEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDA9gxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDA9wxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDA-AxTEem48p0qskF1qw" key="uuid" value="_O-Koce6AEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_5DDA-QxTEem48p0qskF1qw" name="actor" type="_5DDA6gxTEem48p0qskF1qw" association="_5DDA7QxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDA-gxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDA-wxTEem48p0qskF1qw" key="uuid" value="_O-G-EO6AEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDA_AxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDA_QxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDA_gxTEem48p0qskF1qw" key="uuid" value="_O-IMMO6AEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDA_wxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBAAxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBAQxTEem48p0qskF1qw" key="uuid" value="_O-IMMe6AEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_5DDBAgxTEem48p0qskF1qw" name="Actor_Enable Alarm" memberEnd="_5DDBBQxTEem48p0qskF1qw _5DDBDgxTEem48p0qskF1qw" navigableOwnedEnd="_5DDBBQxTEem48p0qskF1qw _5DDBDgxTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_5DDBAwxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DDBBAxTEem48p0qskF1qw" key="uuid" value="_fMB-Nu6AEDadipFQNStR0w"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_5DDBBQxTEem48p0qskF1qw" name="enable Alarm" type="_5DCZzQxTEem48p0qskF1qw" association="_5DDBAgxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBBgxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBBwxTEem48p0qskF1qw" key="uuid" value="_fMB-M-6AEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBCAxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBCQxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBCgxTEem48p0qskF1qw" key="uuid" value="_fMB-NO6AEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBCwxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBDAxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBDQxTEem48p0qskF1qw" key="uuid" value="_fMB-Ne6AEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_5DDBDgxTEem48p0qskF1qw" name="actor" type="_5DDA6gxTEem48p0qskF1qw" association="_5DDBAgxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBDwxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBEAxTEem48p0qskF1qw" key="uuid" value="_fMB-MO6AEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBEQxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBEgxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBEwxTEem48p0qskF1qw" key="uuid" value="_fMB-Me6AEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBFAxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBFQxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBFgxTEem48p0qskF1qw" key="uuid" value="_fMB-Mu6AEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_5DDBFwxTEem48p0qskF1qw" name="Actor_Display time" memberEnd="_5DDBGgxTEem48p0qskF1qw _5DDBIwxTEem48p0qskF1qw" navigableOwnedEnd="_5DDBGgxTEem48p0qskF1qw _5DDBIwxTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_5DDBGAxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DDBGQxTEem48p0qskF1qw" key="uuid" value="_gGYGku6AEDadipFQNStR0w"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_5DDBGgxTEem48p0qskF1qw" name="display time" type="_5DDA0gxTEem48p0qskF1qw" association="_5DDBFwxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBGwxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBHAxTEem48p0qskF1qw" key="uuid" value="_gGXfge6AEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBHQxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBHgxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBHwxTEem48p0qskF1qw" key="uuid" value="_gGYGkO6AEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBIAxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBIQxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBIgxTEem48p0qskF1qw" key="uuid" value="_gGYGke6AEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_5DDBIwxTEem48p0qskF1qw" name="actor" type="_5DDA6gxTEem48p0qskF1qw" association="_5DDBFwxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBJAxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBJQxTEem48p0qskF1qw" key="uuid" value="_gGVqUO6AEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBJgxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBJwxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBKAxTEem48p0qskF1qw" key="uuid" value="_gGW4cO6AEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBKQxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBKgxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBKwxTEem48p0qskF1qw" key="uuid" value="_gGXfgO6AEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_5DDBLAxTEem48p0qskF1qw" name="Actor_Set sleep time" memberEnd="_5DDBLwxTEem48p0qskF1qw _5DDBOAxTEem48p0qskF1qw" navigableOwnedEnd="_5DDBLwxTEem48p0qskF1qw _5DDBOAxTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_5DDBLQxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DDBLgxTEem48p0qskF1qw" key="uuid" value="_edckce6BEDadipFQNStR0w"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_5DDBLwxTEem48p0qskF1qw" name="set sleep time" type="_5DDA2AxTEem48p0qskF1qw" association="_5DDBLAxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBMAxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBMQxTEem48p0qskF1qw" key="uuid" value="_edb9Ye6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBMgxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBMwxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBNAxTEem48p0qskF1qw" key="uuid" value="_edb9Yu6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBNQxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBNgxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBNwxTEem48p0qskF1qw" key="uuid" value="_edckcO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_5DDBOAxTEem48p0qskF1qw" name="actor" type="_5DDA6gxTEem48p0qskF1qw" association="_5DDBLAxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBOQxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBOgxTEem48p0qskF1qw" key="uuid" value="_edaIMe6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBOwxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBPAxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBPQxTEem48p0qskF1qw" key="uuid" value="_edbWUO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBPgxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBPwxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBQAxTEem48p0qskF1qw" key="uuid" value="_edb9YO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_5DDBQQxTEem48p0qskF1qw" name="Actor_Set display time" memberEnd="_5DDBRAxTEem48p0qskF1qw _5DDBTQxTEem48p0qskF1qw" navigableOwnedEnd="_5DDBRAxTEem48p0qskF1qw _5DDBTQxTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_5DDBQgxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DDBQwxTEem48p0qskF1qw" key="uuid" value="_ft11Ve6BEDadipFQNStR0w"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_5DDBRAxTEem48p0qskF1qw" name="set display time" type="_5DDA2wxTEem48p0qskF1qw" association="_5DDBQQxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBRQxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBRgxTEem48p0qskF1qw" key="uuid" value="_ft11Uu6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBRwxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBSAxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBSQxTEem48p0qskF1qw" key="uuid" value="_ft11U-6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBSgxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBSwxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBTAxTEem48p0qskF1qw" key="uuid" value="_ft11VO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_5DDBTQxTEem48p0qskF1qw" name="actor" type="_5DDA6gxTEem48p0qskF1qw" association="_5DDBQQxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBTgxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBTwxTEem48p0qskF1qw" key="uuid" value="_ft1OQe6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBUAxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBUQxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBUgxTEem48p0qskF1qw" key="uuid" value="_ft11UO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBUwxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBVAxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBVQxTEem48p0qskF1qw" key="uuid" value="_ft11Ue6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_5DDBVgxTEem48p0qskF1qw" name="Actor_Set alarm time" memberEnd="_5DDBWQxTEem48p0qskF1qw _5DDBYgxTEem48p0qskF1qw" navigableOwnedEnd="_5DDBWQxTEem48p0qskF1qw _5DDBYgxTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_5DDBVwxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DDBWAxTEem48p0qskF1qw" key="uuid" value="_gQB8Yu6BEDadipFQNStR0w"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_5DDBWQxTEem48p0qskF1qw" name="set alarm time" type="_5DDA1QxTEem48p0qskF1qw" association="_5DDBVgxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBWgxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBWwxTEem48p0qskF1qw" key="uuid" value="_gQBVUu6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBXAxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBXQxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBXgxTEem48p0qskF1qw" key="uuid" value="_gQB8YO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBXwxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBYAxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBYQxTEem48p0qskF1qw" key="uuid" value="_gQB8Ye6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_5DDBYgxTEem48p0qskF1qw" name="actor" type="_5DDA6gxTEem48p0qskF1qw" association="_5DDBVgxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBYwxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBZAxTEem48p0qskF1qw" key="uuid" value="_gQAuQe6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBZQxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBZgxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBZwxTEem48p0qskF1qw" key="uuid" value="_gQBVUO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBaAxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBaQxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBagxTEem48p0qskF1qw" key="uuid" value="_gQBVUe6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_5DDBawxTEem48p0qskF1qw" name="Actor_Cange frequency" memberEnd="_5DDBbgxTEem48p0qskF1qw _5DDBdwxTEem48p0qskF1qw" navigableOwnedEnd="_5DDBbgxTEem48p0qskF1qw _5DDBdwxTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_5DDBbAxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DDBbQxTEem48p0qskF1qw" key="uuid" value="_kymIoO6BEDadipFQNStR0w"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_5DDBbgxTEem48p0qskF1qw" name="cange frequency" type="_5DDA3gxTEem48p0qskF1qw" association="_5DDBawxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBbwxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBcAxTEem48p0qskF1qw" key="uuid" value="_kyk6gO6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBcQxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBcgxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBcwxTEem48p0qskF1qw" key="uuid" value="_kyk6ge6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBdAxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBdQxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBdgxTEem48p0qskF1qw" key="uuid" value="_kylhkO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_5DDBdwxTEem48p0qskF1qw" name="actor" type="_5DDA6gxTEem48p0qskF1qw" association="_5DDBawxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBeAxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBeQxTEem48p0qskF1qw" key="uuid" value="_kyh3MO6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBegxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBewxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBfAxTEem48p0qskF1qw" key="uuid" value="_kyjsYO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBfQxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBfgxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBfwxTEem48p0qskF1qw" key="uuid" value="_kykTcO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_5DDBgAxTEem48p0qskF1qw" name="Actor_Change channel" memberEnd="_5DDBgwxTEem48p0qskF1qw _5DDBjAxTEem48p0qskF1qw" navigableOwnedEnd="_5DDBgwxTEem48p0qskF1qw _5DDBjAxTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_5DDBgQxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DDBggxTEem48p0qskF1qw" key="uuid" value="_ne_dcO6BEDadipFQNStR0w"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_5DDBgwxTEem48p0qskF1qw" name="change channel" type="_5DDA4QxTEem48p0qskF1qw" association="_5DDBgAxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBhAxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBhQxTEem48p0qskF1qw" key="uuid" value="_ne-PUe6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBhgxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBhwxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBiAxTEem48p0qskF1qw" key="uuid" value="_ne-2YO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBiQxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBigxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBiwxTEem48p0qskF1qw" key="uuid" value="_ne-2Ye6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_5DDBjAxTEem48p0qskF1qw" name="actor" type="_5DDA6gxTEem48p0qskF1qw" association="_5DDBgAxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBjQxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBjgxTEem48p0qskF1qw" key="uuid" value="_ne9oQO6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBjwxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBkAxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBkQxTEem48p0qskF1qw" key="uuid" value="_ne9oQe6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBkgxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBkwxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBlAxTEem48p0qskF1qw" key="uuid" value="_ne-PUO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_5DDBlQxTEem48p0qskF1qw" name="Actor_Change volume" memberEnd="_5DDBmAxTEem48p0qskF1qw _5DDBoQxTEem48p0qskF1qw" navigableOwnedEnd="_5DDBmAxTEem48p0qskF1qw _5DDBoQxTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_5DDBlgxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DDBlwxTEem48p0qskF1qw" key="uuid" value="_sOi80O6BEDadipFQNStR0w"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_5DDBmAxTEem48p0qskF1qw" name="change volume" type="_5DDA5AxTEem48p0qskF1qw" association="_5DDBlQxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBmQxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBmgxTEem48p0qskF1qw" key="uuid" value="_sOggkO6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBmwxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBnAxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBnQxTEem48p0qskF1qw" key="uuid" value="_sOhHoO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBngxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBnwxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBoAxTEem48p0qskF1qw" key="uuid" value="_sOhusO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_5DDBoQxTEem48p0qskF1qw" name="actor" type="_5DDA6gxTEem48p0qskF1qw" association="_5DDBlQxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBogxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBowxTEem48p0qskF1qw" key="uuid" value="_sOerYO6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBpAxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBpQxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBpgxTEem48p0qskF1qw" key="uuid" value="_sOfScO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBpwxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBqAxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBqQxTEem48p0qskF1qw" key="uuid" value="_sOfSce6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="uml:Association" xmi:id="_5DDBqgxTEem48p0qskF1qw" name="Actor_Snooze" memberEnd="_5DDBrQxTEem48p0qskF1qw _5DDBtgxTEem48p0qskF1qw" navigableOwnedEnd="_5DDBrQxTEem48p0qskF1qw _5DDBtgxTEem48p0qskF1qw">
+    <eAnnotations xmi:id="_5DDBqwxTEem48p0qskF1qw" source="genmymodel">
+      <details xmi:id="_5DDBrAxTEem48p0qskF1qw" key="uuid" value="_ypqmIO6BEDadipFQNStR0w"/>
+    </eAnnotations>
+    <ownedEnd xmi:id="_5DDBrQxTEem48p0qskF1qw" name="snooze" type="_5DDA5wxTEem48p0qskF1qw" association="_5DDBqgxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBrgxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBrwxTEem48p0qskF1qw" key="uuid" value="_ypoJ4O6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBsAxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBsQxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBsgxTEem48p0qskF1qw" key="uuid" value="_yppYAO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBswxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBtAxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBtQxTEem48p0qskF1qw" key="uuid" value="_yppYAe6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+    <ownedEnd xmi:id="_5DDBtgxTEem48p0qskF1qw" name="actor" type="_5DDA6gxTEem48p0qskF1qw" association="_5DDBqgxTEem48p0qskF1qw">
+      <eAnnotations xmi:id="_5DDBtwxTEem48p0qskF1qw" source="genmymodel">
+        <details xmi:id="_5DDBuAxTEem48p0qskF1qw" key="uuid" value="_ypmUsO6BEDadipFQNStR0w"/>
+      </eAnnotations>
+      <lowerValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBuQxTEem48p0qskF1qw">
+        <eAnnotations xmi:id="_5DDBugxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBuwxTEem48p0qskF1qw" key="uuid" value="_ypm7wO6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </lowerValue>
+      <upperValue xsi:type="uml:LiteralInteger" xmi:id="_5DDBvAxTEem48p0qskF1qw" value="1">
+        <eAnnotations xmi:id="_5DDBvQxTEem48p0qskF1qw" source="genmymodel">
+          <details xmi:id="_5DDBvgxTEem48p0qskF1qw" key="uuid" value="_ypni0O6BEDadipFQNStR0w"/>
+        </eAnnotations>
+      </upperValue>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>

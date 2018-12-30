@@ -203,7 +203,7 @@ The permutation postconditions for the following cases are:
   2. No matching case
   The problem is divided into three segments:
   ```
-                          |<- first ->|j|<-second->|     
+                        |<- first ->|j|<-second->|     
   std::vector<int> X = {1,  2,  3,  4,  5,  6};
   std::vector<int> Y = {1,  2,  3,  4,  8,  9};
   ```
@@ -306,14 +306,16 @@ Modelling technics:
   - Concurrent<br>
   Do have states with unconstrained events, in nondeterministic manner.
 
-Example of an all containing state chart!
-tbd.
+The following state diagram shows the high level states of the [David Harels's Watch state machine](https://s3.amazonaws.com/content.udacity-data.com/courses/gt-cs6310/readings/gt-sad-harel-paper.pdf). The watch has four external control buttons, as well as a main display that can be used to show the time (hour, minutes, and seconds) or the date (weekday, day of month, and month). The buttons are `a`, `b`, `c` and `d`, `b - up` means releasing button `b` after pressing.
+
+<p align="center">
+<img src="https://s3.amazonaws.com/content.udacity-data.com/courses/gt-cs6310/notes/gt-sad-p2l9-watch-diagram.png" alt="David Harel's Watch - High Level State Diagram"/></p>
+
+The state of the watch is either `dead` or `alive`, the events `bt - in`, `bt rm`, `bt - dy` and `bt wk` signify, respectively, the insertion, removal, expiration, and weakening of the battery. We use `t-hits - tm` to signify that the internal time of the watch has reached
+the internal time setting of the alarm, and `t-hits hr` to signify that it has reached a whole hour. Also, `beep- rt` occurs when either any button is pressed or 2 minutes have elapsed since entering beep, and `beep-st` occurs 2 seconds after entering `c -beep`. The first of the five components in the image, `main`, specifies the transitions between displaying and beeping... .
 
 
 This chapter is pretty self explanatory  or most information can be looked up online, which was the reason for me to just take minimal notes.
-
-
-
 
 ## Conclusions
 Answers to the following questions:

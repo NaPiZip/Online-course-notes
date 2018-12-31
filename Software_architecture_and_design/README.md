@@ -1,4 +1,4 @@
-explanatorymannerasynchronousinstantaneous<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.l8H7yN_ZVoz_SCzv3qD4ngHaFd%26pid%3D15.1&f=1" alt="Udacity Logo" height="42px" width="42px" align="left">
+<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.l8H7yN_ZVoz_SCzv3qD4ngHaFd%26pid%3D15.1&f=1" alt="Udacity Logo" height="42px" width="42px" align="left">
 
 # Software Architecture and Design
 <div>
@@ -314,8 +314,85 @@ The following state diagram shows the high level states of the [David Harels's W
 The state of the watch is either `dead` or `alive`, the events `bt - in`, `bt rm`, `bt - dy` and `bt wk` signify, respectively, the insertion, removal, expiration, and weakening of the battery. We use `t-hits - tm` to signify that the internal time of the watch has reached
 the internal time setting of the alarm, and `t-hits hr` to signify that it has reached a whole hour. Also, `beep- rt` occurs when either any button is pressed or 2 minutes have elapsed since entering beep, and `beep-st` occurs 2 seconds after entering `c -beep`. The first of the five components in the image, `main`, specifies the transitions between displaying and beeping... .
 
-
 This chapter is pretty self explanatory  or most information can be looked up online, which was the reason for me to just take minimal notes.
+
+### P2L10 Clock Radio Exercise
+The radio is powered by electricity out of a wall socked. The radio has two manual knobs, `volume` and `tuning`, the frequency is displayed by the white bar, the display has a `12-hour clock` and two small lights, the upper left light is on for `am` and off for `pm`, the light in the lower right corner indicates if the alarm is on. The radio has additionally 2 switches, one for AM/FM frequency band, the second switch has 4 position for alarm `on`, `off`, `radio wake` and `beeping wake`. Four button are on the left side and there are used for various timer `hour`, `min`, `Wake` and `sleep`. The `wake` button enables setting the wake time by then pressing `hour` and `min`, the same goes for the `sleep` button. The `snooze` button is used for shutting off an active alarm for a defined period of time. The image below shows a sketch of the clock and its
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P2L10/Clock_sketch_with_all_precepts.jpg" alt="Sketch of the clock" width="50%" height="50%" /></p>
+
+| Number         | Name     | States
+| :------------- | :------------- |:-------------         |
+| 1)             | AM/FM indicator light| ON - OFF        |
+| 2)             | Time display         | HH:MM           |
+| 3)             | Frequency bar        | Position: 0-100 |
+| 4)             | Wake button          | Pushed: TRUE, FALSE|
+| 5)             | Sleep button         | Pushed: TRUE, FALSE|
+| 6)             | Hour button          | Pushed: TRUE, FALSE|
+| 7)             | Minute button        | Pushed: TRUE, FALSE|
+| 8)             | Mode switch         | ON - OFF - RADIO - BEEP|
+| 9)             | Snooze button        | Pushed: TRUE, FALSE|
+| 10)            | Volume knob          | Position: 0-100 |
+| 11)            | Tune knob            | Position: 0-100 |
+| 12)            | AM/FM switch         | AM - FM         |
+| 13)            | Alarm indicator light| ON - OFF|
+| 14)            | Power cable          | CONNECTED, DISCONNECTED|
+| 15)            | Speaker              | ON - OFF|               
+
+The following image shows some use cases of the radio.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P2L10/UseCaseDiagram_example_of%20_some_clock_features.JPG" alt="Sketch of the clock"/></p>
+
+<p align="center">
+<img src="https://s3.amazonaws.com/content.udacity-data.com/courses/gt-cs6310/notes/gt-sad-p2l10-clock-state-final.png" alt="State Chart"/></p>
+
+### P3L1 KWIC Exercise
+KWIC is an acronym for Key Word In Context, the most common format for concordance lines. The term KWIC was first coined by Hans Peter Luhn. The system was based on a concept called keyword in titles which was first proposed for Manchester libraries in 1864 by Andrea Crestadoro.
+
+A KWIC index is formed by sorting and aligning the words within an article title to allow each word (except the stop words) in titles to be searchable alphabetically in the index. It was a useful indexing method for technical manuals before computerized full text search became common.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P3L1/BoxAndArrowDiagram_KWIC.JPG" alt="Box and arrow diagram KWIC"/></p>
+
+The above image is showing my solutions for the KWIC exercise. The top diagram shows the sentence which the index should be based on, the next step is omitting the stop words (this is a alternative version), the words in the new sentence are then counted and the sentence is then shifted in circular fashion n times. The second diagram works in a similar way the number of words are counted, the first word and the tail are extracted out of the sentence, the front is then switched whit the tail and then saved back, the process is reaped for n times. The full solution to multiple architectures is described [here](https://s3.amazonaws.com/content.udacity-data.com/courses/gt-cs6310/readings/gt-sad-garlan-and-shaw-paper.pdf).
+
+### P3L2 Overview of Architectural Styles
+Informal definition of software architecture is the organization of a subsystem into component subsystems or modules. It is usually done in layers and is usually done in styles.
+
+  - Abstract data types<br>
+  The definition of ADT only mentions what operations are to be performed but not how these operations will be implemented. It does not specify how data will be organized in memory and what algorithms will be used for implementing the operations. It is called “abstract” because it gives an implementation independent view. The process of providing only the essentials and hiding the details is known as abstraction. A stack for example is a ADT with push and pop operations.
+
+  - Blackboard architecture<br>
+  Blackboard allows multiple processes (or agents) to communicate by reading and writing requests and information to a global data store. Each participant agent has expertise in its own field, and has a kind of problem solving knowledge (knowledge source) that is applicable to a part of the problem, i.e., the problem cannot be solved by an individual agent only. Agents communicate strictly through a common blackboard whose contents is visible to all agents (see [Wikipedia](https://en.wikipedia.org/wiki/Blackboard_(design_pattern)).
+  - Coroutines<br>
+  Coroutines are computer-program components that generalize subroutines for non-preemptive multitasking, by allowing multiple entry points for suspending and resuming execution at certain locations. Coroutines are well-suited for implementing familiar program components such as cooperative tasks, exceptions, event loops, iterators, infinite lists and pipes.
+
+  - Data centric architecture<br>
+  Data centric refers to an architecture where data is the primary and permanent asset, and applications come and go.  In the data centric architecture, the data model precedes the implementation of any given application and will be around and valid long after it is gone.
+
+  - Domain driven design<br>
+  The philosophy of domain-driven design (DDD) – first described by Eric Evans in his book of the same name – is about placing our attention at the heart of the application, focusing on the complexity that is intrinsic to the business domain itself. We also distinguish the core domain (unique to the business) from the supporting sub-domains (typically generic in nature, such as money or time), and place appropriately more of our design efforts on the core. Domain-driven design consists of a set of patterns for building enterprise applications from the domain model out. In your software career you may well have encountered many of these ideas already, especially if you are a seasoned developer in an OO language. But applying them together will allow you to build systems that genuinely meet the needs of the business.
+
+
+  - Implicit invocation
+  - Master control architecture
+  - Message bus architecture
+  - Object oriented architecture
+  - Pipe and filter
+  - Process control
+  - Production subsystems
+  - Representational state transfer (REST)
+  - Service oriented architecture (SOA)
+
+Most content of this lesson describes different styles of architectures, I am not going to repeat the content since in my opinion it only makes sense to combine the styles with exercise related to them.
+
+### P3L3 Architectural Views
+This section is covering content related to the fact of which important "Views" exists. Views are architectural frameworks which focus on specific key concepts:
+
+
+
 
 ## Conclusions
 Answers to the following questions:

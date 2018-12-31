@@ -389,9 +389,37 @@ Informal definition of software architecture is the organization of a subsystem 
 Most content of this lesson describes different styles of architectures, I am not going to repeat the content since in my opinion it only makes sense to combine the styles with exercise related to them.
 
 ### P3L3 Architectural Views
-This section is covering content related to the fact of which important "Views" exists. Views are architectural frameworks which focus on specific key concepts:
+This section is covering content related to the fact of which important "Views" exists. Views are architectural frameworks which focus on specific key concepts and main focuses, the following image shows [Philippe Kruchten's](https://en.wikipedia.org/wiki/4%2B1_architectural_view_model) model:
+
+<p align="center">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/4%2B1_Architectural_View_Model.svg/354px-4%2B1_Architectural_View_Model.svg.png" alt="Architectural views, 4+1"/></p>
 
 
+  - Logical view
+  The logical view is concerned with the functionality that the system provides to end-users. UML diagrams used to represent the logical view include, class, box and arrow, interaction overview, collaboration and component and connectors diagrams.
+
+  - Developmental view
+  The development view illustrates a system from a programmer's perspective and is concerned with software management. This view is also known as the implementation view. It uses the UML component diagram to describe system components. UML diagrams used to represent the development view include the package diagram.
+
+  - Process view
+  The process view deals with the dynamic aspects of the system, explains the system processes and how they communicate, and focuses on the runtime behavior of the system. The process view addresses concurrency, distribution, integrators, performance, and scalability, etc. UML diagrams to represent process view include the activity diagram.
+
+  - Physical view
+  The physical view depicts the system from a system engineer's point of view. It is concerned with the topology of software components on the physical layer as well as the physical connections between these components. This view is also known as the deployment view. UML diagrams used to represent the physical view include the deployment diagram.
+
+  - Scenarios / use case view
+  The description of an architecture is illustrated using a small set of use cases, or scenarios, which become a fifth view. The scenarios describe sequences of interactions between objects and between processes. They are used to identify architectural elements and to illustrate and validate the architecture design. They also serve as a starting point for tests of an architecture prototype. This view is also known as the use case view.
+
+There exist many additional view models besides the 4+1 model view of Kruchen's, the following section shows a selection of different important view models:
+
+  - Context view
+  The Context view of a system defines the relationships, dependencies, and interactions between the system and its environment—the people, systems, and external entities with which it interacts. It defines what the system does and does not do; where the boundaries are between it and the outside world; and how the system interacts with other systems, organizations, and people across these boundaries, see [here](https://www.viewpoints-and-perspectives.info/home/viewpoints/context/).
+
+  - Features view
+  The feature view mainly focuses on functional sets which are visible for the user or containing a complete functional entity, an example could be the auto zoom feature of a camera or the flash feature.
+
+  - Non functional view
+  Are aspects which define how a system is supposed to be rather then what it is supposed to do. It could contain requirements as: The GUI should be easy and intuitive to use, the application should be easy maintainable, extensible, portable ... .
 
 
 ## Conclusions

@@ -421,6 +421,77 @@ There exist many additional view models besides the 4+1 model view of Kruchen's,
   - Non functional view
   Are aspects which define how a system is supposed to be rather then what it is supposed to do. It could contain requirements as: The GUI should be easy and intuitive to use, the application should be easy maintainable, extensible, portable ... .
 
+### P3L4 Text Browser Exercise
+The following image shows the use case diagram for the text browser exercise:
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P3L4/UseCaseDiagram_text_browser.JPG" alt="Use case diagram text browser."/></p>
+
+The main use case of the text browser is to display text, the use case also includes loading a particular file. The second use case is to scroll the current `ViewPort` content with the help of the `ScrollBar`, if the user scrolls then the content is moved in the `ViewPort` accordingly. The last use case is the event of resizing the window which also changes the content of the `ViewPort`.
+
+**Phase 0: System relationship between environment**
+In addition to the described scenarios in the use case diagram above we have the following behavioral expectations. The `ScrollBar` handle size is defined as followed:
+```
+handleSize = nVisibleLinesInVieport / nLinesInFile
+```
+This also means if the `ViewPort` resizes then the size of the `ScrollBar` adjusts accordingly.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P3L4/Example_of_the_TextBrowser_GUI_and_its_events.JPG" alt="Example of the text browser GUI and it's events."/></p>
+
+**Phase 1: Decomposing the system into its components**<br>
+The system so far contains of the `Viewport`, the `ScrollBar` and the `FileManager`. The following component properties are defined.
+```
+{ context ScrollBar::moveHandle(newPosition : int) : void
+  post: handlePosition = newPosition
+}
+
+{ context ViewPort::resizeWindow(newSize : int) : void
+  pre: newSize => 0
+  post: height = newSize  
+}
+
+{ context displayDocument
+  inv: ViewPort::viewContens = FileManager.document->subsequence(ScrollBar::handlePosition, ScrollBar::handlePosition + ViewPort::height -1)
+}
+```
+
+**Phase 2: Determine the systems architecture**<br>
+Layered implicit invocation:<br>
+[Garland and Shaw](http://www.cs.cmu.edu/afs/cs/project/able/ftp/intro_softarch/intro_softarch.pdf) describe implicit invocation systems: "The idea behind implicit invocation is that instead of invoking a procedure directly, a component can announce (or broadcast) one or more events. Other components in the system can register an interest in an event by associating a procedure with the event. When the event is announced the system itself invokes all of the procedures that have been registered for the event. Thus an event 'implicitly' causes the invocation of procedures in other modules."
+
+The following OCL constrains have been added:
+```
+{ context ViewPort
+  inv: ScrollBar.handleSize = height / FileManager::document->size()  
+}
+
+{ context ViewPort
+  inv: viewContens->size() = min(height, FileManager::document->size())  
+}
+
+{ context ScrollBar::updateHandleSize(size : int) : void
+  pre: s > 0
+  post: handleSize = s
+}
+```
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P3L4/ClassDiagram_TextBrowser_components.JPG" alt="Text browser class diagram."/></p>
+
+Invariant maintenance strategies:<br>
+  - Aggregated responsibility
+  One component owns the other two, for example the event of scrolling the handle, the `ViewPort` has pointer or instances to the other components, the `ViewPort` gets the notification of the scroll event and forward the behaviour to the `ScrollBar`, then the `ViewPort` has to change the content accordingly, by making the request for different content to the `FileManager`.
+
+  - Distributed responsibility
+  Each component handles a part of the events e.g. the `ScrollBar` gets the event of scrolling and updates it's position and issues a request to notify the `ViewPort`. The `ViewPort` then will make a request to the `FileManager` in order to get the right content.
+
+  - Mediators
+  A new implementation element is introduced for each invariant called the `Mediator`, he knows the dependent components. Each event and it's component must inform it's corresponding `Mediator`, for example the `ScrollBar` receives the resize event and notifies the `Mediator`, which requests the new position and requests new content form the `FileManager` and pass it to the `ViewPort`.
+
+
+
+
 
 ## Conclusions
 Answers to the following questions:

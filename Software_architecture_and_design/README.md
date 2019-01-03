@@ -489,6 +489,42 @@ Invariant maintenance strategies:<br>
   - Mediators
   A new implementation element is introduced for each invariant called the `Mediator`, he knows the dependent components. Each event and it's component must inform it's corresponding `Mediator`, for example the `ScrollBar` receives the resize event and notifies the `Mediator`, which requests the new position and requests new content form the `FileManager` and pass it to the `ViewPort`.
 
+### P3L6 Connectors
+Component interaction is embodied in the notion of software connectors. Connectors manifest themselves in a software system as shared variable accesses, table entries, buffers, instructions to a linker, procedure calls, networking protocols, pipes, SQL links between a database and an application, and so forth [Mehta et. al. Paper](https://s3.amazonaws.com/content.udacity-data.com/courses/gt-cs6310/readings/gt-sad-mehta-paper.pdf).
+
+The base elements are called `ducts` those are the base channel. `Ducts` provide a mechanism for transmitting data and control information among components. Connectors go beyond `ducts` and provide the protocol.
+
+Services in this context represents the broad interaction role that the connector fulfils, it describes the purpose of the connection. The following four category are mention in the paper:
+  - Communication (t), for transmitting data.
+  - Coordination (o), for transferring control.
+  - Conversion (x), typically converting data formats so components can interact.
+  - Facilitation, mediation / optimization operation.
+
+Types of connectors:
+  - Procedure call connectors
+  Procedure call connectors model the flow of control among components through various invocation techniques (coordination). They also perform transfer of data among the interacting components through the use of parameters (communication).
+
+  - Event connectors
+  An event can be defined as “the instantaneous effect of the (normal or abnormal) termination of the invocation of an operation on an object, and it occurs at that object's location”. Event connectors are similar to procedure call connectors in that they model the flow of control among components (coordination).
+
+  - Data access connectors
+  Data access connectors allow components to access data maintained by a data store component (communication). Data access often requires preparation of the data store
+  before and clean-up after access has been completed.
+
+  - Linkage connectors
+  Linkage connectors are used to tie the system components together and hold them in such a state during their operation. Linkage connectors enable the establishment of ducts, the channels for communication and coordination, which are then used by higher-order connectors to enforce interaction semantics (facilitation).
+
+  - Stream connectors
+  Streams are used to perform transfers of large amounts of data between autonomous processes (communication). Streams are also used in client-server systems with data transfer protocols to deliver results of computation.
+
+  - Arbitrator connectors
+  When components are aware of the presence of other components but cannot make assumptions about their needs and state, arbitrators streamline system operation and resolve any conflicts (facilitation), and redirect the flow of control (coordination).
+
+  - Adaptor connectors
+  Adaptor connectors provide facilities to support interaction between components that have not been designed to interoperate. Adaptors involve matching communication policies and interaction protocols among components (conversion). These connectors are necessary for interoperation of components in heterogeneous environments, such as different programming languages or computing platforms.
+
+  - Distributor connectors
+  Distributor connectors perform the identification of interaction paths and subsequent routing of communication and coordination information among components along these paths (facilitation). They never exist by themselves, but provide assistance to other connectors, such as streams or procedure calls.
 
 
 

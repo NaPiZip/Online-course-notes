@@ -526,7 +526,86 @@ Types of connectors:
   - Distributor connectors
   Distributor connectors perform the identification of interaction paths and subsequent routing of communication and coordination information among components along these paths (facilitation). They never exist by themselves, but provide assistance to other connectors, such as streams or procedure calls.
 
+### P3L8 Refinement
+It is necessary to abstract problems by hiding details in order to come up with the bigger picture, it's about managing the complexity by carefully refining a design. Solving a problem often needs to divide it into subproblems and then solving each lower level problem ensuring the lower level problems contribute to the high level objectives.
 
+**Divide and Conquer**<br>
+In computer science, divide and conquer is an algorithm design paradigm based on multi-branched recursion. A divide-and-conquer algorithm works by recursively breaking down a problem into two or more sub-problems of the same or related type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem (Wikipedia)[https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm].
+
+Proper Refinement means moving from an architecture to an implementation. Three probertites must be followed:
+  1. The top level must represent the requirements.  
+  2. Each level must be internal consistent.
+  3. Each lower level must represent its upper level.
+
+Refinement Example:<br>
+- The user can make a deposit of any positive number.
+- The user may make a withdrawal of any positive number of dollars so long as at least that number of dollars is currently held in the account.
+- The user may request the current value of the bank balance, which is defined as the net value of all deposits made minus the sum of all withdrawals.
+- Initially, the bank account is empty.
+
+
+| Account     |
+| :------------- |
+| transactions: Sequence (Integer)   |
+| deposit (amount : Integer)<br> withdrawal (amount : Integer)<br> balance( ) : Integer|
+
+```
+{ context Account::deposit(amount : Integer)
+  pre: amount > 0
+  post: transactions = transactions@pre.append(a)
+}
+
+{ context Account::withdrawal(amount : Integer)
+  pre: amount > 0 and transitions->sum() >= amount
+  post: transactions = transactions@pre.append(-a)
+}
+
+{ context Account::balance() : Integer
+  post: result = transactions->sum()
+}
+
+{ context Account::transactions
+  init: transactions = {}
+}
+```
+
+**Notation**<br>
+P<sub>i </sub>: Abstract operation<br>
+S : Set of abstract states<br>
+s : Element of an S<br>
+s': Abstract state after operation<br>
+inv : Invariant<br>
+invA : Abstract invariant<br>
+invC :  Concrete invariant>
+Pre-P<sub>i</sub> : Precondition for operation i<br>
+Post-P<sub>i</sub> : Postcondition for operation i<br>
+& : And <br>
+=> : Implies <br>
+
+Example:
+```
+(invA(s) & Pre-Pi(s, args) &
+Post-Pi(s, args, s', res)) => invA(s')
+```
+Abstract invariant `invA` over state `s` and the precondition of `s` and the postcondition of `s` and it's `args` lead to `s'` and `res` which implies that the `invA` is over `s'`. This means after the operation the invariant must still be true for the state after the operation.
+
+Q<sub>i </sub>: Concrete operation<br>
+t : Set of concrete states<br>
+T : Element of an T<br>
+retr : Retrieve function which maps concrete states to abstract states, retr(t) = s<br>
+
+```
+∀s ∈ S: invA(s)
+(∃ t ∈ T: invC(t) & s = retr(t))
+```
+For all abstract state elements `s` in the abstract set `S` the abstract invariant `invA` of `s` must be true, then there must exist a concrete state element `t` in the concrete set `T` so that the concrete invariant `invC` is true such that applying the retrieve function to the concrete element of state `t` must yield in a abstract element of `s`.
+
+**Summary**<br>
+1. The top level specification must matches the requirements.
+2. Operations at each level must preserve invariants.
+3. Each refinement is adequate.
+4. Each refinement is total.
+5. Concrete operation preconditions and post conditions model their abstract counterparts
 
 
 ## Conclusions

@@ -1,4 +1,4 @@
-<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.l8H7yN_ZVoz_SCzv3qD4ngHaFd%26pid%3D15.1&f=1" alt="Udacity Logo" height="42px" width="42px" align="left">
+concurrent<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.l8H7yN_ZVoz_SCzv3qD4ngHaFd%26pid%3D15.1&f=1" alt="Udacity Logo" height="42px" width="42px" align="left">
 
 # Software Architecture and Design
 <div>
@@ -612,6 +612,49 @@ Middleware is computer software that provides services to software applications 
 
 Middleware makes it easier for software developers to implement communication and input/output, so they can focus on the specific purpose of their application [Wikipedia](https://en.wikipedia.org/wiki/Middleware).
 
+**Exercise:**<br>
+Come up with an architecture for a website and it's infrastructure. The user uses the website to vote anonymous on a set of questions, after the user is done the website responds with a feedback how other people voted on the questions. The choices are recorded and anonymous.
+
+The following characteristic issues should be addressed:
+  - Network communication<br>
+  How are errors handled, for example synchronous errors when a particular request is made and the system is waiting for a response or asynchronous, spontaneous issuing of some notifications. The primary concern is the reliable delivery of those messages. It also is important to think about how data is represented on different system. How to manage concurrent transactions an consistency of data, as well as serialization / marshalling, byte ordering, character sets, word length on different systems. A solution could be a self definition, not only sending the data but also sending the representation. Transactions should be ACID, atomic, consistency-perceiving, isolated and durable.
+    - Atomic
+    A transaction should be treated as on step, with no intermediate steps in between.
+    - Consistency-perceiving
+    The database should maintain integrity.
+    - Isolated
+    Other transaction should not see intermediate transactions.
+    - Durable
+    After a commit the transaction should be persistent.
+
+
+  - Coordination<br>
+  Action need to be synchronized between system, this could either be synchronous or asynchronous. The control structure need to be defined, who is in charge e.g. for updating content, the client polling or the server broadcasting? The system has to be robust, it should be able to handle on parts of the application going down. The system should also have a certain availability.
+
+  - Reliability<br>
+  Component of distributed systems fail sometimes. What is the ratio of down time to total time. There could also be issues with handling of failure to deliver or multiple deliveries. Different policies can be defined in order to cover those cases.
+
+  - Scalability<br>
+  How can we deal with higher load, how easy is it to grow? To what extend will adding machines change system architecture or components.
+
+  - Heterogeneity<br>
+  What kind of hardware, operating system, protocols, API's, programming languages are we using? A solution could be using standard API's and protocols.
+
+There are four types of middle ware:
+  1. Transactional middleware<br>
+  Supports transactions involving components that run on distributed hosts.
+  2. Message-Oriented Middleware<br>
+  Message-oriented middleware (MOM) supports the communication between distributed system components by facilitating message exchange.
+  3. Procedural Middleware<br>
+  Is an external function call which is usually synchronous.
+  4. Object and Component Middleware<br>
+  Is an extension of 3, the idea here is to make object-oriented principles, such as object identification through references and inheritance, available for the development of distributed systems.
+
+Web services<br>
+A software system designed to support interoperable machine to machine interaction over a network. Web services are frequently just web API's that can be accessed over a network, such as the internet and executed on a remote system hosting the requested services.
+
+Service oriented architecture<br>
+A service-oriented architecture (SOA) is a style of software design where services are provided to the other components by application components, through a communication protocol over a network. The basic principles of service-oriented architecture are independent of vendors, products and technologies. A service is a discrete unit of functionality that can be accessed remotely and acted upon and updated independently, such as retrieving a credit card statement online [Wikipedia](https://en.wikipedia.org/wiki/Service-oriented_architecture).
 
 ## Conclusions
 Answers to the following questions:

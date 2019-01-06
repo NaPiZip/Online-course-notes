@@ -1,4 +1,4 @@
-concurrent<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.l8H7yN_ZVoz_SCzv3qD4ngHaFd%26pid%3D15.1&f=1" alt="Udacity Logo" height="42px" width="42px" align="left">
+<img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.l8H7yN_ZVoz_SCzv3qD4ngHaFd%26pid%3D15.1&f=1" alt="Udacity Logo" height="42px" width="42px" align="left">
 
 # Software Architecture and Design
 <div>
@@ -655,6 +655,20 @@ A software system designed to support interoperable machine to machine interacti
 
 Service oriented architecture<br>
 A service-oriented architecture (SOA) is a style of software design where services are provided to the other components by application components, through a communication protocol over a network. The basic principles of service-oriented architecture are independent of vendors, products and technologies. A service is a discrete unit of functionality that can be accessed remotely and acted upon and updated independently, such as retrieving a credit card statement online [Wikipedia](https://en.wikipedia.org/wiki/Service-oriented_architecture).
+
+### P4L1 Components
+**What is a software component?**<br>
+A software component is a software element that conforms to a component model and can be independently deployed and composed without modification according to a composition standard.
+
+**What is a component model?**<br>
+A component model defines specific interaction and composition standards. A component model implementation is the dedicated set of executable software elements required to support the execution of components that conform to the model.
+
+**What is a composition?**<br>
+The combination of two or more software components yielding a new component behavior at a different
+level of abstraction. The characteristics of the new
+component behavior are determined by the components being combined and by the way they are combined [Bill Councill](http://heim.ifi.uio.no/~frank/inf5040/CBSE/Component-Based_Software_Engineering_-_ch1.pdf).
+
+Does it make sense to use a 3rd party solution in order to solve the problem?
 
 ## Conclusions
 Answers to the following questions:

@@ -147,7 +147,7 @@ A detailed example can be found [here](https://en.wikipedia.org/wiki/UML_state_m
 This chapter is a more detailed explanation of classes within a class model, I am not going to reproduce the same content as in the previous chapter. The following image shows my solution for the #21 Quiz.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P2L3/P2L3_21_Quiz.JPG" alt="P2L3_21_Quiz solution"/></p>
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P2L3/P2L3_21_quiz.jpg" alt="P2L3_21_Quiz solution"/></p>
 
 The top element is the `Diagram` class which has two children `Structured Diagram` and the `Behavioral Diagram`. The `Structured Diagram` has a main child the `Profile Diagram`, I picked it as the first child because `Profile Diagrams` are a mechanism to extend standard UML stereotypes etc.. The next child is the `Class Model Diagram`, whit it's children `Composite Structure Diagram` and `Component Diagram`, which are diagram types who give more detailed information about a class or a component. The `Object Diagram` is a representation of instantiated classes, which was the reason for making it a child of the `Class Diagram`. The last entities are the `Package Diagram` and the `Deployment Diagram`, both of them represent an aggregation of components or classes.
 
@@ -437,7 +437,7 @@ handleSize = nVisibleLinesInVieport / nLinesInFile
 This also means if the `ViewPort` resizes then the size of the `ScrollBar` adjusts accordingly.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P3L4/Example_of_the_TextBrowser_GUI_and_its_events.JPG" alt="Example of the text browser GUI and it's events."/></p>
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P3L4/Example_of_the_text_browser_GUI_and_its_events.JPG" alt="Example of the text browser GUI and it's events."/></p>
 
 **Phase 1: Decomposing the system into its components**<br>
 The system so far contains of the `Viewport`, the `ScrollBar` and the `FileManager`. The following component properties are defined.
@@ -477,7 +477,7 @@ The following OCL constrains have been added:
 ```
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P3L4/ClassDiagram_TextBrowser_components.JPG" alt="Text browser class diagram."/></p>
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P3L4/ClassDiagram_text_browser_components.JPG" alt="Text browser class diagram."/></p>
 
 Invariant maintenance strategies:<br>
   - Aggregated responsibility
@@ -530,7 +530,7 @@ Types of connectors:
 It is necessary to abstract problems by hiding details in order to come up with the bigger picture, it's about managing the complexity by carefully refining a design. Solving a problem often needs to divide it into subproblems and then solving each lower level problem ensuring the lower level problems contribute to the high level objectives.
 
 **Divide and Conquer**<br>
-In computer science, divide and conquer is an algorithm design paradigm based on multi-branched recursion. A divide-and-conquer algorithm works by recursively breaking down a problem into two or more sub-problems of the same or related type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem (Wikipedia)[https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm].
+In computer science, divide and conquer is an algorithm design paradigm based on multi-branched recursion. A divide-and-conquer algorithm works by recursively breaking down a problem into two or more sub-problems of the same or related type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem [Wikipedia](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm).
 
 Proper Refinement means moving from an architecture to an implementation. Three probertites must be followed:
   1. The top level must represent the requirements.  

@@ -670,6 +670,174 @@ component behavior are determined by the components being combined and by the wa
 
 Does it make sense to use a 3rd party solution in order to solve the problem?
 
+### P4L2 Coffee Maker Exercise
+Exercise consists if using the textual description of the coffee  maker and its API description to create a class diagram.
+
+**The Mark IV Special Coffee Maker**<br>
+The **Mark IV Special** makes up to 12 *cups of coffee* at a time. The user places a *filter* in the *filter holder*, fills the *filter* with *coffee grounds*, and slides the **filter holder** into its *receptacle*. The user then pours up to 12 cups of *water* into the **water strainer** and presses the *Brew button*. The *water* is heated until boiling. The *pressure* of the evolving *steam* forces the *water* to be sprayed over the *coffee grounds*, and *coffee* drips through the *filter* into the *pot*. The *pot* is kept warm for extended periods by a **warmer plate**, which only
+turns on if there is *coffee* in the *pot*. If the *pot* is removed from the *warmer plate* while water is being sprayed over the *grounds*, the flow of *water* is stopped so that brewed *coffee* does not spill on the *warmer plate*. The following hardware needs to be monitored or controlled:
+
+- The heating element for the boiler. It can be turned on or off.
+- The heating element for the warmer plate. It can be turned on or off.
+- The sensor for the warmer plate. It has three states: warmerEmpty, potEmpty, potNotEmpty.
+-  A sensor for the boiler, which determines whether there is water present. It has
+two states: boilerEmpty or boilerNotEmpty.
+- The Brew button. This is a momentary button that starts the brewing cycle. It has an indicator that lights up when the brewing cycle is over and the coffee is ready.
+- A pressure-relief valve that opens to reduce the pressure in the boiler. The drop in
+pressure stops the flow of water to the filter. It can be opened or closed.
+
+The hardware for the Mark IV has been designed and is currently under development.
+The hardware engineers have even provided a low-level API for us to use, so we don’t
+have to write any bit-twiddling I/O driver code. The code for these interface functions is
+shown in Listing 11–1. If this code looks strange to you, just keep in mind that it was written
+by hardware engineers [Heuristics and Coffee](https://s3.amazonaws.com/content.udacity-data.com/courses/gt-cs6310/readings/gt-sad-martin-chapter-11.pdf).
+
+**Identify hardware components**<br>
+The following coffee maker hardware components are available in the system:
+
+| Description    | States     |
+| :------------- | :------------- |
+| Heating element boiler  | On - Off  |
+| Heating element warmer plate| On - Off  |
+| Sensor warmer plate| warmerEmpty - potEmpty - potNotEmpty  |
+| Sensor boiler | boilerEmpty - boilerNotEmpty  |
+| Brew button | pressed - notPressed  |
+| Indicator that light | On - Off  |
+| A pressure-relief valve | opened - closed |
+
+**Identify hardware component operations**<br>
+The following API calls are provided:
+
+| Signature    | Description     |
+| :------------- | :------------- |
+| int getWarmerPlateStatus()      | This function returns the status of the warmer-plate sensor. This sensor detects the presence of the pot and whether it has coffee in it.|
+| int getBoilerStatus()      | This function returns the status of the boiler switch. The boiler switch is a float switch that detects if there is more than 1/2 cup of water in the boiler. |
+| int getBrewButtonStatus()      | This function returns the status of the brew button. The brew button is a momentary switch that remembers its state. Each call to this function returns the remembered state and then resets that state to BREW_BUTTON_NOT_PUSHED. |
+| void setBoilerState(int boilerStatus)     | This function turns the heating element in the boiler on or off  |
+| setWarmerState(int warmerState)      | This function turns the heating element in the warmer plate on or off.  |
+| void setIndicatorState(int indicatorState)     | This function turns the indicator light on or off. The indicator light should be turned on at the end of the brewing cycle. It should be turned off when the user presses the brew button. |
+| void setReliefValveState(int reliefValveState)     | This function opens and closes the pressure-relief valve. When this valve is closed, steam pressure in the boiler will force hot water to spray out over the coffee filter. When the valve is open, the steam in the boiler escapes into the environment, and the water in the boiler will not spray out over the filter. |
+
+Steps in order to solve the exercise using the OOP approach:
+  1. Identify objects by looking for nouns
+  2. Identify the available API calls
+  3. Define attributes of the objects.
+  4. Adding dependencies and relationships.
+
+**1. Identify objects**<br>
+After examining the specification the following objects have been identified:
+  - Mark IV Special coffee maker
+  - Cups
+  - Filter holder
+  - Filter receptacle
+  - Filter
+  - Water strainer
+  - Warmer plate
+  - Coffee grounds
+  - Pot
+  - Brew button
+
+**2. Optimizing the objects based on the API calls**<br>
+The list from step 1 is used in order to remove unneeded objects and allocate API calls to the existing ones in such way it make sense.<br>
+  - CoffeeMaker
+    - `setIndicatorState`
+    - `getBrewButtonStatus`
+  - WarmerPlate
+    - `getWarmerPlateStatus`
+    - `setWarmerState`
+  - WaterStrainer
+    - `getBoilerStatus`
+    - `setBoilerState`
+    - `setReliefValveState`
+
+**3. Optimizing the objects adding attributes**<br>
+- CoffeeMaker
+  - `bool isBrewing`
+  - `bool isBrewingDone`
+- WarmerPlate
+ - `bool isPlateOn`
+- WaterStrainer
+  - `bool isBoilerOn`
+
+**4. Identify possible operations**<br>
+The following operations or events are available based on action verbs found in the specification:
+  - Filter loaded
+  - Filter in receptacle
+  - Water provided
+  - User presses brew button
+  - Heating water
+  - Water heated
+  - Water running over ground coffee
+  - Pot filling
+  - Pot filled
+  - Pot in place
+  - Warmer heating
+  - Pot removed
+  - Heater off
+  - Coffee brewed
+
+**5. Removing unneeded operations**<br>
+Not all operations make sense, some would require additional hardware, but since the hardware and it's API is already provided we are able to remove some of the identified operations. It would make sense to use the identified elements if we could design the hardware based on our needs, but this is not the case for this exercise:<br>
+- ~~Filter loaded~~<br>
+We are not able to detect if a filter is loaded, thus this operation is not needed.
+- ~~Filter in receptacle~~<br>
+Same as above applies.
+- Water provided<br>
+Covered by `getBoilerStatus`.  
+- User presses brew button<br>
+Covered by `getBrewButtonStatus`.
+- Heating water<br>
+Covered by `bool isBrewing`.
+- ~~Water heated~~<br>
+The water will automatic start poring onto the coffee if the `ReliefValve` is open, so we only need to make sure that the valve is open after the heater is turned on.
+- Water running over ground coffee<br>
+Covered by statement before as well as by `bool isBrewing`.
+- Pot filling<br>
+Covered by statement before as well as by `bool isBrewing`.
+- Pot filled<br>
+Covered by `getWarmerPlateStatus`.
+- Pot in place<br>
+Covered by `getWarmerPlateStatus`.
+- Warmer heating<br>
+Covered by `bool isPlateOn`.
+- Pot removed<br>
+Covered by `getWarmerPlateStatus`.
+- Heater off<br>
+Covered by `bool isPlateOn`.
+- Coffee brewed<br>
+Covered by `bool isBrewingDone`.
+
+**6. Use Cases for the coffee maker**<br>
+The following use cases are relevant for the coffee maker:<br>
+1.  Brewing coffee and keep fresh brewed coffee warm
+3.  Warm existing coffee in pot
+
+**7. Sequence description for the use cases**<br>
+Brewing coffee and keep warm<br>
+It's assumed that the user placed a filter with coffee grounds into the filter holder and the filter holder is closed.<br>
+- Press brew button.
+- Check if water is in water strainer.
+- Check if empty pot is on warmer plate.
+- Close Valve.
+- Heat water in boiler as long as boiler contains water.
+- Water flows over coffee into pot.
+- Warmer plate turns on if coffee is detected.
+- Light indicator when coffee is done.
+- Turn warmer plate off if pot is empty
+
+Warm existing coffee in pot<br>
+This feature warms or keeps already brewed coffee warm, if a pot with a certain level of a liquid is detected.
+- Press brew button.
+- Check if pot with liquid is on warmer plate.
+- Turn on warmer plate.
+- Light indicator.
+- Turn warmer plate off if pot is empty
+
+**8. Activity diagrams of the use cases**<br>
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P4L2/StateDiagram_coffee_machine_OOP.JPG" alt="State diagram Coffee machine OOP."/></p>
+
 ## Conclusions
 Answers to the following questions:
   - What was good?

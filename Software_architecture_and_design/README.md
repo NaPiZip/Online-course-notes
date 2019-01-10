@@ -22,10 +22,10 @@ This section displays the notes I took during different lessons as well as my so
 ###  P2L1 Review of UML
 **Diagram types**<br>
 UML consists of two main category of diagrams:
-1.  Structural diagrams
+1.  Structural diagrams<br>
 It shows the individual parts and elements of a system and the relationships. This kind of diagram is a static type.
 
-2. Behavioral diagrams
+2. Behavioral diagrams<br>
 It visualizes, specifies, constructs, and documents the dynamic aspects of a system. It may represent only a certain state or event.
 
 **Structural diagrams**<br>
@@ -816,12 +816,12 @@ The following use cases are relevant for the coffee maker:<br>
 Brewing coffee and keep warm<br>
 It's assumed that the user placed a filter with coffee grounds into the filter holder and the filter holder is closed.<br>
 - Press brew button.
-- Check if water is in water strainer.
-- Check if empty pot is on warmer plate.
-- Close Valve.
+- Check if water is in water strainer `getBoilerStatus()`.
+- Check if empty pot is on warmer plate `getWarmerPlateStatus()`.
+- Close Valve `setReliefValveState(VALVE_CLOSED)`.
 - Heat water in boiler as long as boiler contains water.
 - Water flows over coffee into pot.
-- Warmer plate turns on if coffee is detected.
+- Warmer plate turns on after brewing is done.
 - Light indicator when coffee is done.
 - Turn warmer plate off if pot is empty
 
@@ -837,6 +837,81 @@ This feature warms or keeps already brewed coffee warm, if a pot with a certain 
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P4L2/StateDiagram_coffee_machine_OOP.JPG" alt="State diagram Coffee machine OOP."/></p>
+
+The initial state of the coffee maker state machine is the `PowerOff` state, as soon as the machine gets plugged in `[a.]: [isMachinePlugedIn]` the machine powers on. Within the main state machine `CoffeeMachine` there are two possibilities of an implementation, `A` or `B`, `B` consists of two parallel running state machines the `WaterStrainer` machine state describing the state of the boiler, and the `WarmerPlate` state. The detailed description of the state transitions is listed below:<br>
+
+```
+A
+[Idle]: during:
+{
+  setReliefValveState(VALVE_CLOSED);
+  setBoilerState(BOILER_OFF);
+  setWarmerState(WARMER_OFF);
+  setIndicatorState(INDICATOR_OFF);
+
+  isBrewing   = FALSE;
+  isBoilerOn  = FALSE;
+  isPlateOn   = FALSE;
+}
+[Brewing]: during:
+{
+  setReliefValveState(VALVE_OPEN);
+  setBoilerState(BOILER_ON);
+
+  isBrewing   = TRUE;
+  isBoilerOn  = TRUE;
+}
+[Warming]: during:
+{
+  setWarmerState(WARMER_ON);
+  setIndicatorState(INDICATOR_ON);
+
+  isBrewing   = FALSE;
+  isBoilerOn  = FALSE;
+  isPlateOn   = TRUE;
+}
+
+B
+[BoilerOff]: during:
+{
+  setReliefValveState(VALVE_CLOSED);
+  setBoilerState(BOILER_OFF);
+
+  isBrewing   = FALSE;
+  isBoilerOn  = FALSE;
+}
+
+[BoilerOn]: during:
+{
+  setReliefValveState(VALVE_OPEN);
+  setBoilerState(BOILER_ON);
+
+  isBrewing   = FALSE;
+  isBoilerOn  = FALSE;
+}
+
+[PlateOff]: during:
+{
+  setWarmerState(WARMER_OFF);
+
+  isPlateOn   = FALSE;
+}
+
+[PlateOn]: during:
+{
+  setWarmerState(WARMER_ON);
+
+  isPlateOn   = TRUE;
+}
+
+[1.][7.]: [(getBrewButtonStatus() == BREW_BUTTON_PUSHED) && (getWarmerPlateStatus() == POT_NOT_EMPTY)]
+[2.][5]: [(getBrewButtonStatus() == BREW_BUTTON_PUSHED) && (getBoilerStatus() == BOILER_NOT_EMPTY) && getWarmerPlateStatus() == POT_EMPTY]
+[2.1]: [getWarmerPlateStatus() == WARMER_EMPTY]
+[3.]: [(getBoilerStatus() == BOILER_EMPTY)]
+[4.][8]: [getWarmerPlateStatus() == POT_EMPTY]
+[6.]: [getWarmerPlateStatus() == WARMER_EMPTY] / setIndicatorState(INDICATOR_ON);
+```
+
 
 ## Conclusions
 Answers to the following questions:

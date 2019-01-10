@@ -719,10 +719,15 @@ The following API calls are provided:
 | void setReliefValveState(int reliefValveState)     | This function opens and closes the pressure-relief valve. When this valve is closed, steam pressure in the boiler will force hot water to spray out over the coffee filter. When the valve is open, the steam in the boiler escapes into the environment, and the water in the boiler will not spray out over the filter. |
 
 Steps in order to solve the exercise using the OOP approach:
-  1. Identify objects by looking for nouns
-  2. Identify the available API calls
-  3. Define attributes of the objects.
-  4. Adding dependencies and relationships.
+  1. Identify objects.
+  2. Optimizing the objects based on the API calls.
+  3. Optimizing the objects adding attributes.
+  4. Identify possible operations.
+  5. Removing unneeded operations.
+  6. Use Cases for the coffee maker.
+  7. Sequence description for the use cases.
+  8. State diagram.
+  9. Class diagram.
 
 **1. Identify objects**<br>
 After examining the specification the following objects have been identified:
@@ -751,6 +756,7 @@ The list from step 1 is used in order to remove unneeded objects and allocate AP
     - `setReliefValveState`
 
 **3. Optimizing the objects adding attributes**<br>
+The following list shows additional added attributes.
 - CoffeeMaker
   - `bool isBrewing`
   - `bool isBrewingDone`
@@ -912,11 +918,31 @@ B
 [6.]: [getWarmerPlateStatus() == WARMER_EMPTY] / setIndicatorState(INDICATOR_ON);
 ```
 
-**9. State diagram**<br>
+**9. Class diagram**<br>
 The following image shows a possible solution for the class diagram:<br>
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P4L2/ClassDiagram_coffee_machine_OOP.JPG" alt="Class diagram Coffee machine OOP."/></p>
+
+**Use case approach, role based design**<br>
+Martin also describes the possibility to start with the use cases and then use a superposition of collaboration diagrams in order to come up with a architecture.
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P4L2/CollaborationDiagram_coffee_machine_OOP.JPG" alt="Collaboration diagram Coffee machine OOP."/></p>
+
+The above image shows the message flow for different invariants of a use case:
+  - a: `User Interface` gets triggered and checks if `Hot Water Source isReady`. The next step then is to check the `Containment Vessel isReady` and then start the `Hot Water Source` and after wards the `Containment Vessel`.
+  - b: Is the use case for pausing and resuming the boiling process of the `Hot Water Source`.
+  - c: Is the use case the brewing is complete, the `Containment Vessel` needs to be informed that the process is done, because it needs to monitor the warming process, as well as the `User Interface` needs to be informed.
+  - d: Is the use case for the warmer plate to turn off after either a certain amount of time or if no coffee is left.
+
+**Dependency inversion**<br>
+Including API directly as class methods leads to direct coupling which should be avoided in order to be as generic and extensible as possible.
+
+Dependency inversion principle is a software design principle which provides us the guidelines to write loosely coupled classes. According to the definition of Dependency inversion principle:
+
+High-level modules should not depend on low-level modules. Both should depend on abstractions.
+Abstractions should not depend upon details. Details should depend upon abstractions [Code Project](https://www.codeproject.com/Articles/615139//Articles/615139/An-Absolute-Beginners-Tutorial-on-Dependency-Inver).
 
 ## Conclusions
 Answers to the following questions:

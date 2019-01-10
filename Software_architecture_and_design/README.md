@@ -833,7 +833,7 @@ This feature warms or keeps already brewed coffee warm, if a pot with a certain 
 - Light indicator.
 - Turn warmer plate off if pot is empty
 
-**8. Activity diagrams of the use cases**<br>
+**8. State diagram**<br>
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P4L2/StateDiagram_coffee_machine_OOP.JPG" alt="State diagram Coffee machine OOP."/></p>
@@ -912,6 +912,11 @@ B
 [6.]: [getWarmerPlateStatus() == WARMER_EMPTY] / setIndicatorState(INDICATOR_ON);
 ```
 
+**9. State diagram**<br>
+The following image shows a possible solution for the class diagram:<br>
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P4L2/ClassDiagram_coffee_machine_OOP.JPG" alt="Class diagram Coffee machine OOP."/></p>
 
 ## Conclusions
 Answers to the following questions:

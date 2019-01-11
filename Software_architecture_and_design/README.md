@@ -979,6 +979,9 @@ Means describing the allowable behavior between classes, it's tightly coupled wi
 **7. Abstract classes and interfaces**<br>
 In order to increase maintainability, abstractions can be introduced. The corresponding elements for the implementation are interfaces or virtual classes.
 
+### P4L4 Design patterns
+Design patterns represent the best practices used by experienced object-oriented software developers. Design patterns are solutions to general problems that software developers faced during software development. These solutions were obtained by trial and error by numerous software developers over quite a substantial period of time.
+
 
 ## Conclusions
 Answers to the following questions:

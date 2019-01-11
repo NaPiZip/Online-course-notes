@@ -944,6 +944,42 @@ Dependency inversion principle is a software design principle which provides us 
 High-level modules should not depend on low-level modules. Both should depend on abstractions.
 Abstractions should not depend upon details. Details should depend upon abstractions [Code Project](https://www.codeproject.com/Articles/615139//Articles/615139/An-Absolute-Beginners-Tutorial-on-Dependency-Inver).
 
+### P4L3 Object Design
+The challenge of coming up with a OOD is quit difficult, because the result from OOA can not be directly translated in actual code, some concepts are not supported in programming languages, or the mapping is not obvious. The following elements need to be defined in respect to the implementation:<br>
+  1. Methods
+  - New classes
+  - Generalization
+  - Associations
+  - Dependencies
+  - Implementing control
+  - Abstract classes and interfaces
+
+**1. Methods**<br>
+Where do the methods come from? Methods are usually signals from the analysis class model. They could also com from dynamic models, and they are usually events, actions, activities. The methods need to be allocated to classes. In addition common methods could be included in order to construct and destruct, setters and getters ... .
+
+**2. New classes**<br>
+Classes should represent or reflect system components in order to provide traceability and consistency. Classes implement associations and relationships between components. Classes can be part of new levels of abstractions.
+
+**3. Generalization**<br>
+How to model UML relationships? Object oriented programming languages usually support inheritance via subclassing. Generalizations between two classes means that all instances of the derived class are also instances of the parent class. Inheritance is an implementation technique whereby messages sent to a child may be delegated to a parent, it can be uses in order to implement generalization. Children classes can add features but they should not override only if the behavior is consistent with its parent, it should contain the same behavior as baseline.
+
+**4. Associations**<br>
+Associations are not directly supported, the directionality is very important, as well as cardinality, meaning the 1 to n relationship need to be defined. There a to main types of associations:<br>
+  - One way associations<br>
+  They can be easily implemented by using a pointer to a target instance. This is also possible for multiple instances.
+  - Two way associations<br>
+  They can be similar implemented with the usage of two pointer similar to a linked list, this could lead to integrity issues because of tight coupling which could be solved by reference counting. As a different solution a collection class could be used in order to keep track of multiple entities, for example a hash map.
+
+**5. Dependencies**<br>
+Dependencies can be implemented in many different ways. The significant is that one classes use some part of the other class. It could be containing a instance of the target class or just using elements of it e.g. of a global class. You could also just receive elements of the depended class e.g. as a return value of a method. The target could also be imported into the current class.  
+
+**6. Implementing control**<br>
+Means describing the allowable behavior between classes, it's tightly coupled with states, meaning attributes must be changed depended on invocation and interactions.
+
+**7. Abstract classes and interfaces**<br>
+In order to increase maintainability, abstractions can be introduced. The corresponding elements for the implementation are interfaces or virtual classes.
+
+
 ## Conclusions
 Answers to the following questions:
   - What was good?

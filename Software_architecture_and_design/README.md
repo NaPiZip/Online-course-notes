@@ -982,6 +982,46 @@ In order to increase maintainability, abstractions can be introduced. The corres
 ### P4L4 Design patterns
 Design patterns represent the best practices used by experienced object-oriented software developers. Design patterns are solutions to general problems that software developers faced during software development. These solutions were obtained by trial and error by numerous software developers over quite a substantial period of time.
 
+**The composite pattern**<br>
+Composite pattern is one of the most widely used patterns in the industry and addresses a very significant and subtle problem. It is used whenever the user wants to treat the individual object in the same way as the collection of those individual objects for e.g you might want to consider a page from the copy as same as the whole copy which is basically a collection of the pages or if you want to create a hierarchy of something where you might want to consider the whole thing as the object .
+Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly [GeeksforGeeks](https://www.geeksforgeeks.org/composite-pattern-cpp/).
+
+**Creational Pattern**<br>
+Creational design patterns are design patterns that deal with object creation mechanisms, trying to create objects in a manner suitable to the situation. The basic form of object creation could result in design problems or added complexity to the design. Creational design patterns solve this problem by somehow controlling this object creation [sourcemaking](https://sourcemaking.com/design_patterns/creational_patterns).
+
+- Abstract Factory<br>
+Creates an instance of several families of classes.
+- Builder<br>
+Separates object construction from its representation.
+- Factory Method<br>
+Creates an instance of several derived classes.
+- Prototype<br>
+A fully initialized instance to be copied or cloned.
+- Singleton<br>
+A class of which only a single instance can exist.
+
+**Structural Pattern**<br>
+structural design patterns are design patterns that ease the design by identifying a simple way to realize relationships among entities [sourcemaking](https://sourcemaking.com/design_patterns/structural_patterns).
+
+- Adapter<br>
+Match interfaces of different classes.
+- Bridge<br>
+Separates an object’s interface from its implementation.
+- Composite<br>
+A tree structure of simple and composite objects.
+- Decorator<br>
+Add responsibilities to objects dynamically.
+- Facade<br>
+A single class that represents an entire subsystem.
+- Flyweight<br>
+A fine-grained instance used for efficient sharing.
+- Private Class Data<br>
+Restricts accessor/mutator access.
+- Proxy<br>
+An object representing another object.
+
+**Behavioral Pattern**<br>
+behavioral design patterns are design patterns that identify common communication patterns between objects and realize these patterns. By doing so, these patterns increase flexibility in carrying out this communication [sourcemaking(https://sourcemaking.com/design_patterns/behavioral_patterns).
 
 ## Conclusions
 Answers to the following questions:

@@ -1023,6 +1023,47 @@ An object representing another object.
 **Behavioral Pattern**<br>
 behavioral design patterns are design patterns that identify common communication patterns between objects and realize these patterns. By doing so, these patterns increase flexibility in carrying out this communication [sourcemaking(https://sourcemaking.com/design_patterns/behavioral_patterns).
 
+### P4L4 Design principles
+Software design principles represent a set of guidelines that helps us to avoid having a bad design. Developing design is a cumbersome process as most expansive errors are often introduced in this phase. Moreover, if these errors get unnoticed till later phases, it becomes more difficult to correct them. Therefore, a number of principles are followed while designing the software. These principles act as a framework for the designers to follow a good design practice [ecomputernotes](http://ecomputernotes.com/software-engineering/principles-of-software-design-and-concepts).
+
+- Coupling<br>
+Coupling is the degree of interdependence between software modules; a measure of how closely connected two routines or modules are; the strength of the relationships between modules.
+
+- Cohesion<br>
+Cohesion is the extend to which a model has a single purpose. Cohesion also refers to the level of strength and unity with which different components of a software program are inter-related with each other.
+
+- Orthogonality<br>
+Orthogonality is an important concept, addressing how a relatively small number of components can be combined in a relatively small number of ways to get the desired results. It is associated with simplicity; the more orthogonal the design, the fewer exceptions.
+
+- Information hiding<br>
+information hiding is the principle of segregation of the design decisions in a computer program that are most likely to change, thus protecting other parts of the program from extensive modification if the design decision is changed.
+
+**Design principle catalogue**<br>
+**Liskov substitution**<br>
+The principle defines that objects of a superclass shall be replaceable with objects of its subclasses without breaking the application. That requires the objects of your subclasses to behave in the same way as the objects of your superclass [stackify](https://stackify.com/solid-design-liskov-substitution-principle/).
+
+**Law of demeter**<br>
+The Law of Demeter (LoD) is a simple style rule for designing object-oriented systems. "Only talk to your friends" is the motto.
+- Each unit should have only limited knowledge about other units: only units "closely" related to the current unit.
+- Each unit should only talk to its friends; don't talk to strangers.
+- Only talk to your immediate friends.
+
+Example an object `A` can request a service (call a method) of an object instance `B`, but object `A` should not "reach through" object `B` to access yet another object, `C`, to request its services. Doing so would mean that object `A` implicitly requires greater knowledge of object `B`'s internal structure. Instead, `B`'s interface should be modified if necessary so it can directly serve object `A`'s request, propagating it to any relevant subcomponents. Alternatively, `A` might have a direct reference to object `C` and make the request directly to that. If the law is followed, only object `B` knows its own internal structure [Wikipedia](https://en.wikipedia.org/wiki/Law_of_Demeter).
+
+**Hollywood principles**<br>
+At its most basic level, the principle is about reducing the coupling in a software system. It gets back to the well known phrase in software development: loose coupling and high cohesion. You can keep classes loosely coupled by ensuring that you don’t have unnecessary references and you are referencing classes and other subsystems properly [matthewtmead](http://matthewtmead.com/blog/hollywood-principle-dont-call-us-well-call-you-4/).
+
+**Dependency inversion principle**<br>
+The general idea of this principle is as simple as it is important: High-level modules, which provide complex logic, should be easily reusable and unaffected by changes in low-level modules, which provide utility features. To achieve that, you need to introduce an abstraction that decouples the high-level and low-level modules from each other.
+
+Based on this idea, Robert C. Martin’s definition of the Dependency Inversion Principle consists of two parts:
+
+- High-level modules should not depend on low-level modules. Both should depend on abstractions.
+- Abstractions should not depend on details. Details should depend on abstractions.
+
+**Open-Closed principle**<br>
+“Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification.” The general idea of this principle is great. It tells you to write your code so that you will be able to add new functionality without changing the existing code. That prevents situations in which a change to one of your classes also requires you to adapt all depending classes
+
 ## Conclusions
 Answers to the following questions:
   - What was good?

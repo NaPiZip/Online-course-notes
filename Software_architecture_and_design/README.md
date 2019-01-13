@@ -1023,7 +1023,7 @@ An object representing another object.
 **Behavioral Pattern**<br>
 behavioral design patterns are design patterns that identify common communication patterns between objects and realize these patterns. By doing so, these patterns increase flexibility in carrying out this communication [sourcemaking(https://sourcemaking.com/design_patterns/behavioral_patterns).
 
-### P4L4 Design principles
+### P4L5 Design principles
 Software design principles represent a set of guidelines that helps us to avoid having a bad design. Developing design is a cumbersome process as most expansive errors are often introduced in this phase. Moreover, if these errors get unnoticed till later phases, it becomes more difficult to correct them. Therefore, a number of principles are followed while designing the software. These principles act as a framework for the designers to follow a good design practice [ecomputernotes](http://ecomputernotes.com/software-engineering/principles-of-software-design-and-concepts).
 
 - Coupling<br>
@@ -1063,12 +1063,3 @@ Based on this idea, Robert C. Martin’s definition of the Dependency Inversion 
 
 **Open-Closed principle**<br>
 “Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification.” The general idea of this principle is great. It tells you to write your code so that you will be able to add new functionality without changing the existing code. That prevents situations in which a change to one of your classes also requires you to adapt all depending classes
-
-## Conclusions
-Answers to the following questions:
-  - What was good?
-  - What was bad?
-  - What would I change next time?
-
-## Future
-Additional things I would like to improve?

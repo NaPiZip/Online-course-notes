@@ -35,7 +35,7 @@ Is a static view of a system, containing of classes, methods/operations as well 
 <p align="center">
 <img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P2L1/ClassDiagram_example_general_components.JPG" alt="Class diagram example"/></p>
 
-The center of the image shows the class `Counter`, which has an attribute called `counter` of the type integer, the red minus is indicating that this attribute is private. The `Counter` class also has several methods/operations which are public, the operation `set` takes a input parameter called `aCounter` of type integer. The class `Pile` has a relationship of type *dependency* of the class `Counter`, meaning `Pile` uses the class `Counter`. On the other side `Counter` has a *association* to `leave`, this means `Leave` is affection `Counter`. `Leave` is also a *generalization* of the `Tree` class, it's a kind of class of `Tree`. More details can be found on [Wikipedia](https://en.wikipedia.org/wiki/Class_diagram), since the above diagram does not contain all elements such as *aggregations* and *compositions*.
+The center of the image shows the class `Counter`, which has an attribute called `counter` of the type integer, the red minus is indicating that this attribute is private. The `Counter` class also has several methods/operations which are public, the operation `set` takes a input parameter called `aCounter` of type integer. The class `Pile` has a relationship of type *dependency* of the class `Counter`, meaning `Pile` uses the class `Counter`. On the other side `Counter` has a *association* to `leave`, this means `Leave` has an association with `Counter`. `Leave` is also a *generalization* of the `Tree` class, it's a kind of `Tree`. More details can be found on [Wikipedia](https://en.wikipedia.org/wiki/Class_diagram), since the above diagram does not contain all elements such as *aggregations* and *compositions*.
 
 Object diagram<br>
 The object diagram is similar to the class diagram, the only major difference is the fact that the object diagram is referring to instances of particular class objects.
@@ -60,15 +60,15 @@ Static implementation view, which describes the organization and wiring of the p
 <p align="center">
 <img src="https://cdn.visual-paradigm.com/guide/uml/what-is-component-diagram/06-component-diagram-with-subsystem.png" alt="Component diagram example"/></p>
 
-The example above shows the `OnlineStore` subsystem component, it has tree ports represented by the squared elements on the right hand side. The ports expose the provided interfaces  `Customer` and `StoreAdmin`, as well as the required interface `Payment`. The `OnlineStore` component contains multiple subcomponents which interact with each other, for example the `StoreFront` access the `Catalogue` component through the `SQLColumn` interface. The full example can be found [here](https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-component-diagram/).
+The example above shows the `OnlineStore` subsystem component, it has tree ports represented by the squared elements on the left hand side. The ports expose the provided interfaces  `Customer` and `StoreAdmin`, as well as the required interface `Payment`. The `OnlineStore` component contains multiple subcomponents which interact with each other, for example the `StoreFront` access the `Catalogue` component through the `SQLColumn` interface. The full example can be found [here](https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-component-diagram/).
 
 Deployment diagram<br>
-The deployment diagram describes the physical allocation of software components on hardware components.
+The deployment diagram describes the physical allocation of software components within a or multiple hardware components.
 
 <p align="center">
 <img src="https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/what-is-a-deployment-diagram-in-UML/deployment_diagram_real_estate-700x573.png" alt="Deployment diagram example"/></p>
 
-The example shows three different nodes represented by rectangles, the `Bank Server`, `Real Estate Server` and `Individual Machine`. The `Bank Server` has a component named `Mortgage Application` which has a dependency represented by a dashed line to the `Customer DB` artefact. The node `Individual Machine` has an association with the `Bank Server` node, which indicates a communication channel vi TCP/IP with the `Bank Server`. The `Individual Machine` node has also a dependency to the interface of the `Mortage Application` of the `Bank Server` node, shown in green. The full example can be found [here](https://www.lucidchart.com/pages/uml-deployment-diagram#top-info).
+The example shows three different nodes represented by rectangles, the `Bank Server`, the `Real Estate Server` and the `Individual Machine`. The `Bank Server` has a component named `Mortgage Application` which has a dependency represented by a dashed line to the `Customer DB` artefact. The node `Individual Machine` has an association with the `Bank Server` node, which indicates a communication channel via TCP/IP with the `Bank Server`. The `Individual Machine` node has also a dependency to the interface of the `Mortage Application` of the `Bank Server` node, shown in green. The full example can be found [here](https://www.lucidchart.com/pages/uml-deployment-diagram#top-info).
 
 Package diagram<br>
 A package is an organized group of elements. A package may contain structural things like classes, components, and other packages in it.
@@ -76,10 +76,10 @@ A package is an organized group of elements. A package may contain structural th
 <p align="center">
 <img src="https://d3n817fwly711g.cloudfront.net/uploads/2012/02/Package-Diagram.jpg" alt="Package diagram example"/></p>
 
-The example shows that the `Accounting` package uses the `HR` and the `Invoice` package, each of those tow packages is providing different methods/operands e.g. the `Invoice` package provides the public method/operand `Customer invoice`. The full example can be found [here](https://creately.com/blog/diagrams/uml-diagram-types-examples/).
+The example shows that the `Accounting` package uses the `HR` and the `Invoice` package, each of those two packages is providing different methods/operands e.g. the `Invoice` package provides the public method/operand `Customer invoice`. The full example can be found [here](https://creately.com/blog/diagrams/uml-diagram-types-examples/).
 
 Profile diagram<br>
-Profile diagram is structure diagram which describes lightweight extension mechanism to the UML by defining custom stereotypes, tagged values, and constraints, it provides a generic extension mechanism for customizing UML models for particular domains and platforms [Wikipedia](https://en.wikipedia.org/wiki/Profile_(UML). A detailed example can be found [here](https://www.uml-diagrams.org/profile-diagrams.html).
+Profile diagram is structure diagram which describes lightweight extension mechanism to the UML by defining custom stereotypes, tagged values, and constraints, it provides a generic extension mechanism for customizing UML models for particular domains and platforms. A detailed example can be found [here](https://www.uml-diagrams.org/profile-diagrams.html).
 
 **Behavioral diagrams**<br>
 Use case diagram<br>
@@ -100,13 +100,13 @@ The example shows the `Cafeteria Ordering System` in the middle as well as its i
 A detailed example can be found [here](https://www.jamasoftware.com/blog/defining-project-scope-context-use-case-diagrams/).
 
 Sequence diagram<br>
-The sequence diagram is used primarily to show the interactions between objects in the sequential order that those interactions occur. The main purpose of a sequence diagram is to define event sequences that result in some desired outcome. The focus is less on messages themselves and more on the order in which messages occur; nevertheless, most sequence diagrams will communicate what messages are sent between a system's objects as well as the order in which they occur.
+The sequence diagram is used primarily to show the interactions between objects in sequential order and those interactions that occur. The main purpose of a sequence diagram is to define event sequences that result in some desired outcome. The focus is less on messages themselves and more on the order in which messages occur; nevertheless, most sequence diagrams will communicate what messages are sent between a system's objects as well as the order in which they occur.
 
 <p align="center">
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/CheckEmail.svg/800px-CheckEmail.svg.png" alt="Sequence diagram example" width="70%" height="70%"/></p>
 
 Communication diagram<br>
-Similar to Sequence Diagram, the Communication Diagram is also used to model the dynamic behavior of the use case. When compare to Sequence Diagram, the Communication Diagram is more focused on showing the collaboration of objects rather than the time sequence.
+Similar to sequence diagrams, the communication diagram is also used to model the dynamic behavior of the use case. When compare to sequence diagram, the communication diagram is more focused on showing the collaboration of objects rather than the time sequence.
 
 <p align="center">
 <img src="https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/uml/communication-diagram/communication-diagram-example-700x385@2x.jpg" alt="Communication diagram example"/></p>
@@ -149,9 +149,9 @@ This chapter is a more detailed explanation of classes within a class model, I a
 <p align="center">
 <img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Software_architecture_and_design/Images_and_diagrams/P2L3/P2L3_21_quiz.jpg" alt="P2L3_21_Quiz solution"/></p>
 
-The top element is the `Diagram` class which has two children `Structured Diagram` and the `Behavioral Diagram`. The `Structured Diagram` has a main child the `Profile Diagram`, I picked it as the first child because `Profile Diagrams` are a mechanism to extend standard UML stereotypes etc.. The next child is the `Class Model Diagram`, whit it's children `Composite Structure Diagram` and `Component Diagram`, which are diagram types who give more detailed information about a class or a component. The `Object Diagram` is a representation of instantiated classes, which was the reason for making it a child of the `Class Diagram`. The last entities are the `Package Diagram` and the `Deployment Diagram`, both of them represent an aggregation of components or classes.
+The top element is the `Diagram` class which has two children `Structured Diagram` and the `Behavioral Diagram`. The `Structured Diagram` has a main child the `Profile Diagram`, I picked it as the first child because `Profile Diagram`'s are a mechanism to extend standard UML stereotypes etc.. The next child is the `Class Model Diagram`, whit it's children `Composite Structure Diagram` and `Component Diagram`, which are diagram types who give more detailed information about a class or a component. The `Object Diagram` is a representation of instantiated classes, which was the reason for making it a child of the `Class Diagram`. The last entities are the `Package Diagram` and the `Deployment Diagram`, both of them represent an aggregation of components or classes.
 
-The `Behavioral Diagram` has one direct child which is the `Use Case Diagram`, it is one of the most important diagram types because it describes the behavior of a component or a system. The `Interaction Overview Diagram` and the `Timing Diagram` both have the `State Diagram` and the `Sequence Diagram` as parents. The `Interaction Overview Diagram` is a hybrid of it's parents, where as the `Timing Diagram` represents more the behavior in certain states in a sequence.
+The `Behavioral Diagram` has one direct child which is the `Use Case Diagram`, it is one of the most important diagram types, because it describes the behavior of a component or a system. The `Interaction Overview Diagram` and the `Timing Diagram` both have the `State Diagram` and the `Sequence Diagram` as parents. The `Interaction Overview Diagram` is a hybrid of it's parents, where as the `Timing Diagram` represents more the behavior in certain states in a sequence.
 
 ### P2L5 Library Exercise
 Shows an example on how to design a system based on requirements, by using the approach described in the earlier sections. The following steps are used:
@@ -159,26 +159,26 @@ Shows an example on how to design a system based on requirements, by using the a
   - Analyzing the requirements<br>
   Based on the given text all relevant nouns where identified and captured. It is important to capture as many elements as possible since the outcome is used for refinement in later stages.
 
-  - Refining and adding attributes
-  Here the allocation of additional attribute takes place, by grouping content which could be logically grouped to a different element and eliminating afterwards. A noticeable fact also is that the concept of each class need to be understood to make sure the later on created interactions make sense.
+  - Refining and adding attributes<br>
+  Here the allocation of additional attribute takes place, by grouping content which could be logically grouped to a different element and eliminating it afterwards. A noticeable fact also is that the concept of each class need to be understood to make sure that the later on created interactions make sense.
 
   - Operations<br>
-  The specification is checked for action verbs and the operations are created based on the findings and allocated to the respective elements.
+  The specification is checked for action verbs and operations are created based on the findings, and allocated to the respective elements.
 
   - Adding and refining relationships<br>
-  Finding associations between classes consists of linking the operations between those entities, seeing how those elements are associated with each other, for example the `Patron` has a operation  called `checkOut` which is an association between the Item class, meaning the `Patron` can perform the operation of checking out an `Item`. It also makes sense to add generalization dependencies to similar classes.
+  Finding associations between classes consists of linking the operations between those entities, seeing how those elements are associated with each other, for example the `Patron` has a operation  called `checkOut` which is an association between the `Item` class, meaning the `Patron` can perform the operation of checking out an `Item`. It also makes sense to add generalization dependencies to similar classes.
 
   - Refining the diagram<br>
   In this step the whole diagram is checked for consistency and relationships between associations in addition association classes can be created for interaction based on associations.
 
 ###  P2L6 Formal Specification Exercise
-First order logic FOL / predicate calculus notation in order to specify the propositions. Object constraint language is part of UML which can be used to annotate FOL.
+First order logic FOL / predicate calculus notation is used in order to specify general propositions. The object constraint language is part of UML which can be used to annotate FOL.
 The process contains of three stages:<br>
-  1. Signature
+  1. Signature<br>
   Describes the input, output parameters and the function name.
-  2. Precondition
+  2. Precondition<br>
   Are assumption which are made in order to generate a behavior.
-  3. Postcondition
+  3. Postcondition<br>
   Describes how the output relates to the input, as well as side effects of the function.
 
 **Permutation example**<br>
@@ -200,18 +200,18 @@ The permutation postconditions for the following cases are:
   ```
   If the length of the vector `X` is empty, then we have a valid permutation (based on the precondition of `X` having the same length then `Y`).
 
-  2. No matching case
+  2. No matching case<br>
   The problem is divided into three segments:
   ```
                         |<- first ->|j|<-second->|     
-  std::vector<int> X = {1,  2,  3,  4,  5,  6};
-  std::vector<int> Y = {1,  2,  3,  4,  8,  9};
+  std::vector<int> X = {1,  2,  3,   4,  5,  6};
+  std::vector<int> Y = {1,  2,  3,   4,  8,  9};
   ```
   The FOL notation is:
   ```
   Ǝ j: 1 < j < |Y| ^ (X[1] = Y[j])
   ```
-  There exist some position called `j` which is greater than 1 up to the length of `Y` and the value of `Y` at position `j` must be equal to the first element of `X`. The rest of `Y` comes from concatenating `⌢` with the first and second segment:
+  There exist some position called `j` which is greater than 1 up to the length of `Y` and the value of `Y` at position `j` must be equal to the first element of `X`. The rest of `Y` comes from concatenating  with the first and second segment:
   ```
   Y[1..j-1] ⌢ Y[j+1..|Y|]
   ```
@@ -225,7 +225,7 @@ The permutation postconditions for the following cases are:
   ((Ǝ j: 1 < j < |Y|) ^ X[1] = Y[j]) ^
   PERMUTATION(tail(X), (Y[1..j-1] ⌢ Y[j+1..|Y|]))
   ```
-  `X` at position one must not equal the value of `Y` at position on and there exist some position called `j` which is greater than 1 up to the length of `Y` where `X` at position one is equal to some `Y` at position `j` and there is a permutation of the `tail(x)` concatenating the first and second segment of `Y`.
+  `X` at position one must not equal the value of `Y` at position one and there exist some position called `j` which is greater than 1 up to the length of `Y` where `X` at position one is equal to some `Y` at position `j` and there is a permutation of the `tail(x)` concatenating the first and second segment of `Y`.
 
 The full postcondition is as followed:
 ```

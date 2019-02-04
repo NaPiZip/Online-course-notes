@@ -13,7 +13,7 @@
 ## Objectives
 These are my notes of the Udacity course `Designing RESTful APIs`. I am only covering details which I think are important for me. This document is not supposed to be a summary of all the content covered by the course, it's just a centralized place to store information in order to support my learning process. A lot of information is online nowadays and I think it's not needed to memorize all details, it's more important to have a solid overview and to know where to look for the details.
 
-##  What's and Why's of APIs
+## Lesson1: What's and Why's of APIs
 
 **What are APIs**<br>
 APIs are application programming interfaces, APIs can be described as building blocks of software components or applications. A comprehensive metaphor is a wall socket, the socket represents a interface to a service better know as electricity. The user is comfortable able to use the service if he is in compliance with the policy of the service provider, meaning if the consumer decides to agree on a contract with a energy provider, then the provider invokes the rights for the user to access the service, though out a defined interface the wall socket. The wall socket has specific properties, such as a physical shape for a plug as well as a defined voltage and a maximum current. Those properties are defined by the service provider, e.g. the API provider. A more formal definition is the following one:<br>
@@ -27,7 +27,7 @@ A web API is a specific type of API which is used for either a web server or web
 The Open System Interconnection (OSI) is a reference model for how various applications communicate over any network. The purpose behind this model was to provide developers, programmers, engineers, vendors and all the associated people a standard that can serve as a guide for them using which they would be able to create communication equipment and software inter operable. The following image shows the seven layers of the OSI model and its use protocols, a detailed description can be found [here](https://www.bmc.com/blogs/osi-model-7-layers/).
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Designing_RESTful_APIs/Images/osi-model-7.jpg" alt="Object diagram example"/></p>
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Designing_RESTful_APIs/Images/osi-model-7.jpg" alt="OSI layer model example."/></p>
 
 **The Web Service Layer**<br>
 In a web service, the Web technology such as HTTP—originally designed for human-to-machine communication—is utilized for machine-to-machine communication, more specifically for transferring machine-readable file formats such as XML and JSON. In practice, a web service commonly provides an object-oriented web-based interface to a database server, utilized for example by another web server, or by a mobile app, that provides a user interface to the end user. Many organizations that provide data in formatted HTML pages will also provide that data on their server as XML or JSON, often through a web service to allow syndication, for example Wikipedia's Export. Another application offered to the end user may be a mashup, where a web server consumes several web services at different machines, and compiles the content into one user interface [Wikipedia](https://en.wikipedia.org/wiki/Web_service).
@@ -51,3 +51,44 @@ SOAP (Simple Object Access Protocol) is its own protocol, and is a bit more comp
 - SOAP has tighter security. WS-Security, in addition to SSL support, is a built-in standard that gives SOAP some more enterprise-level security features, if you have a requirement for them.
 - Successful/retry logic for reliable messaging functionality. Rest doesn’t have a standard messaging system and can only address communication failures by retrying. SOAP has successful/retry logic built in and provides end-to-end reliability even through SOAP intermediaries.
 - SOAP has built-in ACID compliance. ACID compliance reduces anomalies and protects the integrity of a database by prescribing exactly how transactions can interact with the database. ACID is more conservative than other data consistency models, which is why it’s typically favored when handling financial or otherwise sensitive transactions [UpWork](https://www.upwork.com/hiring/development/soap-vs-rest-comparing-two-apis/).
+
+## Lesson 2: Accessing Published APIs
+The Hypertext Transfer Protocol (HTTP) is an application-level protocol for distributed, collaborative, hypermedia information systems. This is the foundation for data communication for the World Wide Web (i.e. internet) since 1990. HTTP is a generic and stateless protocol which can be used for other purposes as well using extensions of its request methods, error codes, and headers.
+
+Basically, HTTP is a TCP/IP based communication protocol, that is used to deliver data (HTML files, image files, query results, etc.) on the World Wide Web. The default port is TCP 80, but other ports can be used as well. It provides a standardized way for computers to communicate with each other. HTTP specification specifies how clients' request data will be constructed and sent to the server, and how the servers respond to these requests [tutorialspoint](https://www.tutorialspoint.com/http/http_overview.htm).
+
+**HTTP Version**<br>
+HTTP uses a <major>.<minor> numbering scheme to indicate versions of the protocol. The version of an HTTP message is indicated by an HTTP-Version field in the first line. Here is the general syntax of specifying HTTP version number:
+```
+HTTP-Version   = "HTTP" "/" 1*DIGIT "." 1*DIGIT
+```
+
+**Uniform Resource Identifiers**<br>
+Uniform Resource Identifiers (URI) are simply formatted, case-insensitive string containing name, location, etc. to identify a resource, for example, a website, a web service, etc. A general syntax of URI used for HTTP is as follows:
+```
+URI = scheme:[//authority]path[?query][#fragment]
+
+authority = [userinfo@]host[:port]
+```
+Here is an example:<br>
+```
+ https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top
+ |scheme|userinfo|   host       |port|   path        | query                         |
+```
+**HTTP Message**<br>
+HTTP messages are how data is exchanged between a server and a client. There are two types of messages: requests sent by the client to trigger an action on the server, and responses, the answer from the server.
+
+HTTP messages are composed of textual information encoded in ASCII, and span over multiple lines. In HTTP/1.1, and earlier versions of the protocol, these messages were openly sent across the connection. In HTTP/2, the once human-readable message is now divided up into HTTP frames, providing optimization and performance improvements [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messageshttps://developer.mozilla.org/en-US/docs/Web/HTTP/Messages).
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/NaPiZip/Udacity_notes/master/Designing_RESTful_APIs/Images/http-msg-structure.jpg" alt="HTTP message structure example."/></p>
+
+The image above shows a HTTP request as well as it's response. Both the request and response message have the same structure, containing the following elements, detailed information can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages):
+- Start line<br>
+ Describing the requests to be implemented, or its status of whether successful or a failure. This start-line is always a single line.
+- Optional HTTP header<br>
+ An optional set of HTTP headers specifying the request, or describing the body included in the message.
+- Empty line<br>
+  A blank line indicating all meta-information for the request have been sent.
+- Optional Body<br>
+ An optional body containing data associated with the request (like content of an HTML form), or the document associated with a response. The presence of the body and its size is specified by the start-line and HTTP headers

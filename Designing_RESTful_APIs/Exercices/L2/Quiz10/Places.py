@@ -22,13 +22,15 @@ import json, requests
 class VenueSearch(object):
     client_id = ''
     client_secret = ''
-    url = 'https://api.foursquare.com/v2/venues/explore'
-   
+    url = 'https://api.foursquare.com/v2/venues/search'
+    status_code=[]
+       
     def __init__(self, id = '', secret = ''):
         self.client_id = id
         self.client_secret = secret
+        self.status_code = dict(SUCESS = 200)
         
-    def getVenue(self, location, food):
+    def getVenueInfo(self, location, food):
         if type(location) is not dict:
             return[]
         elif location.get('lat') == None or \
@@ -43,12 +45,11 @@ class VenueSearch(object):
                       limit=1
                     )
         
-        response = requests.get(self.url, params=params)        
+        response = requests.get(self.url, params=params) 
         if (response.status_code == requests.codes.ok):
             response_dict = json.loads(response.text)
-            print(response_dict)
-            if(response_dict.get('info').get('statuscode') == self.status_code['SUCESS']):
-               return (response_dict.get('results')[0].get('locations')[0].get('latLng'))
+            if(response_dict.get('meta').get('code') == self.status_code['SUCESS']):
+                return response_dict.get('response').get('venues')[0]
             else:
                return[]        
         else:
@@ -57,24 +58,24 @@ class VenueSearch(object):
 class TestStringMethods(unittest.TestCase):
     
     def setUp(self):
-        self.valid_key = ''
+        self.client_id = ''
+        self.client_secret = ''
     
     def test_empty_key_and_imput(self):
         obj = VenueSearch()        
-        self.assertEqual(obj.getVenue('',''),[])
+        self.assertEqual(obj.getVenueInfo('',''),[])
         
     def test_empty_imput(self):
-        obj = VenueSearch(self.valid_key)        
-        self.assertEqual(obj.getVenue('',''),[])
+        obj = VenueSearch(id=self.client_id, secret=self.client_secret)        
+        self.assertEqual(obj.getVenueInfo('',''),[])
     
     def test_no_valid_location_type(self):
-        obj = VenueSearch(self.valid_key)        
-        self.assertEqual(obj.getVenue(dict(banana=1),'pizza'),[])
+        obj = VenueSearch(id=self.client_id, secret=self.client_secret)         
+        self.assertEqual(obj.getVenueInfo(dict(banana=1),'pizza'),[])
         
     def test_valid_call(self):
-        obj = VenueSearch(self.valid_key)        
-        self.assertEqual(obj.getVenue({'lat': 35.680071, 'lng': 139.768522},'pizza'),[])
-           
+        obj = VenueSearch(id=self.client_id, secret=self.client_secret)           
+        self.assertEqual(obj.getVenueInfo({'lat': 35.680071, 'lng': 139.768522},'pizza').get('id'), '597185d60802d42bc89acd2f') 
         
-if __name__ == '__main__':   
+if __name__ == '__main__':
     unittest.main(argv=[''], verbosity=3, exit=False)

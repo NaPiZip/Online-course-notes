@@ -1,0 +1,1 @@
+docker run -it -p 80:8888 -v /e/080_Github/Udacity_notes/Designing_RESTful_APIs/Exercices/:/home/jovyan/work jupyter/minimal-notebook

@@ -70,6 +70,7 @@ URI = scheme:[//authority]path[?query][#fragment]
 
 authority = [userinfo@]host[:port]
 ```
+
 Here is an example:<br>
 ```
  https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top

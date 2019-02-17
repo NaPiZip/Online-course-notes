@@ -13,8 +13,7 @@
 ## Objectives
 These are my notes of the Udacity course `Designing RESTful APIs`. I am only covering details which I think are important for me. This document is not supposed to be a summary of all the content covered by the course, it's just a centralized place to store information in order to support my learning process. A lot of information is online nowadays and I think it's not needed to memorize all details, it's more important to have a solid overview and to know where to look for the details.
 
-## Lesson1: What's and Why's of APIs
-
+## Lesson 1: What's and Why's of APIs
 **What are APIs**<br>
 APIs are application programming interfaces, APIs can be described as building blocks of software components or applications. A comprehensive metaphor is a wall socket, the socket represents a interface to a service better know as electricity. The user is comfortable able to use the service if he is in compliance with the policy of the service provider, meaning if the consumer decides to agree on a contract with a energy provider, then the provider invokes the rights for the user to access the service, though out a defined interface the wall socket. The wall socket has specific properties, such as a physical shape for a plug as well as a defined voltage and a maximum current. Those properties are defined by the service provider, e.g. the API provider. A more formal definition is the following one:<br>
 
@@ -93,3 +92,49 @@ The image above shows a HTTP request as well as it's response. Both the request 
   A blank line indicating all meta-information for the request have been sent.
 - Optional Body<br>
  An optional body containing data associated with the request (like content of an HTML form), or the document associated with a response. The presence of the body and its size is specified by the start-line and HTTP headers
+
+## Lesson 3: Creating your own API Endpoints
+Lesson 3 mostly contains of examples and quizzes, this section only gives a brief overview due to the fact that most information's with respect to the exercise's can be found online and thus, don't need to be discussed again. The quizzes try to cover the following content:
+
+- Quiz 3<br>
+  How does the routing with Flask work in general? Details can be found [here](http://flask.pocoo.org/docs/0.12/).
+- Quiz 4<br>
+  Introduces different kinds of request methods, what they do and how to implement them. Details can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods).
+- Quiz 5<br>
+  Is using `sqlalchemy` which is a ORM (Object relational Mapper) database. Details can be found [here](https://docs.sqlalchemy.org/en/latest/orm/tutorial.html).
+
+**Quiz 6<br>**
+Is an exercise for a mashup application proofing the learned content is understood. Below is an example of an API `POST` request which should be implemented:
+
+```
+localhost:5000/restaurants?location=New+York+NY&mealType=spaghetti
+```
+The actions for the API `POST` request are the followed:
+  1. Get the geocode of the location
+  2. Find a nearby restaurant
+  3. Store it into a data base
+  4. Return a JSON object with restaurant information
+
+The following example shows a `GET` request for the same route:
+```
+localhost:5000/restaurants
+```
+The actions for the API `GET` request are the followed:
+ 1. Return all saved restaurants containing the following information's in JSON format: `{restaurant_name, id, restaurant_address, restaurant_image}`.
+
+In addition a more specialized `GET` request should be implemented to the following route:
+```
+localhost:5000/restaurants/<int:id>
+```
+The actions for the API `GET` request are the followed:
+  1. Return the specific information querying the provided `id` of the `GET` request, the information should be in JSON format: `{restaurant_name, id, restaurant_address, restaurant_image}`.
+
+  Also a `UPDATE` request should be implemented using the following structure of an API call, which updates the specified entity, only if it already exists:
+  ```
+  localhost:5000/restaurants/<int:id>?name=Some+Bar&location=New+York+NY&mealType=spaghetti&image=url+here
+  ```
+
+The last request is a `DELETE` request, it should delete the specified element, given its `id`:
+```
+localhost:5000/restaurants/<int:id>
+```

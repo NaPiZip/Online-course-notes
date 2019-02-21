@@ -129,10 +129,10 @@ localhost:5000/restaurants/<int:id>
 The actions for the API `GET` request are the followed:
   1. Return the specific information querying the provided `id` of the `GET` request, the information should be in JSON format: `{restaurant_name, id, restaurant_address, restaurant_image}`.
 
-  Also a `UPDATE` request should be implemented using the following structure of an API call, which updates the specified entity, only if it already exists:
-  ```
-  localhost:5000/restaurants/<int:id>?name=Some+Bar&location=New+York+NY&mealType=spaghetti&image=url+here
-  ```
+Also a `UPDATE` request should be implemented using the following structure of an API call, which updates the specified entity, only if it already exists:
+```
+localhost:5000/restaurants/<int:id>?name=Some+Bar&location=New+York+NY&mealType=spaghetti&image=url+here
+```
 
 The last request is a `DELETE` request, it should delete the specified element, given its `id`:
 ```

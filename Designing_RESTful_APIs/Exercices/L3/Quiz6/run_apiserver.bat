@@ -1,0 +1,1 @@
+docker run -it -p 5000:5000 -v /e/080_Github/Udacity_notes/Designing_RESTful_APIs/Exercices/L2/Quiz10:/server/two -v /e/080_Github/Udacity_notes/Designing_RESTful_APIs/Exercices/L3/Quiz6:/server/one apiserver /bin/bash

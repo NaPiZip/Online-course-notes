@@ -16,9 +16,9 @@ class Restaurant(Base):
     @property
     def serialize(self):
         return dict(id = self.id,
-                    restaurant_name = self.name,
-                    restaurant_address = self.address,
-                    restaurant_image = self.image_url)
+                    name = self.name,
+                    address = self.address,
+                    image_url = self.image_url)
 
-engine = create_engine('sqlite:///mashup.db', echo=True)
+engine = create_engine('sqlite:///mashup.db?check_same_thread=False', echo=True)
 Base.metadata.create_all(engine)

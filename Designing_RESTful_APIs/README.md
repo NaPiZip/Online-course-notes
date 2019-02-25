@@ -131,10 +131,12 @@ The actions for the API `GET` request are the followed:
 
 Also a `UPDATE` request should be implemented using the following structure of an API call, which updates the specified entity, only if it already exists:
 ```
-localhost:5000/restaurants/<int:id>?name=Some+Bar&location=New+York+NY&mealType=spaghetti&image=url+here
+localhost:5000/restaurants/<int:id>?name=Some+Bar&address=New+York+NY&imageUrl=url+here
 ```
 
 The last request is a `DELETE` request, it should delete the specified element, given its `id`:
 ```
 localhost:5000/restaurants/<int:id>
 ```
+
+The solutions can be found in the repository.

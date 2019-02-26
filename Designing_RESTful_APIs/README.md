@@ -140,3 +140,5 @@ localhost:5000/restaurants/<int:id>
 ```
 
 The solutions can be found in the repository.
+
+## Lesson 4: Securing your API

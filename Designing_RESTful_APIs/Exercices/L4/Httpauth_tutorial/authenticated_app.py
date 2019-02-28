@@ -7,24 +7,20 @@ app.config['SECRET_KEY'] = "asasdasd"
 auth = HTTPDigestAuth()
 
 users = {
+    "Time":"1234",
     "Nawin":"1234",
     "Susan": "bye"
     }
 
 
-@app.route('/i')
+@app.route('/greeting')
 def greeting():
     return "<h1>Welcome to Flask-HTTPAuth’s</h1>"
 
-@app.route('/')
+@app.route('/', methods = ['GET'])
 @auth.login_required
 def index():
     return "Hello"
-
-@app.route('/lol')
-@auth.login_required
-def auth_route():
-    return "Hello, {}".format(auth.username())
 
 @auth.get_password
 def get_pw(username):

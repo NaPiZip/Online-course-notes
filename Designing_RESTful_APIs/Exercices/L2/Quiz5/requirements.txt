@@ -1,5 +1,7 @@
 Flask
-flask_httpauth 
+flask_httpauth
 httplib2
 sqlalchemy
 requests
+itsdangerous
+passlib

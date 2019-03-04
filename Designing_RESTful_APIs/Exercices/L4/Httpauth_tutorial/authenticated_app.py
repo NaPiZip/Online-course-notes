@@ -20,10 +20,12 @@ def greeting():
 @app.route('/', methods = ['GET'])
 @auth.login_required
 def index():
+    print(request.headers)
     return "Hello"
 
 @auth.get_password
 def get_pw(username):
+    print(request.headers)
     if username in users:
         return users.get(username)
     else:

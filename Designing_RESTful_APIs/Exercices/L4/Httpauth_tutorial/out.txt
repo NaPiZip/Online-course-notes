@@ -1,0 +1,26 @@
+Making a GET request authenticated / with requests...
+Test PASSED!
+{'User-Agent': 'python-requests/2.21.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Cookie': 'session=.eJwlyzkOgDAMAMG_uKZwfBDCZ5ATJ6LikKBC_B0Q9c5eYOcxT8u6lAojSA7FPbs0YgmEhjFr1aQSPWpy6H6_braf30BcmN9kJj3VwbU1TXkw1IaJCeF-AMRkHLY.XHx2OA.u8hbkHvV7I0mSAcJqdilUpD4otQ', 'Authorization': 'Digest username="Time", realm="Authentication Required", nonce="4b1cddbd4f234120a07b5e59547d759d", uri="/", response="3fa6313c276a60f4b0648c21bca86fc6", opaque="23c33d75aa462e8d5ff59b8a05f09320"'}
+None
+Making a GET request authenticated / with httplib2 ...
+connect: (localhost, 5000) ************
+send: b'GET / HTTP/1.1\r\nHost: localhost:5000\r\nuser-agent: Python-httplib2/0.12.1 (gzip)\r\naccept-encoding: gzip, deflate\r\n\r\n'
+reply: 'HTTP/1.0 401 UNAUTHORIZED\r\n'
+header: Content-Type: text/html; charset=utf-8
+header: Content-Length: 19
+header: WWW-Authenticate: Digest realm="Authentication Required",nonce="280906906bdb51afc71630fda0aba67e",opaque="f4177e20eb2e4f3c392ac0d9c6b4c6ca"
+header: Vary: Cookie
+header: Set-Cookie: session=.eJwlyz0KgDAMQOG7ZHZIf0ytl5EkTXFqFXQS764ivPF7F_B5rEvrTQ1m8BNmpDcpMjqumhwFrIWRhSkZDL_vG-_nN9ToUjKPJt5iDRqyZ8WSlSQqKcP9AMRqHZQ.XHx2OA.eoN0Dm1fheoTvkEhE07m3o3hpcU; HttpOnly; Path=/
+header: Server: Werkzeug/0.14.1 Python/3.7.2
+header: Date: Mon, 04 Mar 2019 00:50:00 GMT
+connect: (localhost, 5000) ************
+send: b'GET / HTTP/1.1\r\nHost: localhost:5000\r\nuser-agent: Python-httplib2/0.12.1 (gzip)\r\naccept-encoding: gzip, deflate\r\nauthorization: Digest username="Time", realm="Authentication Required", nonce="280906906bdb51afc71630fda0aba67e", uri="/", algorithm=MD5, response="15fd003bab34b0578eb9bd320ff437af", qop=auth, nc=00000001, cnonce="30d2e14a947903a1", opaque="f4177e20eb2e4f3c392ac0d9c6b4c6ca"\r\n\r\n'
+reply: 'HTTP/1.0 401 UNAUTHORIZED\r\n'
+header: Content-Type: text/html; charset=utf-8
+header: Content-Length: 19
+header: WWW-Authenticate: Digest realm="Authentication Required",nonce="bd8548c19c989a93ea7cb6582a417076",opaque="2537712599a277912fc1f21bc28be409"
+header: Vary: Cookie
+header: Set-Cookie: session=.eJwlyzsOgDAIANC7MDsIlgJexlBs4-Qn0cl4d2Pc37vBr3OZ1m2NCiOUWTlpoIWpuQ3VJUpmJU8ovWTofr_tflxfIB5EkNjMScSQWmAjLEFaauoNnhed8xvl.XHx2OA.y2JJmswLmiMWiRxwR6XmNAF7LXA; HttpOnly; Path=/
+header: Server: Werkzeug/0.14.1 Python/3.7.2
+header: Date: Mon, 04 Mar 2019 00:50:00 GMT
+Failed

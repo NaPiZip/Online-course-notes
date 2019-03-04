@@ -3,6 +3,9 @@ from httplib2 import Http
 import json
 import sys
 import base64
+import httplib2
+import requests
+from requests.auth import HTTPDigestAuth
 
 if __name__ == '__main__':
     print("Running Endpoint Tester ...\n")
@@ -24,3 +27,25 @@ if __name__ == '__main__':
         sys.exit()
     else:
         print("Test 1 PASS: Successfully mate a new user")
+
+    try:
+        h = Http('.cache')
+        httplib2.debuglevel = 1
+        h.follow_all_redirects = True
+        h.add_credentials('Peter','Pan')
+        url = address + '/resource'
+        resp,content = h.request(url, 'GET')
+        print(resp['status'])
+        print(resp.reason)
+        print(content)
+    except Exception as err:
+        print(err.args)
+
+    try:
+        url = address + '/resource'
+        resp = requests.get(url, auth=HTTPDigestAuth('Peter', 'Pan'))
+        print(resp.request.headers)
+        print(resp.request.body)
+        print("Recieved status code {}".format(resp.status_code))
+    except Exception as err:
+        print(err.args)

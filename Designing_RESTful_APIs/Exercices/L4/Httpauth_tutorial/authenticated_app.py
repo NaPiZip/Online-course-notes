@@ -21,6 +21,7 @@ def greeting():
 @auth.login_required
 def index():
     print(request.headers)
+    print(request.data)
     return "Hello"
 
 @auth.get_password

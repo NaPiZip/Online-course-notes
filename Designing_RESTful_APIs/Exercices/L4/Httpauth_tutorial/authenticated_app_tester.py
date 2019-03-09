@@ -12,11 +12,10 @@ if __name__ == '__main__':
     else:
         print("Test FAILED!")
 
-    print(resp.request.headers)
-    print(resp.request.body)
+    #print(resp.request.headers)
+    #print(resp.request.body)
     try:
-        print("Making a GET request authenticated / with httplib2 ...")
-        httplib2.debuglevel = 1
+        print("\n\n\n\nMaking a GET request authenticated / with httplib2 ...")
         h = httplib2.Http(".cache")
         h.add_credentials('Time','1234')
         req,cont = h.request(url, 'GET')

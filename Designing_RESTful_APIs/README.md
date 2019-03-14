@@ -142,5 +142,13 @@ localhost:5000/restaurants/<int:id>
 The solutions can be found in the repository.
 
 ## Lesson 4: Securing your API
-Basic securing example.
-Token based security.
+**Token based authentication**<br>
+The general concept behind a token-based authentication system is simple. Allow users to enter their username and password in order to obtain a token which allows them to fetch a specific resource - without using their username and password. Once their to ken has been obtained, the user can offer the token - which offers access to a specific resource for a time period - to the remote site. Using some form of authentication: a header, GET or POST request, or a cookie of some kind, the site can then determine what level of access the request in question should be afforded, link can be found [here](https://www.w3.org/2001/sw/Europe/events/foaf-galway/papers/fp/token_based_authentication/).
+
+The basic workflow for token based authentication is as followed:
+
+  - User Requests Access with Username / Password
+  - Application validates credentials
+  - Application provides a signed token to the client
+  - Client stores that token and sends it along with every request
+  - Server verifies token and responds with data

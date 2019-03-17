@@ -177,4 +177,40 @@ The basic workflow for token based authentication is as followed:
 Rate limiting is used to control the amount of incoming and outgoing traffic to or from a network. For example, let’s say you are using a particular service’s API that is configured to allow 100 requests/minute. If the number of requests you make exceeds that limit, then an error will be triggered. The reasoning behind implementing rate limits is to allow for a better flow of data and to increase security by mitigating attacks such as DDoS.
 
 Rate limiting also comes in useful if a particular user on the network makes a mistake in their request, thus asking the server to retrieve tons of information that may overload the network for everyone. With rate limiting in place however, these types of errors or attacks are much more manageable. A link to the article can be found here [link](https://www.keycdn.com/support/rate-limiting).
-A [tutorial](http://flask.pocoo.org/snippets/70/) is also available. 
+A [tutorial](http://flask.pocoo.org/snippets/70/) is also available.
+
+## Lesson 5: Writing developer friendly APIs
+**Documentation**<br>
+Documentation is an important element in order to provide the needed information's for developers. The following elements are commonly used in getting started documentations:
+- Quickstarts<br>
+  A set of simple tutorials with code snippets on how to use the API's.
+- Tutorials<br>
+  Sample application that cover common use cases in different programming languages.
+- API Docs>
+  Documentation for all functionality of the API's/
+- Hello World documentation<br>
+  Similar to Quickstarts.
+- FAQ section<br>
+  Section for frequently aske questions.
+- Interactive sandboxes<br>
+  Playground in order to test API calls live.
+- etc.
+
+**Consistent URI handling**<br>
+A very good blog can be found under the following [link](https://blog.restcase.com/5-basic-rest-api-design-guidelines/), addressing the topic on how to design good REST API's.
+
+**HTTP Status Codes**<br>
+The API should make use of all applicable status codes in case of an erroneous or successful event. The error feedback should be concise, clear and informative, it is also important to keep a consistent scheme within the application.  
+
+Error responses should include a common HTTP status code, message for the developer, message for the end-user (when appropriate), internal error code (corresponding to some specific internally determined ID), links where developers can find more info. For example:
+```
+'{
+  "status" : 400,
+  "developerMessage" : "Verbose, plain language description of the problem. Provide developers suggestions about how to solve their problems here",
+  "userMessage" : "This is a message that can be passed along to end-users, if needed.",
+  "errorCode" : "444444",
+  "moreInfo" : "http://www.example.gov/developer/path/to/help/for/444444, http://tests.org/node/444444"
+}'
+```
+
+A very good blog article can be found [here](https://blog.restcase.com/rest-api-error-codes-101/).

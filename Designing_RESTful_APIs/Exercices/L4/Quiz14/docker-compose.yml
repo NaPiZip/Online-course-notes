@@ -7,9 +7,10 @@ services:
   apiserver:
     container_name: flask_server
     image: apiserver
-    command: python /home/Quiz14/app.py
+    working_dir: /home
+    command: python /home/app.py
     volumes:
-      - /e/080_Github/Udacity_notes/Designing_RESTful_APIs/Exercices/L4/:/home
+      - /e/080_Github/Udacity_notes/Designing_RESTful_APIs/Exercices/L4/Quiz14:/home
     ports:
         - 80:5000
 

@@ -1,10 +1,10 @@
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declaritive import declaritive_base
+from sqlalchemy.ext.declarative  import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy import create_engine
 from passlib.apps import custom_app_context as pwd_context
 
-Base = declaritive_base()
+Base = declarative_base()
 
 class Item(Base):
     __tablename__ = 'item'
@@ -23,6 +23,6 @@ class Item(Base):
         description = self.description
         )
 
-engine = create_engine('sqlite:///barginMart.db/?check_same_thread=False', echo = True')
+engine = create_engine('sqlite:///barginMart.db/?check_same_thread=False', echo = True)
 
 Base.metadata.create_all(engine)

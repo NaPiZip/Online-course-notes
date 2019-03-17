@@ -142,6 +142,26 @@ localhost:5000/restaurants/<int:id>
 The solutions can be found in the repository.
 
 ## Lesson 4: Securing your API
+**HTTP Basic Auth**<br>
+In the context of an HTTP transaction, basic access authentication is a method for an HTTP user agent (e.g. a web browser) to provide a user name and password when making a request. In basic HTTP authentication, a request contains a header field of the form Authorization: Basic <credentials>, where credentials is the base64 encoding of id and password joined by a colon. For details see [Wikipedia](https://en.wikipedia.org/wiki/Basic_access_authentication).
+
+Client side
+
+When the user agent wants to send authentication credentials to the server, it may use the Authorization field.
+
+The Authorization field is constructed as follows:
+
+- The username and password are combined with a single colon (:). This means that the username itself cannot contain a colon.
+- The resulting string is encoded into an octet sequence. The character set to use for this encoding is by default unspecified, as long as it is compatible with US-ASCII, but the server may suggest use of UTF-8 by sending the charset parameter.[7]
+- The resulting string is encoded using a variant of Base64.
+- The authorization method and a space (e.g. "Basic ") is then prepended to the encoded string.
+
+For example, if the browser uses Aladdin as the username and OpenSesame as the password, then the field's value is the base64-encoding of `Aladdin:OpenSesame`, or `QWxhZGRpbjpPcGVuU2VzYW1l`. Then the Authorization header will appear as:
+
+```
+Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l
+```
+
 **Token based authentication**<br>
 The general concept behind a token-based authentication system is simple. Allow users to enter their username and password in order to obtain a token which allows them to fetch a specific resource - without using their username and password. Once their to ken has been obtained, the user can offer the token - which offers access to a specific resource for a time period - to the remote site. Using some form of authentication: a header, GET or POST request, or a cookie of some kind, the site can then determine what level of access the request in question should be afforded, link can be found [here](https://www.w3.org/2001/sw/Europe/events/foaf-galway/papers/fp/token_based_authentication/).
 
@@ -152,3 +172,9 @@ The basic workflow for token based authentication is as followed:
   - Application provides a signed token to the client
   - Client stores that token and sends it along with every request
   - Server verifies token and responds with data
+
+**Rate limiting**<br>
+Rate limiting is used to control the amount of incoming and outgoing traffic to or from a network. For example, let’s say you are using a particular service’s API that is configured to allow 100 requests/minute. If the number of requests you make exceeds that limit, then an error will be triggered. The reasoning behind implementing rate limits is to allow for a better flow of data and to increase security by mitigating attacks such as DDoS.
+
+Rate limiting also comes in useful if a particular user on the network makes a mistake in their request, thus asking the server to retrieve tons of information that may overload the network for everyone. With rate limiting in place however, these types of errors or attacks are much more manageable. A link to the article can be found here [link](https://www.keycdn.com/support/rate-limiting).
+A [tutorial](http://flask.pocoo.org/snippets/70/) is also available. 

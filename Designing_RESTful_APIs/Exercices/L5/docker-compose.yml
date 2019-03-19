@@ -1,0 +1,21 @@
+#online YAML parser http://yaml-online-parser.appspot.com/
+#A tutorial can be found here, https://medium.com/@ainaleke/spinning-up-and-managing-multi-container-apps-using-docker-compose-d0d9f1e4d8ae
+
+version: '3.0'
+
+services:
+  apiserver:
+    container_name: flask_server
+    image: apiserver
+    working_dir: /home
+    command: python /home/app.py
+    volumes:
+      - /e/080_Github/Udacity_notes/Designing_RESTful_APIs/Exercices/L5/:/home
+    ports:
+        - 80:5000
+
+  redis:
+      container_name: storage_server
+      image: redis
+      ports:
+        - 6379:6379

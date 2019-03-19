@@ -2,13 +2,19 @@
 <html>
   <head>
     <title>Flask Intro</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type = "text/css" href="{{url_for('static',filename='css/main.css')}}">
   </head>
-  <body>
-    <div class="container">
-      <h1>Welcome to Flask!</h2>
+
+  <header>
+
+    <div class="home">
+      <h1 class="logo">Welcome to Flask!</h1>
       <br>
       <p>Click <a href="/">here</a> to go home.</p>
+
     </div>
+  </header>
+  <body>
+    <div>Some thext here</div>
   </body>
 </html>

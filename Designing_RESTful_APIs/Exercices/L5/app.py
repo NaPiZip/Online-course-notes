@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 @app.route('/', methods = ['GET'])
 def index():
-    return jsonify(dict(content='content')),200
+    return jsonify(dict(content='content 12')),200
 
 @app.route('/welcome', methods = ['GET'])
 def welcomePage():
@@ -34,12 +34,14 @@ def welcomePage():
 def login():
     error = None
     if request.method == 'POST':
+        print('Post')
         if request.form['username'] != 'admin' or request.form['password'] != '1234':
             error = 'Invalid Credentials'
         else:
-            return jsonify(dict(redirect='new path')),200
-    else:
-        return render_template('login.html',error=error)
+            print('redirect')
+            return jsonify(dict(redirect='/')),200
+    print(error)
+    return render_template('login.html',error=error)
 
 
 if __name__ == '__main__':

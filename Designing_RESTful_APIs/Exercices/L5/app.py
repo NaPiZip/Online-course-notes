@@ -56,4 +56,4 @@ if __name__ == '__main__':
     app.secret_key = 'some_wierd_secret_key'
     app.run(host='0.0.0.0', port = 5000)
 
-    // TODO: https://scotch.io/tutorials/authentication-and-authorization-with-flask-login
+    ##TODO: https://scotch.io/tutorials/authentication-and-authorization-with-flask-login

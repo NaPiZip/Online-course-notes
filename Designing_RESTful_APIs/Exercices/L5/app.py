@@ -8,7 +8,6 @@ from flask import Flask, jsonify, render_template
 
 from models import Base, User, MealRequest
 
-from flask_httpauth import HTTPBasicAuth
 
 engine = create_engine('sqlite:///finalProject.db/?check_same_thread=False', echo = True)
 
@@ -19,16 +18,9 @@ except Exception as err:
     print("Error createing DB session: {}".format(err.args))
     sys.exit()
 
-auth = HTTPBasicAuth()
 app = Flask(__name__)
 
-
-def Verify_pw(username_or_token,password):
-    print("Verifying")
-    return None
-
 @app.route('/', methods = ['GET'])
-@auth.login_required
 def index():
     return jsonify(dict(content='content 12')),200
 

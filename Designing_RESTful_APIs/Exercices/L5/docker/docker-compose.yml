@@ -5,17 +5,17 @@ version: '3.0'
 
 services:
   apiserver:
-    container_name: flask_server
+    container_name: final_project_flask_server
     image: apiserver
-    working_dir: /home
-    command: python /home/app.py
+    working_dir: /content
+    command: python /content/app.py
     volumes:
-      - /e/080_Github/Udacity_notes/Designing_RESTful_APIs/Exercices/L5/:/home
+      - /e/080_Github/Udacity_notes/Designing_RESTful_APIs/Exercices/L5/:/content
     ports:
         - 80:5000
 
   redis:
-      container_name: storage_server
+      container_name: final_project_storage_server
       image: redis
       ports:
         - 6379:6379

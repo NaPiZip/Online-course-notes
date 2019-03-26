@@ -2,6 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base, User, MealRequest
 
+import requests
+
 engine = create_engine('sqlite:///finalProject.db/?check_same_thread=False')
 
 try:
@@ -27,8 +29,12 @@ def print_user_data(ID):
     else:
         print("Error: Could not find user with ID {} !".format(ID))
 
+def make_unauthorized_request(url):
+    response = requests.get(url)
+    print(response)
 
 if __name__=='__main__':
     #Adding user in order to start test
     add_user_to_database('Nawin','1234')
     print_user_data("Nawin")
+    make_unauthorized_request('http://localhost:5000/')

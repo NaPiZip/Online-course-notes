@@ -3,6 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
     <link rel="stylesheet" type = "text/css" href="{{url_for('static',filename='css/main.css')}}" media="screen">
+
   </head>
   <body>
 
@@ -30,6 +31,10 @@
         <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
     </form>
-
+    {% if error %}
+    <div class="alert">
+      <strong>Error!</strong> {{ error }}
+    </div>
+    {% endif %}
   </body>
 </html>

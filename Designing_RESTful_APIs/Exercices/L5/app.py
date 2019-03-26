@@ -5,12 +5,12 @@ import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from flask import request, g
+from flask import request, g, redirect, flash, url_for
 from flask import Flask, jsonify, render_template
 
 from models import Base, User, MealRequest
 
-from flask_login import LoginManager, login_required
+from flask_login import LoginManager, login_required, login_user, current_user
 
 engine = create_engine('sqlite:///finalProject.db/?check_same_thread=False', echo = True)
 
@@ -28,16 +28,10 @@ except  Exception as err:
     system.exit()
 
 app = Flask(__name__)
-login_manager.init_app(app)
 
 @login_manager.user_loader
-def load_user(user):
-    user_query  = session.query(User).filter_by(user_name=user).first()
-    if user_query is not None:
-        return user_query.user_id
-    else:
-        return None
-
+def load_user(id):
+    return session.query(User).filter_by(id=id).first()
 
 @app.route('/', methods = ['GET'])
 @login_required
@@ -53,15 +47,29 @@ def welcomePage():
 def login():
     error = None
     if request.method == 'POST':
-        print(request.headers)
-        if request.form['username'] != 'admin' or request.form['password'] != '1234':
-            error = 'Invalid Credentials'
-        else:
-            print('redirect')
-            return jsonify(dict(redirect='/')),200
-    print(error)
-    return render_template('login.html',error=error)
+        user = session.query(User).filter_by(user_name=request.form['username']).first()
+        if user is not None and user.verify_password(request.form['password']):
+            user.authenticated = True;
+            session.add(user)
+            session.commit()
 
+            print('Success')
+            login_user(user)
+            return redirect(url_for('index'))
+        else:
+            error = 'Invalid Credentials'
+    return render_template('login.html', error = error)
+
+@app.route('/logout')
+@login_required
+def logout():
+    print(current_user.user_name)
+    return 'asd'
 
 if __name__ == '__main__':
+    login_manager.init_app(app)
+    login_manager.login_view = 'login'
+    app.secret_key="Something"
     app.run(host='0.0.0.0', port = 5000, debug=True)
+
+    #tutorial http://www.patricksoftwareblog.com/tag/flask-login/

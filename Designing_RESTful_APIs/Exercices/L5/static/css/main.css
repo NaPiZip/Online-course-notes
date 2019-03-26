@@ -42,6 +42,11 @@ header h1.logo:hover {
    color: inherit;
  }
 
+.alert {
+   padding: 20px;
+   background-color: #f44336;
+   color: white;
+ }
 .grid-container {
    display: grid;
    grid-template-columns: repeat(2, 1fr);

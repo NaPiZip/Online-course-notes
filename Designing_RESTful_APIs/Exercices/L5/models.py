@@ -13,12 +13,13 @@ class User(Base):
     email           = Column(String, nullable=False)
     user_name       = Column(String, nullable=False, unique=True)
     picture         = Column(String)
+    authenticated   = Column(Boolean, default=False)
 
     def is_authenticated(self):
-        return False
+        return self.authenticated
 
     def is_active(self):
-        return False
+        return True
 
     def is_anonymous(self):
         return False
@@ -32,7 +33,7 @@ class User(Base):
 
     def verify_password(self, password):
         #return pwd_context.verify(password, self.hash_password)
-        return
+        return True
 
     @property
     def serialize(self):

@@ -12,3 +12,6 @@ RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Make port 5000 available to world outside
 EXPOSE 5000
+
+# Run app.py when container launches
+CMD ["python", "app.py"]

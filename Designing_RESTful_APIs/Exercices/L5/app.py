@@ -10,7 +10,7 @@ from flask import Flask, jsonify, render_template
 
 from models import Base, User, MealRequest
 
-from flask_login import LoginManager, login_required, login_user, current_user
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 
 engine = create_engine('sqlite:///finalProject.db/?check_same_thread=False', echo = True)
 
@@ -63,8 +63,12 @@ def login():
 @app.route('/logout')
 @login_required
 def logout():
-    print(current_user.user_name)
-    return 'asd'
+    user = current_user
+    user.authenticated = False
+    session.add(user)
+    session.commit()
+    logout_user()
+    return jsonify(dict(message="User has been loged out successfully!")),200
 
 if __name__ == '__main__':
     login_manager.init_app(app)

@@ -2,14 +2,14 @@ from sqlalchemy import Column, Boolean, Integer, Float, String, Date, ForeignKey
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
-#from passlib.apps import custom_app_context as pwd_context
+from passlib.hash import sha512_crypt
 
 Base = declarative_base()
 
 class User(Base):
     __tablename__= 'user'
     id              = Column(Integer,primary_key=True)
-    password_hash   = Column(String)
+    password_hash   = Column(String(512))
     email           = Column(String, nullable=False)
     user_name       = Column(String, nullable=False, unique=True)
     picture         = Column(String)
@@ -27,13 +27,14 @@ class User(Base):
     def get_id(self):
         return self.id
 
+    def print_hash(self):
+        print(self.password_hash)
+
     def hash_password(self, password):
-        #self.password_hash = pwd_context.hash(password)
-        return
+        self.password_hash = sha512_crypt.hash(password)
 
     def verify_password(self, password):
-        #return pwd_context.verify(password, self.hash_password)
-        return True
+        return sha512_crypt.verify(password, self.password_hash)
 
     @property
     def serialize(self):

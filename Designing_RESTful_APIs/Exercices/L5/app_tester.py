@@ -18,7 +18,8 @@ def add_user_to_database(name, password):
     if session.query(User).filter_by(user_name=name).first() is not None:
         return
     else:
-        new_user = User(user_name=name, password_hash=password, email = "something@google.de")
+        new_user = User(user_name=name, email = "something@google.de")
+        new_user.hash_password(password)
         session.add(new_user)
         session.commit()
 

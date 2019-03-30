@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 from passlib.hash import sha512_crypt
+import random, string
 
 Base = declarative_base()
 
@@ -14,6 +15,7 @@ class User(Base):
     user_name       = Column(String, nullable=False, unique=True)
     picture         = Column(String)
     authenticated   = Column(Boolean, default=False)
+    api_key         = Column(String(64))
 
     def is_authenticated(self):
         return self.authenticated
@@ -36,6 +38,14 @@ class User(Base):
     def verify_password(self, password):
         return sha512_crypt.verify(password, self.password_hash)
 
+    def generate_api_key(self):
+        self.api_key = ''.join(random.choice(
+                                            string.ascii_uppercase +
+                                            string.digits +
+                                            string.ascii_lowercase) for x in range(64))
+    def verify_api_key(self, key):
+        return self.api_key == key
+
     @property
     def serialize(self):
         return dict(id = self.id,
@@ -55,6 +65,22 @@ class MealRequest(Base):
     meal_time       = Column(String)
     match_found     = Column(Boolean)
 
+class Proposal(Base):
+    __tablename__ = 'proposal'
+    user_porposed_from = Column(String)
+    user_porposed_to   = Column(String)
+    request_id         = Column(String, ForeignKey('request.id'), primary_key=True)
+    filled             = Column(Boolean)
+
+class Appointment(Base):
+    __tablename__       = 'appointment'
+    user_1              = Column(String)
+    user_2              = Column(String)
+    restaurant_name     = Column(String)
+    restaurant_address  = Column(String)
+    restaurant_picture  = Column(String)
+    meal_time           = Column(String)
+    id                  = Column(Integer, primary_key=True)
 
 
 engine = create_engine('sqlite:///finalProject.db/?check_same_thread=False', echo = True)

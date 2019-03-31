@@ -1,3 +1,9 @@
+import sys, os
+
+#change cwd and append path in order to find modules
+os.chdir('../')
+sys.path.append(os.getcwd())
+
 from models import User
 from dbSession import session
 

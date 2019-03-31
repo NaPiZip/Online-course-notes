@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask import redirect, request, render_template, url_for, jsonify
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 
-from models import Base, User, MealRequest
+from models import User
 from dbSession import session
 
 login_api = Blueprint('login_api', __name__)

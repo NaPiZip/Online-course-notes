@@ -20,6 +20,7 @@ def add_user_to_database(name, password):
     else:
         new_user = User(user_name=name, email = "something@google.de")
         new_user.hash_password(password)
+        new_user.generate_api_key()
         session.add(new_user)
         session.commit()
 

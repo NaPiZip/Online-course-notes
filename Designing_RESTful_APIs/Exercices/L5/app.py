@@ -6,10 +6,11 @@ from flask import Flask
 from flask import request, jsonify, render_template
 from flask_login import current_user
 
-from models import Base, User, MealRequest
+from models import User, MealRequest, Proposal, Appointment
 from dbSession import session
 
 from loginAPI import login_api, login_manager, login_required
+from loginAPIKeyDecorator import require_api_key
 
 app = Flask(__name__)
 app.register_blueprint(login_api)
@@ -19,6 +20,10 @@ app.register_blueprint(login_api)
 def welcomePage():
     return render_template('welcome.html')
 
+@app.route('/key')
+@require_api_key
+def key():
+    return 'asdsdf'
 
 @app.route('/apiKey', methods = ['GET'])
 @login_required

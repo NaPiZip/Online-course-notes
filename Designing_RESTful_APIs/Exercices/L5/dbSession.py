@@ -1,8 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from models import Base, User, MealRequest
-
 engine = create_engine('sqlite:///finalProject.db/?check_same_thread=False', echo = True)
 
 try:

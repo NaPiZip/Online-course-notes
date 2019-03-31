@@ -7,10 +7,6 @@ from dbSession import session
 
 login_api = Blueprint('login_api', __name__)
 
-@login_api.route('/login111')
-def something():
-    return 'asdasd'
-
 try:
     login_manager = LoginManager()
 except  Exception as err:

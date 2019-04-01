@@ -81,7 +81,3 @@ class Appointment(Base):
     restaurant_picture  = Column(String)
     meal_time           = Column(String)
     id                  = Column(Integer, primary_key=True)
-
-
-engine = create_engine('sqlite:///finalProject.db/?check_same_thread=False', echo = True)
-Base.metadata.create_all(engine)

@@ -11,6 +11,7 @@ from app import app
 from models import User, Base
 
 class TestCase(unittest.TestCase):
+    clean_up = True
     db_name = 'test.db'
     db_url = 'sqlite:///' + os.path.join(os.getcwd(), db_name)
     engine = create_engine(db_url)
@@ -24,14 +25,18 @@ class TestCase(unittest.TestCase):
         Base.metadata.create_all(self.engine)
 
     def tearDown(self):
-        Base.metadata.drop_all(self.engine)
-        os.remove(self.db_name)
+        if self.clean_up:
+            Base.metadata.drop_all(self.engine)
+            #os.remove(self.db_name)
 
-    def test_create_minimal_user(self):
-        user = User()
+    def test_get_login_route(self):
+        response = self.app.get('/login')
+        self.assertEqual(response.status_code,200)
+        print(response.is_json)
+
 
 
 if __name__ == '__main__':
     unittest.main()
     #SQLalchemy tutorial https://stackoverflow.com/questions/14719507/unit-tests-for-query-in-sqlalchemy
-    #SQLalchemy tutorial https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-unit-testing-legacy
+    #Flask tutorial https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-unit-testing-legacy

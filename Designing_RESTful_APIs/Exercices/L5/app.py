@@ -6,15 +6,16 @@ from flask import Flask
 from flask import request, jsonify, render_template
 from flask_login import current_user
 
-from models import User, MealRequest, Proposal, Appointment
-from dbSession import session
+from models import User, MealRequest, Proposal, Appointment, Base
+from dbSession import session, engine
 
 from loginAPI import login_api, login_manager, login_required
 from loginAPIKeyDecorator import require_api_key
 
 app = Flask(__name__)
-app.register_blueprint(login_api)
 
+app.register_blueprint(login_api)
+Base.metadata.create_all(engine)
 
 @app.route('/', methods = ['GET'])
 def welcomePage():

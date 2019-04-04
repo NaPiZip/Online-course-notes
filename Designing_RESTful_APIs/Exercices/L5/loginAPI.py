@@ -10,7 +10,7 @@ login_api = Blueprint('login_api', __name__)
 try:
     login_manager = LoginManager()
 except  Exception as err:
-    print("Error creating login manaer {}".format(err.args))
+    print("Error creating login manager {}".format(err.args))
     system.exit()
 
 @login_manager.user_loader
@@ -26,7 +26,6 @@ def login():
             user.authenticated = True;
             session.add(user)
             session.commit()
-
             print('Success')
             login_user(user)
             return redirect(url_for('apiKey'))

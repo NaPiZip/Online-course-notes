@@ -9,28 +9,26 @@ sys.path.append('../')
 
 from app import app, login_manager
 from models import User, Base
+from dbSession import session as _session, engine
 
 class TestCase(unittest.TestCase):
-    clean_up = True
-    db_name = 'test.db'
-    db_url = 'sqlite:///' + os.path.join(os.getcwd(), db_name)
-    engine = create_engine(db_url)
-    DBSession = sessionmaker(bind=engine)
-    session = DBSession()
+    clean_up    = True
+    db_name     = 'finalProject.db'
+    db_url      = 'sqlite:///' + db_name
+    session     = _session
     app = []
     def setUp(self):
         app.config['TESTING'] = True
         app.secret_key="Something"
-        app.config['QLALCHEMY_DATABASE_URI'] = self.db_url
+        #app.config['SQLALCHEMY_DATABASE_URI'] = self.db_url
         self.app = app.test_client()
         login_manager.init_app(app)
         login_manager.login_view = 'login_api.login'
-        Base.metadata.create_all(self.engine)
 
     def tearDown(self):
         if self.clean_up:
-            Base.metadata.drop_all(self.engine)
-            os.remove(self.db_name)
+            print("Cleaning {}".format(self.db_name))
+            self.session.close()
 
     def does_url_response_contain_substring(self ,url, sub_string):
         response = self.app.get(url, follow_redirects=True)
@@ -55,6 +53,17 @@ class TestCase(unittest.TestCase):
 
     def test_get_logout_page_whitout_logged_in_user(self):
         self.does_url_response_contain_substring( '/logout', r'<title>Login</title>')
+
+
+    def test_post_request_with_wrong_password(self):
+        new_user = User(user_name='Nawin', email='something@google.com')
+        new_user.generate_api_key()
+        new_user.hash_password('1234')
+        self.session.add(new_user)
+        self.session.commit()
+        data = dict(username='Nawin', password='1234')
+        #response = self.app.post('/login',data=data)
+        #self.assertEqual(response.status_code,200)
 
 
 if __name__ == '__main__':

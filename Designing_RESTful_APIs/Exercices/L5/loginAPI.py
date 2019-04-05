@@ -26,7 +26,6 @@ def login():
             user.authenticated = True;
             session.add(user)
             session.commit()
-            print('Success')
             login_user(user)
             return redirect(url_for('apiKey'))
         else:

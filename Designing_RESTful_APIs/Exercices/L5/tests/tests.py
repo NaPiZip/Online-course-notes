@@ -63,16 +63,18 @@ class TestCase(unittest.TestCase):
         self.does_url_response_contain_substring( '/logout', r'<title>Login</title>')
 
     def test_post_request_with_wrong_password(self):
-        self.create_minimal_user('Tim','1234')
-        data = dict(username='Tim', password='qweq')
-        response = self.app.post('/login', data=data, follow_redirects=True)
+        user_name = 'Tim'
+        pw = 'something'
+        self.create_minimal_user(user_name,pw)
+        response = self.app.post('/login', data=dict(username=user_name, password='qweq'), follow_redirects=True)
         self.assertEqual(response.status_code,200)
         self.assertTrue(self.does_data_contain_substring(response.data,r'<strong>Error!</strong> Invalid Credentials\n'))
 
     def test_post_request_with_correct_password(self):
-        self.create_minimal_user('Nawin','1234')
-        data = dict(username='Nawin', password='1234')
-        response = self.app.post('/login', data=data, follow_redirects=True)
+        user_name = 'Nawin'
+        pw = '1234'
+        self.create_minimal_user(user_name, pw)
+        response = self.app.post('/login', data=dict(username=user_name, password=pw), follow_redirects=True)
         self.assertEqual(response.status_code,200)
         if response.is_json:
             self.assertNotEqual(response.get_json().get('api_key'),None)

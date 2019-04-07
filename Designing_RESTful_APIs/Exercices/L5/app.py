@@ -21,16 +21,16 @@ Base.metadata.create_all(engine)
 def welcomePage():
     return render_template('welcome.html')
 
-@app.route('/key')
+@app.route('/token_route')
 @require_api_key
 def key():
-    return 'asdsdf'
+    return 'Success'
 
 @app.route('/apiKey', methods = ['GET'])
 @login_required
 def apiKey():
     user = current_user
-    return jsonify(dict(api_key=current_user.api_key)),200
+    return jsonify(dict(token=current_user.api_key)),200
 
 
 if __name__ == '__main__':

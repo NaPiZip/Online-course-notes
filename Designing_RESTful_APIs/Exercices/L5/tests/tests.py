@@ -24,6 +24,8 @@ class TestCase(unittest.TestCase):
 
     def tearDown(self):
         if self.clean_up:
+            self.session.query(User).delete()
+            self.session.commit()
             self.session.close()
 
     def tearDownClass():
@@ -50,6 +52,14 @@ class TestCase(unittest.TestCase):
         self.session.add(new_user)
         self.session.commit()
 
+    def login_user(self, user, pw):
+        response = self.app.post('/login', data=dict(username=user, password=pw), follow_redirects=True)
+        self.assertEqual(response.status_code,200)
+
+    def logout_user(self):
+        response = self.app.get('logout')
+        self.assertEqual(response.status_code,200)
+
     def test_get_login_route(self):
         self.does_url_response_contain_substring( '/login', r'<title>Login</title>')
 
@@ -63,7 +73,7 @@ class TestCase(unittest.TestCase):
         self.does_url_response_contain_substring( '/logout', r'<title>Login</title>')
 
     def test_post_request_with_wrong_password(self):
-        user_name = 'Tim'
+        user_name = 'Nawin'
         pw = 'something'
         self.create_minimal_user(user_name,pw)
         response = self.app.post('/login', data=dict(username=user_name, password='qweq'), follow_redirects=True)
@@ -77,9 +87,29 @@ class TestCase(unittest.TestCase):
         response = self.app.post('/login', data=dict(username=user_name, password=pw), follow_redirects=True)
         self.assertEqual(response.status_code,200)
         if response.is_json:
-            self.assertNotEqual(response.get_json().get('api_key'),None)
+            self.assertNotEqual(response.get_json().get('token'),None)
         else:
             self.assertTrue(False)
+
+    def test_token_route_no_key(self):
+        result = self.app.get('/token_route')
+        self.assertEqual(result.status_code, 401)
+
+    def test_token_route_false_key(self):
+        result = self.app.get('/token_route',query_string=dict(token='asda'))
+        self.assertEqual(result.status_code,401)
+
+    def test_token_route_with_valid_token(self):
+        self.create_minimal_user('Nawin','abcd')
+        self.login_user('Nawin','abcd')
+        response = self.app.get('/apiKey')
+        self.assertEqual(response.status_code,200)
+        key = response.get_json()
+        response = self.app.get('/token_route', query_string=key)
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.data, b'Success')
+        self.logout_user()
+
 
 
 if __name__ == '__main__':

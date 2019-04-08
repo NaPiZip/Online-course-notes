@@ -91,23 +91,24 @@ class TestCase(unittest.TestCase):
         else:
             self.assertTrue(False)
 
-    def test_token_route_no_key(self):
-        result = self.app.get('/token_route')
+    def test_token_route_v1_users_no_key(self):
+        result = self.app.get('/v1/users')
         self.assertEqual(result.status_code, 401)
 
-    def test_token_route_false_key(self):
-        result = self.app.get('/token_route',query_string=dict(token='asda'))
+    def test_token_route_v1_users_false_key(self):
+        result = self.app.get('/v1/users',query_string=dict(token='asda'))
         self.assertEqual(result.status_code,401)
 
-    def test_token_route_with_valid_token(self):
+    def test_token_route_v1_users_valid_token(self):
         self.create_minimal_user('Nawin','abcd')
         self.login_user('Nawin','abcd')
         response = self.app.get('/apiKey')
         self.assertEqual(response.status_code,200)
         key = response.get_json()
-        response = self.app.get('/token_route', query_string=key)
+        response = self.app.get('/v1/users', query_string=key)
         self.assertEqual(response.status_code,200)
-        self.assertEqual(response.data, b'Success')
+        self.assertEqual(response.is_json, True)
+        self.assertEqual(response.get_json()[0].get('user_name'),'Nawin')
         self.logout_user()
 
 

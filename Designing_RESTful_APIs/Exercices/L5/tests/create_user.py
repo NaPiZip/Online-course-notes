@@ -29,4 +29,7 @@ def print_user_data(ID):
 if __name__=='__main__':
     #Adding user in order to start test
     add_user_to_database('Nawin','1234')
+    add_user_to_database('Tim','tim')
+    add_user_to_database('Jorge','jorge')
+    add_user_to_database('Andy','andy')
     print_user_data("Nawin")

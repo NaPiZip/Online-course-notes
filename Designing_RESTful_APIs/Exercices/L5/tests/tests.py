@@ -106,18 +106,6 @@ class TestCase(unittest.TestCase):
         self.assertEqual(result.status_code,401)
 
     def test_token_route_v1_users_valid_token(self):
-        self.create_minimal_user('Nawin','abcd')
-        self.login_user('Nawin','abcd')
-        response = self.app.get('/apiKey')
-        self.assertEqual(response.status_code,200)
-        key = response.get_json()
-        response = self.app.get('/v1/users', query_string=key)
-        self.assertEqual(response.status_code,200)
-        self.assertEqual(response.is_json, True)
-        self.assertEqual(response.get_json()[0].get('user_name'),'Nawin')
-        self.logout_user()
-
-    def test_v1_users_route(self):
         self.create_minimal_user('Nawin','1234')
         self.create_minimal_user('a','abcd')
         self.create_minimal_user('b','abcd')
@@ -130,6 +118,9 @@ class TestCase(unittest.TestCase):
         self.assertEqual(len(response.get_json()),4)
         self.logout_user()
 
+    def test_token_route_v1_users_invalid_token(self):
+        response = self.app.get('/v1/users', query_string =self.get_api_key_dict_of_current_user())
+        self.assertEqual(self.does_data_contain_substring(response.data, 'Unauthorized address trying to use'),True)
 
 
 if __name__ == '__main__':

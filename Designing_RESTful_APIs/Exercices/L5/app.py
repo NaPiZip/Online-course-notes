@@ -11,20 +11,18 @@ from dbSession import session, engine
 
 from loginAPI import login_api, login_manager, login_required
 from loginAPIKeyDecorator import require_api_key
+from appEndpoints import app_endpoints
 
 app = Flask(__name__)
 
 app.register_blueprint(login_api)
+app.register_blueprint(app_endpoints)
+
 Base.metadata.create_all(engine)
 
 @app.route('/', methods = ['GET'])
 def welcomePage():
     return render_template('welcome.html')
-
-@app.route('/token_route')
-@require_api_key
-def key():
-    return 'Success'
 
 @app.route('/apiKey', methods = ['GET'])
 @login_required
@@ -32,10 +30,27 @@ def apiKey():
     user = current_user
     return jsonify(dict(token=current_user.api_key)),200
 
+##Dev routes 
+@app.route('/dev')
+def dev_route():
+    user = session.query(User).first()
+    if user is not None:
+        new_meal_request = MealRequest(user_id=user.get_id(), meal_type = 'Shit')
+        user.meal_requests.append(new_meal_request)
+        session.commit()
+        return jsonify(dict(tesxt='Something')),301
+    else:
+        return 'Error'
+
+@app.route('/debug')
+def debug():
+    meal_request = session.query(MealRequest).first()
+    return jsonify(dict(id=meal_request.user_id, meal=meal_request.meal_type))
 
 if __name__ == '__main__':
     login_manager.init_app(app)
     login_manager.login_view = 'login_api.login'
+    app.config['JSON_SORT_KEYS'] = False
     app.secret_key="Something"
     app.run(host='0.0.0.0', port = 5000, debug=True)
 

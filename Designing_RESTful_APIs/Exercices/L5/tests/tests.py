@@ -60,6 +60,13 @@ class TestCase(unittest.TestCase):
         response = self.app.get('logout')
         self.assertEqual(response.status_code,200)
 
+    def get_api_key_dict_of_current_user(self):
+        response  = self.app.get('/apiKey')
+        if response.status_code == 200 and response.is_json:
+            return response.get_json()
+        else:
+            return None
+
     def test_get_login_route(self):
         self.does_url_response_contain_substring( '/login', r'<title>Login</title>')
 
@@ -86,10 +93,9 @@ class TestCase(unittest.TestCase):
         self.create_minimal_user(user_name, pw)
         response = self.app.post('/login', data=dict(username=user_name, password=pw), follow_redirects=True)
         self.assertEqual(response.status_code,200)
-        if response.is_json:
-            self.assertNotEqual(response.get_json().get('token'),None)
-        else:
-            self.assertTrue(False)
+        self.assertEqual(response.is_json, True)
+        self.assertNotEqual(response.get_json().get('token'),None)
+
 
     def test_token_route_v1_users_no_key(self):
         result = self.app.get('/v1/users')
@@ -109,6 +115,19 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code,200)
         self.assertEqual(response.is_json, True)
         self.assertEqual(response.get_json()[0].get('user_name'),'Nawin')
+        self.logout_user()
+
+    def test_v1_users_route(self):
+        self.create_minimal_user('Nawin','1234')
+        self.create_minimal_user('a','abcd')
+        self.create_minimal_user('b','abcd')
+        self.create_minimal_user('c','abcd')
+        self.login_user('Nawin','1234')
+
+        response = self.app.get('/v1/users', query_string =self.get_api_key_dict_of_current_user())
+        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.is_json, True)
+        self.assertEqual(len(response.get_json()),4)
         self.logout_user()
 
 

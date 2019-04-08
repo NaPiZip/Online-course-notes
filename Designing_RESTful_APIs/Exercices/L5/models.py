@@ -17,6 +17,8 @@ class User(Base):
     authenticated   = Column(Boolean, default=False)
     api_key         = Column(String(64))
 
+    meal_requests = relationship("MealRequest")
+
     def is_authenticated(self):
         return self.authenticated
 
@@ -46,6 +48,7 @@ class User(Base):
     def verify_api_key(self, key):
         return self.api_key == key
 
+
     @property
     def serialize(self):
         return dict(id = self.id,
@@ -65,12 +68,18 @@ class MealRequest(Base):
     meal_time       = Column(String)
     match_found     = Column(Boolean)
 
+    def __repr__(self):
+        return "<request {}>".format(self.id)
+
+
+
 class Proposal(Base):
     __tablename__ = 'proposal'
     user_porposed_from = Column(String)
     user_porposed_to   = Column(String)
     request_id         = Column(String, ForeignKey('request.id'), primary_key=True)
     filled             = Column(Boolean)
+    meal_request       = relationship("MealRequest")
 
 class Appointment(Base):
     __tablename__       = 'appointment'

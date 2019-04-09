@@ -53,7 +53,8 @@ class User(Base):
     def serialize(self):
         return dict(id = self.id,
                     user_name = self.user_name,
-                    email = self.email)
+                    email = self.email,
+                    token = self.api_key)
 
 
 class MealRequest(Base):

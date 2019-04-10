@@ -15,4 +15,5 @@ def require_api_key(f):
         else:
             return (jsonify({'data':'Unauthorized address trying to use API: {}'.format(request.remote_addr),
                             'error':'401'}), 401)
+    decorate.__name__ = f.__name__
     return decorate

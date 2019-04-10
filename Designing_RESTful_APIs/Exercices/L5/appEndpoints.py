@@ -38,6 +38,8 @@ def get_all_users():
 @app_endpoints.route('/v1/users/<int:id>', methods=['GET'])
 @require_api_key
 def get_user_with_id(id):
-    print("asdasdasd")
-    print(id)
-    return "None"
+    user_search = session.query(User).filter_by(id=id).first()
+    if user_search is not None:
+        return jsonify(user_search.serialize),200
+    else:
+        return jsonify(dict(message="ERROR, user {} not found!".format(id))),404

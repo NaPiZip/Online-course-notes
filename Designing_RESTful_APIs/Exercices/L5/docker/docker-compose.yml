@@ -13,6 +13,7 @@ services:
       - /e/080_Github/Udacity_notes/Designing_RESTful_APIs/Exercices/L5/:/content
     ports:
         - 80:5000
+        - 443:443
 
   redis:
       container_name: final_project_storage_server

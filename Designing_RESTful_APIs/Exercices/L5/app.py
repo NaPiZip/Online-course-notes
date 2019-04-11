@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+import requests
 
 from flask import Flask
 from flask import request, jsonify, render_template
@@ -30,7 +31,7 @@ def apiKey():
     user = current_user
     return jsonify(dict(token=current_user.api_key)),200
 
-##Dev routes 
+##Dev routes
 @app.route('/dev')
 def dev_route():
     user = session.query(User).first()
@@ -46,6 +47,16 @@ def dev_route():
 def debug():
     meal_request = session.query(MealRequest).first()
     return jsonify(dict(id=meal_request.user_id, meal=meal_request.meal_type))
+
+@app.route('/ping')
+def ping():
+    #todo add secrets loader
+    parameter = dict(client_id='',
+                     client_secret='',
+                     v="20180323",
+                     near="Ann Arbor", query="Tacos",limit=10)
+    response = requests.get('https://api.foursquare.com/v2/venues/search',params=parameter)
+    return jsonify(response.json())
 
 if __name__ == '__main__':
     login_manager.init_app(app)

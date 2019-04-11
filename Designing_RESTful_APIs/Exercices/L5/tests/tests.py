@@ -145,6 +145,59 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
         self.logout_user()
 
+    def test_token_route_v1_users_valid_token_delete_user(self):
+        user = 'Nawin'
+        pw = '1234'
+        self.create_minimal_user(user, pw)
+        self.create_minimal_user('Second', 'abcd')
+        self.login_user(user, pw)
+        token = self.get_api_key_dict_of_current_user()
+
+        #check number of users before deleting is two
+        response = self.app.get('/v1/users', query_string=token)
+        self.assertEqual(response.status_code,200)
+        self.assertTrue(response.is_json)
+        self.assertEqual(len(response.get_json()),2)
+
+        #issue the delete request
+        response = self.app.delete('/v1/users', query_string=token,
+                                                data=json.dumps(dict(user_name='Second')),mimetype='application/json')
+        self.assertEqual(response.status_code,200)
+        self.assertTrue(self.does_data_contain_substring(response.data,'Success, deleted user:'))
+
+        #check number of users before deleting is two
+        response = self.app.get('/v1/users', query_string=token)
+        self.assertEqual(response.status_code,200)
+        self.assertTrue(response.is_json)
+        self.assertEqual(len(response.get_json()),1)
+        self.logout_user()
+
+    def test_token_route_v1_users_valid_token_delete_not_existing_user(self):
+        user = 'Nawin'
+        pw = '1234'
+        self.create_minimal_user(user, pw)
+        self.login_user(user, pw)
+        token = self.get_api_key_dict_of_current_user()
+
+        #check number of users before deleting is two
+        response = self.app.get('/v1/users', query_string=token)
+        self.assertEqual(response.status_code,200)
+        self.assertTrue(response.is_json)
+        self.assertEqual(len(response.get_json()),1)
+
+        #issue the delete request
+        response = self.app.delete('/v1/users', query_string=token,
+                                                data=json.dumps(dict(user_name='Second')),mimetype='application/json')
+        self.assertEqual(response.status_code,404)
+        self.assertTrue(self.does_data_contain_substring(response.data,'ERROR, user not found'))
+
+        #check number of users before deleting is two
+        response = self.app.get('/v1/users', query_string=token)
+        self.assertEqual(response.status_code,200)
+        self.assertTrue(response.is_json)
+        self.assertEqual(len(response.get_json()),1)
+        self.logout_user()
+
     def test_token_route_v1_users_with_id_invalid_token(self):
         response = self.app.get('/v1/users/0')
         self.assertEqual(response.status_code, 401)
@@ -168,7 +221,6 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code,200)
         self.assertTrue(self.does_data_contain_substring(response.data, "\"id\":1"))
         self.logout_user()
-
 
 if __name__ == '__main__':
     unittest.main()

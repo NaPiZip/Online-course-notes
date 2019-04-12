@@ -15,8 +15,15 @@ def read_info_from_json_file(filename):
         data = json.load(f)
     return data
 
+def get_foursquare_key_dict():
+    keys_dict = read_info_from_json_file('secrets.json')
+    return keys_dict.get('foursquare')
+
+def get_mapquest_key_dict():
+    keys_dict = read_info_from_json_file('secrets.json')
+    return keys_dict.get('mapquest')
 
 if __name__=='__main__':
     filename = 'secrets.json'
-    dump_info_to_json_file(filename)
-    print(read_info_from_json_file(filename))
+    print(get_mapquest_key_dict())
+    print(get_foursquare_key_dict())

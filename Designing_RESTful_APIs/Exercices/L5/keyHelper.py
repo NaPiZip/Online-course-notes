@@ -24,6 +24,8 @@ def get_mapquest_key_dict():
     return keys_dict.get('mapquest')
 
 if __name__=='__main__':
-    filename = 'secrets.json'
-    print(get_mapquest_key_dict())
-    print(get_foursquare_key_dict())
+    debug = False
+    if debug:
+        filename = 'secrets.json'
+        print(get_mapquest_key_dict())
+        print(get_foursquare_key_dict())

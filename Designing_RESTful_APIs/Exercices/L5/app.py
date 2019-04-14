@@ -14,6 +14,8 @@ from loginAPI import login_api, login_manager, login_required
 from loginAPIKeyDecorator import require_api_key
 from appEndpoints import app_endpoints
 
+from keyHelper import get_foursquare_key_dict, get_mapquest_key_dict
+
 app = Flask(__name__)
 
 app.register_blueprint(login_api)
@@ -51,11 +53,11 @@ def debug():
 @app.route('/ping')
 def ping():
     #todo add secrets loader
-    parameter = dict(client_id='',
-                     client_secret='',
-                     v="20180323",
-                     near="Ann Arbor", query="Tacos",limit=10)
-    response = requests.get('https://api.foursquare.com/v2/venues/search',params=parameter)
+    key = get_foursquare_key_dict()
+    parameter = dict(v="20180323",
+                     near="Ann Arbor", query="Tacos",limit=1)
+    response = requests.get('https://api.foursquare.com/v2/venues/search',params={**key, **parameter})
+
     return jsonify(response.json())
 
 if __name__ == '__main__':

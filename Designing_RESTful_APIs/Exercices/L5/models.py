@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Boolean, Integer, Float, String, Date, ForeignKey
+from sqlalchemy import Column, Boolean, Integer, Float, String, ForeignKey
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
@@ -61,16 +61,38 @@ class MealRequest(Base):
     __tablename__ = 'request'
     id              = Column(Integer, primary_key=True)
     user_id         = Column(Integer, ForeignKey('user.id'))
-    meal_type       = Column(String)
-    location_name   = Column(String)
+
+    meal_type       = Column(String, nullable=False)
+    appointment_date= Column(String, nullable=False)
+    meal_time       = Column(String, nullable=False)
+    location_area   = Column(String, nullable=False)
     latitude        = Column(Float)
     longitude       = Column(Float)
-    appointment_date= Column(Date)
-    meal_time       = Column(String)
     match_found     = Column(Boolean)
+
+    def __init__(self, **kwargs):
+        if  'meal_type'          not in kwargs or \
+            'location_area'      not in kwargs or \
+            'appointment_date'   not in kwargs:
+           raise ValueError('Error some input arguments are missing!')
+        else:
+            for key in kwargs:
+                setattr(self, key, kwargs[key])
 
     def __repr__(self):
         return "<request {}>".format(self.id)
+
+    @property
+    def serialize(self):
+        return dict(id = self.id,
+                    user_id = self.user_id,
+                    meal_type = self.meal_type,
+                    appointment_date = self.appointment_date,
+                    meal_time = self.meal_time,
+                    location_area = self.location_area,
+                    latitude = self.latitude,
+                    longitude = self.longitude,
+                    match_found = self.match_found)
 
 
 

@@ -1,7 +1,8 @@
 from flask import Blueprint
+from flask_login import current_user
 from flask import redirect, request, render_template, url_for, jsonify
 
-from models import User
+from models import User, MealRequest
 from dbSession import session
 
 from loginAPIKeyDecorator import require_api_key
@@ -60,7 +61,15 @@ def get_user_with_id(id):
 @app_endpoints.route('/v1/requests', methods = ['GET', 'POST'])
 @require_api_key
 def show_make_user_requests():
-    print('asdasd')
-    data = request.get('www.google.de')
-    print(data)
-    return 'None'
+    if request.method == 'GET':
+        meal_requests = session.query(MealRequest).all()
+        return jsonify( [req.serialize for req in meal_requests])
+    elif request.method == 'POST':
+        try:
+            new_meal_request = MealRequest(**request.json,user_id=current_user.id)
+            current_user.meal_requests.append(new_meal_request)
+            session.commit()
+            return jsonify(dict(message="Success, created request: {}!".format(new_meal_request.id))),201
+        except ValueError as value_error:
+            return jsonify(dict(message=value_error.args)),404
+        return 'None'

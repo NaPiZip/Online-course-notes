@@ -1,4 +1,5 @@
 import json
+import os.path
 
 
 def dump_info_to_json_file(filename):
@@ -16,11 +17,13 @@ def read_info_from_json_file(filename):
     return data
 
 def get_foursquare_key_dict():
-    keys_dict = read_info_from_json_file('secrets.json')
+    script_path = os.path.abspath(os.path.dirname(__file__))
+    keys_dict = read_info_from_json_file(script_path+'/secrets.json')
     return keys_dict.get('foursquare')
 
 def get_mapquest_key_dict():
-    keys_dict = read_info_from_json_file('secrets.json')
+    script_path = os.path.abspath(os.path.dirname(__file__))
+    keys_dict = read_info_from_json_file(script_path+'/secrets.json')
     return keys_dict.get('mapquest')
 
 if __name__=='__main__':

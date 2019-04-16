@@ -1,3 +1,5 @@
+import requests
+
 from flask import Blueprint
 from flask_login import current_user
 from flask import redirect, request, render_template, url_for, jsonify
@@ -6,8 +8,12 @@ from models import User, MealRequest
 from dbSession import session
 
 from loginAPIKeyDecorator import require_api_key
+from keyHelper import get_foursquare_key_dict, get_mapquest_key_dict
 
 app_endpoints = Blueprint('app_endpoints', __name__)
+
+mapquest_key_dict = get_mapquest_key_dict()
+foursquare_key_dict = get_foursquare_key_dict()
 
 @app_endpoints.route('/v1/users', methods = ['GET', 'PUT', 'DELETE'])
 @require_api_key
@@ -63,13 +69,33 @@ def get_user_with_id(id):
 def show_make_user_requests():
     if request.method == 'GET':
         meal_requests = session.query(MealRequest).all()
-        return jsonify( [req.serialize for req in meal_requests])
+        if meal_requests is not None:
+            return jsonify( [req.serialize for req in meal_requests])
+        else:
+            return 'None'
     elif request.method == 'POST':
         try:
             new_meal_request = MealRequest(**request.json,user_id=current_user.id)
+            response = requests.get('https://api.foursquare.com/v2/venues/search',params={**foursquare_key_dict, 'v':'20180323', 'limit':1,
+                            'near':request.json.get('location_area'),
+                            'query':request.json.get('meal_type')})
+            if response.status_code != 200:
+                return jsonify(dict(message="ERROR, foursquare api not working {}!".format(status_code))),404
+            new_meal_request.latitude = response.json().get('response').get('geocode').get('feature').get('geometry').get('center').get('lat')
+            new_meal_request.longitude =  response.json().get('response').get('geocode').get('feature').get('geometry').get('center').get('lng')
             current_user.meal_requests.append(new_meal_request)
             session.commit()
             return jsonify(dict(message="Success, created request: {}!".format(new_meal_request.id))),201
         except ValueError as value_error:
             return jsonify(dict(message=value_error.args)),404
         return 'None'
+
+@app_endpoints.route('/v1/requests/<int:id>', methods = ['GET', 'PUT', 'DELETE'])
+@require_api_key
+def show_make_edit_specific_user_request(id):
+    if request.method == 'GET':
+        request_query = session.query(MealRequest).filter_by(id=id).first()
+        if request_query is not None:
+            return jsonify(request_query.serialize),200
+        else:
+            return 'None'

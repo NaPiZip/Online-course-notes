@@ -293,6 +293,30 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data, 'Error some input arguments are missing!'))
         self.logout_user()
 
+    def test_get_request_with_id_valid(self):
+        user = 'Nawin'
+        pw = 'Somegt'
+
+        payload = dict(meal_type="Tacos", location_area='Ann Arbor',
+                       appointment_date='4/20/2019', meal_time='07:00PM')
+
+        self.create_minimal_user(user, pw)
+        self.login_user(user, pw)
+        request = self.app.get('/v1/requests/1', query_string=self.get_api_key_dict_of_current_user())
+        self.assertEqual(request.status_code,200)
+        self.assertEqual(request.data,b'None')
+
+        request = self.app.post('/v1/requests', query_string=self.get_api_key_dict_of_current_user(), data=json.dumps(payload),mimetype='application/json')
+
+        self.assertEqual(request.status_code, 201)
+        self.assertTrue(self.does_data_contain_substring(request.data, 'Success, created request:'))
+
+        request = self.app.get('/v1/requests/1', query_string=self.get_api_key_dict_of_current_user())
+        self.assertEqual(request.status_code, 200)
+        self.assertTrue(self.does_data_contain_substring(request.data,'\"appointment_date\":\"4/20/2019\"'))
+
+        self.logout_user()
+
 if __name__ == '__main__':
     unittest.main()
     #SQLalchemy tutorial https://stackoverflow.com/questions/14719507/unit-tests-for-query-in-sqlalchemy

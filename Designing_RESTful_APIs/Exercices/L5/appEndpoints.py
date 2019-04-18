@@ -81,6 +81,8 @@ def show_make_user_requests():
                             'query':request.json.get('meal_type')})
             if response.status_code != 200:
                 return jsonify(dict(message="ERROR, foursquare api not working {}!".format(status_code))),404
+
+            new_meal_request.location_name = response.json().get('response').get('venues')[0].get('name')
             new_meal_request.latitude = response.json().get('response').get('geocode').get('feature').get('geometry').get('center').get('lat')
             new_meal_request.longitude =  response.json().get('response').get('geocode').get('feature').get('geometry').get('center').get('lng')
             current_user.meal_requests.append(new_meal_request)

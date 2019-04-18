@@ -66,6 +66,7 @@ class MealRequest(Base):
     appointment_date= Column(String, nullable=False)
     meal_time       = Column(String, nullable=False)
     location_area   = Column(String, nullable=False)
+    location_name   = Column(String)
     latitude        = Column(Float)
     longitude       = Column(Float)
     match_found     = Column(Boolean)
@@ -90,6 +91,7 @@ class MealRequest(Base):
                     appointment_date = self.appointment_date,
                     meal_time = self.meal_time,
                     location_area = self.location_area,
+                    location_name = self.location_name,
                     latitude = self.latitude,
                     longitude = self.longitude,
                     match_found = self.match_found)

@@ -302,6 +302,7 @@ class TestCase(unittest.TestCase):
 
         self.create_minimal_user(user, pw)
         self.login_user(user, pw)
+
         response = self.app.get('/v1/requests/1', query_string=self.get_api_key_dict_of_current_user())
         self.assertEqual(response.status_code,200)
         self.assertEqual(response.data,b'None')
@@ -316,6 +317,11 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data,'\"appointment_date\":\"4/20/2019\"'))
         self.assertTrue(response.is_json)
         self.assertTrue(response.get_json().get('location_name') != None)
+
+        response = self.app.get('/v1/requests/0', query_string=self.get_api_key_dict_of_current_user())
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data, b'None')
+
         self.logout_user()
 
 if __name__ == '__main__':

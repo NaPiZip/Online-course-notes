@@ -325,6 +325,11 @@ class TestCase(unittest.TestCase):
         self.logout_user()
 
 if __name__ == '__main__':
+    #@TODO:
+    # Refactor test cases such that the naming scheme is consistent and easy to follow.
+    # The scheme should contain the Http request method e.g.
+    # test_<request_type>_<url_scheme>_<positive_negative_test>
+    # test_httpGet_v2_requests_id_positive_getAllPostedRequests
     unittest.main()
     #SQLalchemy tutorial https://stackoverflow.com/questions/14719507/unit-tests-for-query-in-sqlalchemy
     #Flask tutorial https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-unit-testing-legacy

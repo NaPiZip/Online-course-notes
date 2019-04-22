@@ -92,12 +92,46 @@ def show_make_user_requests():
             return jsonify(dict(message=value_error.args)),404
         return 'None'
 
+
+def update_meal_request(MealRequest):
+    response = requests.get('https://api.foursquare.com/v2/venues/search',params={**foursquare_key_dict, 'v':'20180323', 'limit':1,
+                    'near':MealRequest.location_area,
+                    'query':MealRequest.meal_type})
+    if response.status_code != 200:
+        return None, response.status_code
+
+    MealRequest.location_name = response.json().get('response').get('venues')[0].get('name')
+    MealRequest.latitude = response.json().get('response').get('geocode').get('feature').get('geometry').get('center').get('lat')
+    MealRequest.longitude =  response.json().get('response').get('geocode').get('feature').get('geometry').get('center').get('lng')
+
+    return MealRequest,response.status_code
+
 @app_endpoints.route('/v1/requests/<int:id>', methods = ['GET', 'PUT', 'DELETE'])
 @require_api_key
 def show_make_edit_specific_user_request(id):
+    request_query = session.query(MealRequest).filter_by(id=id).first()
+    if request_query == None:
+        return 'None'
     if request.method == 'GET':
-        request_query = session.query(MealRequest).filter_by(id=id).first()
-        if request_query is not None:
-            return jsonify(request_query.serialize),200
+        return jsonify(request_query.serialize),200
+    if request.method == 'PUT':
+        meal_type       = request.json.get('meal_type')
+        location_area   = request.json.get('location_area')
+        appointment_date= request.json.get('appointment_date')
+        meal_time       = request.json.get('meal_time')
+
+        if meal_type is not None:
+            request_query.meal_type=meal_type
+        if location_area is not None:
+            request_query.location_area=location_area
+        if appointment_date is not None:
+            request_query.appointment_date=appointment_date
+        if meal_time is not None:
+            request_query.meal_time=meal_time
+
+        request_query, status_code = update_meal_request(request_query)
+        if status_code == 200:
+            session.commit()
+            return jsonify(dict(message="Success, updated request: {}!".format(request_query.id))),201
         else:
-            return 'None'
+            return jsonify(dict(message="ERROR, foursquare api not working {}!".format(status_code))),404

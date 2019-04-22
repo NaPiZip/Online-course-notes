@@ -324,6 +324,39 @@ class TestCase(unittest.TestCase):
 
         self.logout_user()
 
+    def test_put_v1_requests_id_positive_updateARequest(self):
+        user = 'Nawin'
+        pw = 'something'
+        self.create_minimal_user(user,pw)
+        self.login_user(user,pw)
+        token = self.get_api_key_dict_of_current_user()
+        payload = dict(meal_type="Tacos", location_area='Ann Arbor',
+                       appointment_date='4/20/2019', meal_time='07:00PM')
+
+        updated_payload = dict(meal_type="Burger", location_area='Detroit',
+                       appointment_date='5/21/2020', meal_time='09:00AM')
+
+        response = self.app.post('/v1/requests', query_string=token, data=json.dumps(payload), mimetype='application/json')
+        self.assertEqual(response.status_code,201)
+
+        response = self.app.get('/v1/requests/1', query_string=token)
+        self.assertEqual(response.status_code,200)
+        for key in payload:
+            self.assertTrue(self.does_data_contain_substring(response.data, payload[key]))
+
+        response = self.app.put('/v1/requests/1',query_string=token, data=json.dumps(updated_payload), mimetype='application/json')
+        self.assertEqual(response.status_code, 201)
+
+        response = self.app.get('/v1/requests/1',query_string=token)
+        self.assertEqual(response.status_code,200)
+
+        for key in updated_payload:
+            self.assertTrue(self.does_data_contain_substring(response.data, updated_payload[key]))
+            self.assertFalse(self.does_data_contain_substring(response.data, payload[key]))
+
+
+
+
 if __name__ == '__main__':
     #@TODO:
     # Refactor test cases such that the naming scheme is consistent and easy to follow.
@@ -331,5 +364,3 @@ if __name__ == '__main__':
     # test_<request_type>_<url_scheme>_<positive_negative_test>
     # test_httpGet_v2_requests_id_positive_getAllPostedRequests
     unittest.main()
-    #SQLalchemy tutorial https://stackoverflow.com/questions/14719507/unit-tests-for-query-in-sqlalchemy
-    #Flask tutorial https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-unit-testing-legacy

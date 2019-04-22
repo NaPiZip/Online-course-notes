@@ -354,8 +354,35 @@ class TestCase(unittest.TestCase):
             self.assertTrue(self.does_data_contain_substring(response.data, updated_payload[key]))
             self.assertFalse(self.does_data_contain_substring(response.data, payload[key]))
 
+    def test_delete_route_v1_requests_id_valid_deleteMealRequestEntety(self):
+        user = 'Nawin'
+        pw = 'Something'
+        self.create_minimal_user(user, pw)
+        self.login_user(user,pw)
+
+        token = self.get_api_key_dict_of_current_user()
+
+        payload = dict(meal_type="Tacos", location_area='Ann Arbor',
+                       appointment_date='4/20/2019', meal_time='07:00PM')
+
+        response = self.app.post('/v1/requests', query_string=token, data=json.dumps(payload), mimetype='application/json')
+        self.assertEqual(response.status_code, 201)
+
+        response = self.app.get('/v1/requests/1', query_string=token)
+        self.assertEqual(response.status_code, 200)
+        for key in payload:
+            self.assertTrue(self.does_data_contain_substring(response.data, payload[key]))
+
+        response = self.app.delete('/v1/requests/1', query_string=token)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(self.does_data_contain_substring(response.data, 'Success, deleted request: 1'))
+
+        response  = self.app.get('/v1/requests', query_string=token)
+        self.assertEqual(response.status_code,200)
+        self.assertTrue(self.does_data_contain_substring(response.data, '[]'))
 
 
+#@todo add multi requests
 
 if __name__ == '__main__':
     #@TODO:

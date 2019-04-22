@@ -132,3 +132,7 @@ def show_make_edit_specific_user_request(id):
             return jsonify(dict(message="Success, updated request: {}!".format(request_query.id))),201
         else:
             return jsonify(dict(message="ERROR, foursquare api not working {}!".format(status_code))),404
+    elif request.method == 'DELETE':
+        session.delete(request_query)
+        session.commit()
+        return jsonify(dict(message="Success, deleted request: {}!".format(request_query.id))),200

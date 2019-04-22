@@ -276,6 +276,38 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data,'\"appointment_date\":\"4/20/2019\"'))
         self.logout_user()
 
+    def test_get_v1_requests_createMultiupleMealRequests(self):
+        user = 'Nawin'
+        pw = 'Something'
+
+        payload = dict(meal_type='Tacos', location_area='Ann Arbor',
+                       appointment_date='4/20/2019', meal_time='07:00PM')
+
+        self.create_minimal_user(user, pw)
+        self.login_user(user, pw)
+
+        response = self.app.post('/v1/requests', query_string=self.get_api_key_dict_of_current_user(),
+                                                 data=json.dumps(payload),mimetype='application/json')
+
+        self.assertEqual(response.status_code,201)
+        self.assertTrue(self.does_data_contain_substring(response.data, 'Success, created request:'))
+
+
+        response = self.app.get('/v1/requests',query_string=self.get_api_key_dict_of_current_user())
+        self.assertTrue(self.does_data_contain_substring(response.data,'\"meal_type\":\"{}\"'.format(payload['meal_type'])))
+
+        payload['meal_type'] = 'Burgers'
+
+        response = self.app.post('/v1/requests', query_string=self.get_api_key_dict_of_current_user(),
+                                                 data=json.dumps(payload),mimetype='application/json')
+
+        self.assertEqual(response.status_code,201)
+        self.assertTrue(self.does_data_contain_substring(response.data, 'Success, created request:'))
+
+        response = self.app.get('/v1/requests',query_string=self.get_api_key_dict_of_current_user())
+        self.assertTrue(self.does_data_contain_substring(response.data,'\"meal_type\":\"{}\"'.format(payload['meal_type'])))
+        self.logout_user()
+
     def test_create_invaild_user_request_post(self):
         user = 'Nawin'
         pw = 'Something'

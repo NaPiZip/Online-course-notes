@@ -70,23 +70,23 @@ class TestCase(unittest.TestCase):
         else:
             return None
 
-    def test_get_login_route(self):
+    def test_Get_login_positive_checkIfLoginRouteIsCorrect(self):
         self.does_url_response_contain_substring( '/login', r'<title>Login</title>')
 
     #@unittest.skip
-    def test_get_index_page(self):
+    def test_Get_forwardslash_positive_checkIfLandingpageRouteIsCorrect(self):
         self.does_url_response_contain_substring( '/', r'<title>Meet\'N eat</title>')
 
     #@unittest.skip
-    def test_get_apiKey_page_whitout_logged_in_user(self):
+    def test_Get_apiKey_positive_checkIfApiKeyRouteRedirectsToLogin(self):
         self.does_url_response_contain_substring( '/apiKey', r'<title>Login</title>')
 
     #@unittest.skip
-    def test_get_logout_page_whitout_logged_in_user(self):
+    def test_Get_logout_positive_checkIfLogoutRouteRedirectsToLogin(self):
         self.does_url_response_contain_substring( '/logout', r'<title>Login</title>')
 
     #@unittest.skip
-    def test_post_request_with_wrong_password(self):
+    def test_Post_login_negative_checktIfLoginWithWrongCredentialFails(self):
         user_name = 'Nawin'
         pw = 'something'
         self.create_minimal_user(user_name,pw)
@@ -95,7 +95,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data,r'<strong>Error!</strong> Invalid Credentials\n'))
 
     #@unittest.skip
-    def test_post_request_with_correct_password(self):
+    def test_Post_login_positive_checktIfLoginWithCorrectCredentialPass(self):
         user_name = 'Nawin'
         pw = '1234'
         self.create_minimal_user(user_name, pw)
@@ -105,17 +105,17 @@ class TestCase(unittest.TestCase):
         self.assertNotEqual(response.get_json().get('token'),None)
 
     #@unittest.skip
-    def test_token_route_v1_users_no_key(self):
+    def test_Get_v1_users_negative_checkIfUsersRouteFailsWithNoToken(self):
         result = self.app.get('/v1/users')
         self.assertEqual(result.status_code, 401)
 
     #@unittest.skip
-    def test_token_route_v1_users_false_key(self):
+    def test_Get_v1_users_negative_checkIfUsersRouteFailsWithWrongToken(self):
         result = self.app.get('/v1/users',query_string=dict(token='asda'))
         self.assertEqual(result.status_code,401)
 
     #@unittest.skip
-    def test_token_route_v1_users_valid_token(self):
+    def test_Get_v1_users_positive_checkIfUsersRoutePassesWithCorrectToken(self):
         self.create_minimal_user('Nawin','1234')
         self.create_minimal_user('a','abcd')
         self.create_minimal_user('b','abcd')
@@ -129,12 +129,12 @@ class TestCase(unittest.TestCase):
         self.logout_user()
 
     #@unittest.skip
-    def test_token_route_v1_users_invalid_token(self):
+    def test_Get_v1_users_negative_checkIfUsersRouteFailsWhenNoUserExists(self):
         response = self.app.get('/v1/users', query_string =dict(token='asdasd'))
         self.assertTrue(self.does_data_contain_substring(response.data, 'Unauthorized address trying to use'))
 
     #@unittest.skip
-    def test_token_route_v1_users_valid_token_post(self):
+    def test_Put_v1_users_positive_checkIfChangingAnExsitstingTokenWorks(self):
         new_token = '1234'
         self.create_minimal_user('Nawin','1234')
         self.login_user('Nawin','1234')
@@ -149,7 +149,7 @@ class TestCase(unittest.TestCase):
         self.logout_user()
 
     #@unittest.skip
-    def test_token_route_v1_users_valid_token_post_missing_user(self):
+    def test_Put_v1_users_negativ_checkIfChangingAnExsitstingTokenWhitNoSpecifiedUserFails(self):
         new_token = '1234'
         self.create_minimal_user('Nawin','1234')
         self.login_user('Nawin','1234')
@@ -159,7 +159,7 @@ class TestCase(unittest.TestCase):
         self.logout_user()
 
     #@unittest.skip
-    def test_token_route_v1_users_valid_token_delete_user(self):
+    def test_Delete_v1_users_positive_checkIfDeletingAUserWorks(self):
         user = 'Nawin'
         pw = '1234'
         self.create_minimal_user(user, pw)
@@ -187,14 +187,14 @@ class TestCase(unittest.TestCase):
         self.logout_user()
 
     #@unittest.skip
-    def test_token_route_v1_users_valid_token_delete_not_existing_user(self):
+    def test_Delete_v1_users_negative_checkIfDeletingANonExistingUserFails(self):
         user = 'Nawin'
         pw = '1234'
         self.create_minimal_user(user, pw)
         self.login_user(user, pw)
         token = self.get_api_key_dict_of_current_user()
 
-        #check number of users before deleting is two
+        #check number of users before deleting is one
         response = self.app.get('/v1/users', query_string=token)
         self.assertEqual(response.status_code,200)
         self.assertTrue(response.is_json)
@@ -206,7 +206,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code,404)
         self.assertTrue(self.does_data_contain_substring(response.data,'ERROR, user not found'))
 
-        #check number of users before deleting is two
+        #check number of users after deleting is still one
         response = self.app.get('/v1/users', query_string=token)
         self.assertEqual(response.status_code,200)
         self.assertTrue(response.is_json)
@@ -214,12 +214,12 @@ class TestCase(unittest.TestCase):
         self.logout_user()
 
     #@unittest.skip
-    def test_token_route_v1_users_with_id_invalid_token(self):
+    def test_Get_v1_users_id_negative_checkIfInitalGettingAUserFails(self):
         response = self.app.get('/v1/users/0')
         self.assertEqual(response.status_code, 401)
 
     #@unittest.skip
-    def test_token_route_v1_users_with_id_invalid_id(self):
+    def test_Get_v1_users_id_negative_checkIfGettingANonexistenUserFails(self):
         user = 'Nawin'
         pw = 'Something'
         self.create_minimal_user(user, pw)
@@ -230,7 +230,7 @@ class TestCase(unittest.TestCase):
         self.logout_user()
 
     #@unittest.skip
-    def test_token_route_v1_users_with_id_valid_everything(self):
+    def test_Get_v1_users_id_positive_checkIfGettingAExistenUserPass(self):
         user = 'Nawin'
         pw = 'Something'
         self.create_minimal_user(user, pw)
@@ -241,7 +241,7 @@ class TestCase(unittest.TestCase):
         self.logout_user()
 
     #@unittest.skip
-    def test_create_vaild_user_request_post(self):
+    def test_Post_v1_requests_positive_checkIfCreatingAValidMealRequestWorks(self):
         user = 'Nawin'
         pw = 'Something'
 
@@ -257,7 +257,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data, 'Success, created request:'))
         self.logout_user()
 
-    def test_create_vaild_user_request_post_and_get(self):
+    def test_Get_v1_requests_positive_checkIfGettingAValidMealRequestWorks(self):
         user = 'Nawin'
         pw = 'Something'
 
@@ -276,7 +276,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data,'\"appointment_date\":\"4/20/2019\"'))
         self.logout_user()
 
-    def test_get_v1_requests_createMultiupleMealRequests(self):
+    def test_Get_v1_requests_positive_createMultipleValidMealRequests(self):
         user = 'Nawin'
         pw = 'Something'
 
@@ -308,7 +308,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data,'\"meal_type\":\"{}\"'.format(payload['meal_type'])))
         self.logout_user()
 
-    def test_create_invaild_user_request_post(self):
+    def test_post_v1_requests_negative_checkIfMultipleINcompletePosts(self):
         user = 'Nawin'
         pw = 'Something'
         self.create_minimal_user(user, pw)
@@ -325,7 +325,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data, 'Error some input arguments are missing!'))
         self.logout_user()
 
-    def test_get_request_with_id_valid(self):
+    def test_Get_v1_requests_id_positive_checkIfQueryingOfMealRequestsWorkBeforeAndAfterPostingOne(self):
         user = 'Nawin'
         pw = 'Somegt'
 
@@ -356,7 +356,7 @@ class TestCase(unittest.TestCase):
 
         self.logout_user()
 
-    def test_put_v1_requests_id_positive_updateARequest(self):
+    def test_Put_v1_requests_id_positive_updateAMealRequest(self):
         user = 'Nawin'
         pw = 'something'
         self.create_minimal_user(user,pw)
@@ -386,7 +386,7 @@ class TestCase(unittest.TestCase):
             self.assertTrue(self.does_data_contain_substring(response.data, updated_payload[key]))
             self.assertFalse(self.does_data_contain_substring(response.data, payload[key]))
 
-    def test_delete_route_v1_requests_id_valid_deleteMealRequestEntety(self):
+    def test_Delete_route_v1_requests_id_positive_deleteMealRequestEntety(self):
         user = 'Nawin'
         pw = 'Something'
         self.create_minimal_user(user, pw)
@@ -414,12 +414,10 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data, '[]'))
 
 
-#@todo add multi requests
-
 if __name__ == '__main__':
-    #@TODO:
+    #@Hint:
     # Refactor test cases such that the naming scheme is consistent and easy to follow.
     # The scheme should contain the Http request method e.g.
     # test_<request_type>_<url_scheme>_<positive_negative_test>
-    # test_httpGet_v2_requests_id_positive_getAllPostedRequests
+    # test_Get_v2_requests_id_positive_getAllPostedRequests
     unittest.main()

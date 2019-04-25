@@ -431,8 +431,8 @@ class TestCase(unittest.TestCase):
         self.logout_user()
 
         self.login_user('User2', 'Pw2')
-        print(json.dumps(meal_request_data['id']))
-        response = self.app.post('/v1/proposal', query_string=self.get_api_key_dict_of_current_user(), data=json.dumps(dict(request_id=meal_request_data['id'])), mimetype='application/json')
+        print()
+        response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(), data=json.dumps(dict(request_id=meal_request_data[0].get('id'))), mimetype='application/json')
         self.assertEqual(response.status_code,200)
         print(response.data)
         self.logout_user()

@@ -64,7 +64,7 @@ class MealRequest(Base):
 
     meal_type       = Column(String, nullable=False)
     appointment_date= Column(String, nullable=False)
-    meal_time       = Column(String, nullable=False)
+    meal_time       = Column(String)
     location_area   = Column(String, nullable=False)
     location_name   = Column(String)
     latitude        = Column(Float)
@@ -100,7 +100,7 @@ class MealRequest(Base):
 
 class Proposal(Base):
     __tablename__ = 'proposal'
-    user_porposed_from = Column(String)
+    user_porposed_from = Column(String, ForeignKey('user.user_name'))
     user_porposed_to   = Column(String)
     request_id         = Column(String, ForeignKey('request.id'), primary_key=True)
     filled             = Column(Boolean)

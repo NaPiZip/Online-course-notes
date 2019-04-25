@@ -413,6 +413,29 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code,200)
         self.assertTrue(self.does_data_contain_substring(response.data, '[]'))
 
+    def test_Post_v1_proposals_positive_checkIfGeneratingAProposalOfADiffrentUserWorks(self):
+        self.create_minimal_user('User1', 'Pw1')
+        self.create_minimal_user('User2', 'Pw2')
+
+        self.login_user('User1','Pw1')
+        response = self.app.post('/v1/requests', query_string=self.get_api_key_dict_of_current_user(),
+        data=json.dumps(dict(meal_type='Pizza', location_area='Detroit', appointment_date='4/22/2019')), mimetype='application/json')
+
+        self.assertEqual(response.status_code, 201)
+        self.assertTrue(self.does_data_contain_substring(response.data, 'Success, created request'))
+
+        response = self.app.get('/v1/requests', query_string= self.get_api_key_dict_of_current_user())
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(self.does_data_contain_substring(response.data, 'Pizza'))
+        meal_request_data = response.get_json()
+        self.logout_user()
+
+        self.login_user('User2', 'Pw2')
+        print(json.dumps(meal_request_data['id']))
+        response = self.app.post('/v1/proposal', query_string=self.get_api_key_dict_of_current_user(), data=json.dumps(dict(request_id=meal_request_data['id'])), mimetype='application/json')
+        self.assertEqual(response.status_code,200)
+        print(response.data)
+        self.logout_user()
 
 if __name__ == '__main__':
     #@Hint:

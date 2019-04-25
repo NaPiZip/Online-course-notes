@@ -148,4 +148,4 @@ def show_and_create_user_porposals():
 
         print(proposal_request_id)
         print(current_user.get_id())
-        return current_user
+        return 'none'

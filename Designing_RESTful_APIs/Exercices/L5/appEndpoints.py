@@ -136,3 +136,16 @@ def show_make_edit_specific_user_request(id):
         session.delete(request_query)
         session.commit()
         return jsonify(dict(message="Success, deleted request: {}!".format(request_query.id))),200
+
+@app_endpoints.route('/v1/proposals', methods=['GET', 'POST'])
+@require_api_key
+def show_and_create_user_porposals():
+    if request.method == 'GET':
+        print('asd')
+        return '1'
+    elif request.method == 'POST':
+        proposal_request_id = request.json.get('request_id')
+
+        print(proposal_request_id)
+        print(current_user.get_id())
+        return current_user

@@ -4,7 +4,7 @@ from flask import Blueprint
 from flask_login import current_user
 from flask import redirect, request, render_template, url_for, jsonify
 
-from models import User, MealRequest
+from models import User, MealRequest, Proposal
 from dbSession import session
 
 from loginAPIKeyDecorator import require_api_key
@@ -145,7 +145,16 @@ def show_and_create_user_porposals():
         return '1'
     elif request.method == 'POST':
         proposal_request_id = request.json.get('request_id')
-
-        print(proposal_request_id)
-        print(current_user.get_id())
-        return 'none'
+        current_meal_request = session.query(MealRequest).filter_by(id=proposal_request_id).first()
+        if current_meal_request is None:
+            return jsonify(dict(message="ERROR, request id {} not found".format(proposal_request_id))), 404
+        meal_request_creater = session.query(User).filter_by(id=current_meal_request.user_id).first()
+        if session.query(Proposal).filter_by(request_id=proposal_request_id).first() is None:
+            new_proposal =   Proposal(user_porposed_from=current_user.user_name,
+                    user_porposed_to=meal_request_creater.user_name,
+                    meal_request=current_meal_request)
+            session.add(new_proposal)
+            session.commit()
+            return jsonify(dict(message="Success, created proposal: {}!".format(new_proposal.request_id))),201
+        else:
+            return jsonify(dict(message="ERROR, request id {} does already exist".format(proposal_request_id))), 404

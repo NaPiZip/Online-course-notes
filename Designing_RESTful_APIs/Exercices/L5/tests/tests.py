@@ -413,7 +413,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code,200)
         self.assertTrue(self.does_data_contain_substring(response.data, '[]'))
 
-    def test_Post_v1_proposals_positive_checkIfGeneratingAProposalOfADiffrentUserWorks(self):
+    def test_Post_v1_proposals_complete_checkIfGeneratingAProposalOfADiffrentUserWorks(self):
         self.create_minimal_user('User1', 'Pw1')
         self.create_minimal_user('User2', 'Pw2')
 
@@ -431,16 +431,30 @@ class TestCase(unittest.TestCase):
         self.logout_user()
 
         self.login_user('User2', 'Pw2')
-        print()
-        response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(), data=json.dumps(dict(request_id=meal_request_data[0].get('id'))), mimetype='application/json')
-        self.assertEqual(response.status_code,200)
-        print(response.data)
+
+        response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(),
+        data=json.dumps(dict(request_id=meal_request_data[0].get('id')+1)),
+        mimetype='application/json')
+
+        self.assertEqual(response.status_code,404)
+        self.assertTrue(self.does_data_contain_substring(response.data,'ERROR, request id {} not found'.format(meal_request_data[0].get('id')+1)))
+
+        response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(), data=json.dumps(dict(request_id=meal_request_data[0].get('id'))),
+        mimetype='application/json')
+
+        self.assertEqual(response.status_code,201)
+        self.assertTrue(self.does_data_contain_substring(response.data, 'Success, created proposal: 1!'))
+
+        response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(), data=json.dumps(dict(request_id=meal_request_data[0].get('id'))),
+        mimetype='application/json')
+        self.assertEqual(response.status_code,404)
+        self.assertTrue(self.does_data_contain_substring(response.data,'ERROR, request id {} does already exist'.format(meal_request_data[0].get('id'))))        
         self.logout_user()
 
 if __name__ == '__main__':
     #@Hint:
     # Refactor test cases such that the naming scheme is consistent and easy to follow.
     # The scheme should contain the Http request method e.g.
-    # test_<request_type>_<url_scheme>_<positive_negative_test>
+    # test_<request_type>_<url_scheme>_<positive_negative_complete_test>
     # test_Get_v2_requests_id_positive_getAllPostedRequests
     unittest.main()

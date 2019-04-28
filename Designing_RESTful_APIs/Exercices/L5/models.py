@@ -106,6 +106,14 @@ class Proposal(Base):
     filled             = Column(Boolean)
     meal_request       = relationship("MealRequest")
 
+    @property
+    def serialize(self):
+        return dict(user_porposed_from = self.user_porposed_from,
+                    user_porposed_to = self.user_porposed_to,
+                    request_id = self.request_id,
+                    filled = self.filled)
+
+
 class Appointment(Base):
     __tablename__       = 'appointment'
     user_1              = Column(String)

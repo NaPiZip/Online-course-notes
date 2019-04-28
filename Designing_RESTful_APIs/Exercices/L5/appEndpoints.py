@@ -1,4 +1,5 @@
 import requests
+from sqlalchemy import or_
 
 from flask import Blueprint
 from flask_login import current_user
@@ -141,8 +142,8 @@ def show_make_edit_specific_user_request(id):
 @require_api_key
 def show_and_create_user_porposals():
     if request.method == 'GET':
-        print('asd')
-        return '1'
+            proposals_query=session.query(Proposal).filter(or_(Proposal.user_porposed_to==current_user.user_name, Proposal.user_porposed_from==current_user.user_name)).all()
+            return jsonify([elements.serialize for elements in proposals_query]),200
     elif request.method == 'POST':
         proposal_request_id = request.json.get('request_id')
         current_meal_request = session.query(MealRequest).filter_by(id=proposal_request_id).first()

@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 sys.path.append('../')
 
 from app import app, login_manager
-from models import User, Base, MealRequest
+from models import User, Base, MealRequest, Proposal
 from dbSession import session as _session, engine
 
 class TestCase(unittest.TestCase):
@@ -28,6 +28,7 @@ class TestCase(unittest.TestCase):
             self.session.flush()
             self.session.query(User).delete()
             self.session.query(MealRequest).delete()
+            self.session.query(Proposal).delete()
             self.session.commit()
             self.session.close()
 
@@ -441,16 +442,55 @@ class TestCase(unittest.TestCase):
 
         response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(), data=json.dumps(dict(request_id=meal_request_data[0].get('id'))),
         mimetype='application/json')
-
         self.assertEqual(response.status_code,201)
         self.assertTrue(self.does_data_contain_substring(response.data, 'Success, created proposal: 1!'))
 
         response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(), data=json.dumps(dict(request_id=meal_request_data[0].get('id'))),
         mimetype='application/json')
         self.assertEqual(response.status_code,404)
-        self.assertTrue(self.does_data_contain_substring(response.data,'ERROR, request id {} does already exist'.format(meal_request_data[0].get('id'))))        
+        self.assertTrue(self.does_data_contain_substring(response.data,'ERROR, request id {} does already exist'.format(meal_request_data[0].get('id'))))
         self.logout_user()
 
+    def test_Get_v1_proposals_positive_checkIfGeneratingAProposalOfADiffrentUserWorksWhithQueryResponse(self):
+            self.create_minimal_user('User1', 'Pw1')
+            self.create_minimal_user('User2', 'Pw2')
+            self.create_minimal_user('User3', 'Pw3')
+            self.login_user('User1','Pw1')
+
+            response = self.app.post('/v1/requests',  query_string=self.get_api_key_dict_of_current_user(),
+            data=json.dumps(dict(meal_type='Pizza', location_area='Detroit', appointment_date='4/22/2019')), mimetype='application/json')
+            self.assertEqual(response.status_code,201)
+
+            response = self.app.get('/v1/requests', query_string=self.get_api_key_dict_of_current_user())
+            self.assertEqual(response.status_code,200)
+            self.assertTrue(self.does_data_contain_substring(response.data, 'Detroit'))
+            meal_request_data = response.get_json()
+            self.logout_user()
+
+            self.login_user('User2','Pw2')
+            response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(),
+            data=json.dumps(dict(request_id=meal_request_data[0].get('id'))), mimetype='application/json')
+            self.assertEqual(response.status_code,201)
+            self.logout_user()
+
+            self.login_user('User1', 'Pw1')
+            response = self.app.get('/v1/proposals', query_string=self.get_api_key_dict_of_current_user())
+            self.assertEqual(response.status_code,200)
+            self.assertTrue(self.does_data_contain_substring(response.data,'\"user_porposed_to\":\"User1\"'))
+            self.logout_user()
+
+            self.login_user('User2','Pw2')
+            response = self.app.get('/v1/proposals', query_string=self.get_api_key_dict_of_current_user())
+            self.assertEqual(response.status_code,200)
+            self.assertTrue(self.does_data_contain_substring(response.data,'\"user_porposed_from\":\"User2\"'))
+            self.logout_user()
+
+            self.login_user('User3','Pw3')
+
+            response = self.app.get('/v1/proposals', query_string=self.get_api_key_dict_of_current_user())
+            self.assertEqual(response.status_code,200)
+            self.assertTrue(self.does_data_contain_substring(response.data,'[]'))
+            self.logout_user()
 if __name__ == '__main__':
     #@Hint:
     # Refactor test cases such that the naming scheme is consistent and easy to follow.

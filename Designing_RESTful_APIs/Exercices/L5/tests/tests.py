@@ -12,10 +12,14 @@ from app import app, login_manager
 from models import User, Base, MealRequest, Proposal
 from dbSession import session as _session, engine
 
+
+
 class TestCase(unittest.TestCase):
+    dev_mode_enabled = False
     clean_up    = True
     session     = _session
     app = []
+
     def setUp(self):
         app.config['TESTING'] = True
         app.secret_key="Something"
@@ -71,22 +75,23 @@ class TestCase(unittest.TestCase):
         else:
             return None
 
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_login_positive_checkIfLoginRouteIsCorrect(self):
         self.does_url_response_contain_substring( '/login', r'<title>Login</title>')
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_forwardslash_positive_checkIfLandingpageRouteIsCorrect(self):
         self.does_url_response_contain_substring( '/', r'<title>Meet\'N eat</title>')
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_apiKey_positive_checkIfApiKeyRouteRedirectsToLogin(self):
         self.does_url_response_contain_substring( '/apiKey', r'<title>Login</title>')
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_logout_positive_checkIfLogoutRouteRedirectsToLogin(self):
         self.does_url_response_contain_substring( '/logout', r'<title>Login</title>')
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Post_login_negative_checktIfLoginWithWrongCredentialFails(self):
         user_name = 'Nawin'
         pw = 'something'
@@ -95,7 +100,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code,200)
         self.assertTrue(self.does_data_contain_substring(response.data,r'<strong>Error!</strong> Invalid Credentials\n'))
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Post_login_positive_checktIfLoginWithCorrectCredentialPass(self):
         user_name = 'Nawin'
         pw = '1234'
@@ -105,17 +110,17 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.is_json, True)
         self.assertNotEqual(response.get_json().get('token'),None)
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_v1_users_negative_checkIfUsersRouteFailsWithNoToken(self):
         result = self.app.get('/v1/users')
         self.assertEqual(result.status_code, 401)
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_v1_users_negative_checkIfUsersRouteFailsWithWrongToken(self):
         result = self.app.get('/v1/users',query_string=dict(token='asda'))
         self.assertEqual(result.status_code,401)
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_v1_users_positive_checkIfUsersRoutePassesWithCorrectToken(self):
         self.create_minimal_user('Nawin','1234')
         self.create_minimal_user('a','abcd')
@@ -129,12 +134,12 @@ class TestCase(unittest.TestCase):
         self.assertEqual(len(response.get_json()),4)
         self.logout_user()
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_v1_users_negative_checkIfUsersRouteFailsWhenNoUserExists(self):
         response = self.app.get('/v1/users', query_string =dict(token='asdasd'))
         self.assertTrue(self.does_data_contain_substring(response.data, 'Unauthorized address trying to use'))
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Put_v1_users_positive_checkIfChangingAnExsitstingTokenWorks(self):
         new_token = '1234'
         self.create_minimal_user('Nawin','1234')
@@ -149,7 +154,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code,200)
         self.logout_user()
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Put_v1_users_negativ_checkIfChangingAnExsitstingTokenWhitNoSpecifiedUserFails(self):
         new_token = '1234'
         self.create_minimal_user('Nawin','1234')
@@ -159,7 +164,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
         self.logout_user()
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Delete_v1_users_positive_checkIfDeletingAUserWorks(self):
         user = 'Nawin'
         pw = '1234'
@@ -187,7 +192,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(len(response.get_json()),1)
         self.logout_user()
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Delete_v1_users_negative_checkIfDeletingANonExistingUserFails(self):
         user = 'Nawin'
         pw = '1234'
@@ -214,12 +219,12 @@ class TestCase(unittest.TestCase):
         self.assertEqual(len(response.get_json()),1)
         self.logout_user()
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_v1_users_id_negative_checkIfInitalGettingAUserFails(self):
         response = self.app.get('/v1/users/0')
         self.assertEqual(response.status_code, 401)
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_v1_users_id_negative_checkIfGettingANonexistenUserFails(self):
         user = 'Nawin'
         pw = 'Something'
@@ -230,7 +235,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data, "ERROR, user 0 not found!"))
         self.logout_user()
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_v1_users_id_positive_checkIfGettingAExistenUserPass(self):
         user = 'Nawin'
         pw = 'Something'
@@ -241,7 +246,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data, "\"id\":1"))
         self.logout_user()
 
-    #@unittest.skip
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Post_v1_requests_positive_checkIfCreatingAValidMealRequestWorks(self):
         user = 'Nawin'
         pw = 'Something'
@@ -258,6 +263,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data, 'Success, created request:'))
         self.logout_user()
 
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_v1_requests_positive_checkIfGettingAValidMealRequestWorks(self):
         user = 'Nawin'
         pw = 'Something'
@@ -277,6 +283,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data,'\"appointment_date\":\"4/20/2019\"'))
         self.logout_user()
 
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_v1_requests_positive_createMultipleValidMealRequests(self):
         user = 'Nawin'
         pw = 'Something'
@@ -309,6 +316,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data,'\"meal_type\":\"{}\"'.format(payload['meal_type'])))
         self.logout_user()
 
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_post_v1_requests_negative_checkIfMultipleINcompletePosts(self):
         user = 'Nawin'
         pw = 'Something'
@@ -326,6 +334,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data, 'Error some input arguments are missing!'))
         self.logout_user()
 
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_v1_requests_id_positive_checkIfQueryingOfMealRequestsWorkBeforeAndAfterPostingOne(self):
         user = 'Nawin'
         pw = 'Somegt'
@@ -357,6 +366,7 @@ class TestCase(unittest.TestCase):
 
         self.logout_user()
 
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Put_v1_requests_id_positive_updateAMealRequest(self):
         user = 'Nawin'
         pw = 'something'
@@ -387,6 +397,7 @@ class TestCase(unittest.TestCase):
             self.assertTrue(self.does_data_contain_substring(response.data, updated_payload[key]))
             self.assertFalse(self.does_data_contain_substring(response.data, payload[key]))
 
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Delete_route_v1_requests_id_positive_deleteMealRequestEntety(self):
         user = 'Nawin'
         pw = 'Something'
@@ -414,6 +425,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code,200)
         self.assertTrue(self.does_data_contain_substring(response.data, '[]'))
 
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Post_v1_proposals_complete_checkIfGeneratingAProposalOfADiffrentUserWorks(self):
         self.create_minimal_user('User1', 'Pw1')
         self.create_minimal_user('User2', 'Pw2')
@@ -451,50 +463,56 @@ class TestCase(unittest.TestCase):
         self.assertTrue(self.does_data_contain_substring(response.data,'ERROR, request id {} does already exist'.format(meal_request_data[0].get('id'))))
         self.logout_user()
 
+    @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_v1_proposals_positive_checkIfGeneratingAProposalOfADiffrentUserWorksWhithQueryResponse(self):
-            self.create_minimal_user('User1', 'Pw1')
-            self.create_minimal_user('User2', 'Pw2')
-            self.create_minimal_user('User3', 'Pw3')
-            self.login_user('User1','Pw1')
+        self.create_minimal_user('User1', 'Pw1')
+        self.create_minimal_user('User2', 'Pw2')
+        self.create_minimal_user('User3', 'Pw3')
+        self.login_user('User1','Pw1')
 
-            response = self.app.post('/v1/requests',  query_string=self.get_api_key_dict_of_current_user(),
-            data=json.dumps(dict(meal_type='Pizza', location_area='Detroit', appointment_date='4/22/2019')), mimetype='application/json')
-            self.assertEqual(response.status_code,201)
+        response = self.app.post('/v1/requests',  query_string=self.get_api_key_dict_of_current_user(),
+        data=json.dumps(dict(meal_type='Pizza', location_area='Detroit', appointment_date='4/22/2019')), mimetype='application/json')
+        self.assertEqual(response.status_code,201)
 
-            response = self.app.get('/v1/requests', query_string=self.get_api_key_dict_of_current_user())
-            self.assertEqual(response.status_code,200)
-            self.assertTrue(self.does_data_contain_substring(response.data, 'Detroit'))
-            meal_request_data = response.get_json()
-            self.logout_user()
+        response = self.app.get('/v1/requests', query_string=self.get_api_key_dict_of_current_user())
+        self.assertEqual(response.status_code,200)
+        self.assertTrue(self.does_data_contain_substring(response.data, 'Detroit'))
+        meal_request_data = response.get_json()
+        self.logout_user()
 
-            self.login_user('User2','Pw2')
-            response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(),
-            data=json.dumps(dict(request_id=meal_request_data[0].get('id'))), mimetype='application/json')
-            self.assertEqual(response.status_code,201)
-            self.logout_user()
+        self.login_user('User2','Pw2')
+        response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(),
+        data=json.dumps(dict(request_id=meal_request_data[0].get('id'))), mimetype='application/json')
+        self.assertEqual(response.status_code,201)
+        self.logout_user()
 
-            self.login_user('User1', 'Pw1')
-            response = self.app.get('/v1/proposals', query_string=self.get_api_key_dict_of_current_user())
-            self.assertEqual(response.status_code,200)
-            self.assertTrue(self.does_data_contain_substring(response.data,'\"user_porposed_to\":\"User1\"'))
-            self.logout_user()
+        self.login_user('User1', 'Pw1')
+        response = self.app.get('/v1/proposals', query_string=self.get_api_key_dict_of_current_user())
+        self.assertEqual(response.status_code,200)
+        self.assertTrue(self.does_data_contain_substring(response.data,'\"user_porposed_to\":\"User1\"'))
+        self.logout_user()
 
-            self.login_user('User2','Pw2')
-            response = self.app.get('/v1/proposals', query_string=self.get_api_key_dict_of_current_user())
-            self.assertEqual(response.status_code,200)
-            self.assertTrue(self.does_data_contain_substring(response.data,'\"user_porposed_from\":\"User2\"'))
-            self.logout_user()
+        self.login_user('User2','Pw2')
+        response = self.app.get('/v1/proposals', query_string=self.get_api_key_dict_of_current_user())
+        self.assertEqual(response.status_code,200)
+        self.assertTrue(self.does_data_contain_substring(response.data,'\"user_porposed_from\":\"User2\"'))
+        self.logout_user()
 
-            self.login_user('User3','Pw3')
+        self.login_user('User3','Pw3')
 
-            response = self.app.get('/v1/proposals', query_string=self.get_api_key_dict_of_current_user())
-            self.assertEqual(response.status_code,200)
-            self.assertTrue(self.does_data_contain_substring(response.data,'[]'))
-            self.logout_user()
+        response = self.app.get('/v1/proposals', query_string=self.get_api_key_dict_of_current_user())
+        self.assertEqual(response.status_code,200)
+        self.assertTrue(self.does_data_contain_substring(response.data,'[]'))
+        self.logout_user()
+
+    def testDev(self):
+        print("asd")
+
 if __name__ == '__main__':
     #@Hint:
     # Refactor test cases such that the naming scheme is consistent and easy to follow.
     # The scheme should contain the Http request method e.g.
     # test_<request_type>_<url_scheme>_<positive_negative_complete_test>
     # test_Get_v2_requests_id_positive_getAllPostedRequests
+
     unittest.main()

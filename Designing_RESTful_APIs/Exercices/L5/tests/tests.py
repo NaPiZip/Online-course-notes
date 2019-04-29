@@ -89,6 +89,17 @@ class TestCase(unittest.TestCase):
         self.logout_user()
         return meal_request_data
 
+    def create_user_porposal_with_request_id(self, user, pw, request_id):
+        self.login_user(user, pw)
+        response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(),
+        data=json.dumps(dict(request_id=request_id)), mimetype='application/json')
+        self.assertEqual(response.status_code,201)
+
+        response = self.app.get('/v1/proposals', query_string=self.get_api_key_dict_of_current_user())
+        self.assertEqual(response.status_code,200)
+        self.assertTrue(self.does_data_contain_substring(response.data,'\"user_porposed_to\":\"{}\"'.format(user)))
+        self.logout_user()
+
     @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_login_positive_checkIfLoginRouteIsCorrect(self):
         self.does_url_response_contain_substring( '/login', r'<title>Login</title>')
@@ -501,6 +512,10 @@ class TestCase(unittest.TestCase):
         self.create_minimal_user('User1', 'ab')
         self.create_minimal_user('User2', 'ab')
         self.create_minimal_user('User3', 'ab')
+
+        meal_request_data = self.create_user_meal_request('User1', 'ab', dict(meal_type='Pizza', location_area='Detroit', appointment_date='4/22/2019'))
+
+        self.create_user_porposal_with_request_id('User1', 'ab', meal_request_data[0].get('id'))
 
 
 

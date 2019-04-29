@@ -159,3 +159,12 @@ def show_and_create_user_porposals():
             return jsonify(dict(message="Success, created proposal: {}!".format(new_proposal.request_id))),201
         else:
             return jsonify(dict(message="ERROR, request id {} does already exist".format(proposal_request_id))), 404
+
+@app_endpoints.route('/v1/proposals/<int:id>', methods=['GET', 'POST'])
+@require_api_key
+def show_modify_delete_specific_proposal(id):
+    proposal_query = session.query(Proposal).filter(
+    or_(Proposal.user_porposed_from == current_user.user_name,
+        Proposal.user_porposed_to   == current_user.user_name)).first()
+    if proposal_query == []:
+        print('asd')

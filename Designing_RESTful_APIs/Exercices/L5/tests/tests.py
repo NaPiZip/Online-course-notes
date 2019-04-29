@@ -75,6 +75,20 @@ class TestCase(unittest.TestCase):
         else:
             return None
 
+    def create_user_meal_request(self, user, pw, data_dict):
+        self.login_user(user, pw)
+
+        response = self.app.post('/v1/requests',  query_string=self.get_api_key_dict_of_current_user(),
+        data=json.dumps(data_dict), mimetype='application/json')
+        self.assertEqual(response.status_code,201)
+
+        response = self.app.get('/v1/requests', query_string=self.get_api_key_dict_of_current_user())
+        self.assertEqual(response.status_code,200)
+        self.assertTrue(self.does_data_contain_substring(response.data, data_dict['location_area']))
+        meal_request_data = response.get_json()
+        self.logout_user()
+        return meal_request_data
+
     @unittest.skipIf(dev_mode_enabled, 'Do not run in developer mode!')
     def test_Get_login_positive_checkIfLoginRouteIsCorrect(self):
         self.does_url_response_contain_substring( '/login', r'<title>Login</title>')
@@ -430,21 +444,9 @@ class TestCase(unittest.TestCase):
         self.create_minimal_user('User1', 'Pw1')
         self.create_minimal_user('User2', 'Pw2')
 
-        self.login_user('User1','Pw1')
-        response = self.app.post('/v1/requests', query_string=self.get_api_key_dict_of_current_user(),
-        data=json.dumps(dict(meal_type='Pizza', location_area='Detroit', appointment_date='4/22/2019')), mimetype='application/json')
-
-        self.assertEqual(response.status_code, 201)
-        self.assertTrue(self.does_data_contain_substring(response.data, 'Success, created request'))
-
-        response = self.app.get('/v1/requests', query_string= self.get_api_key_dict_of_current_user())
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue(self.does_data_contain_substring(response.data, 'Pizza'))
-        meal_request_data = response.get_json()
-        self.logout_user()
+        meal_request_data = self.create_user_meal_request('User1','Pw1' ,dict(meal_type='Pizza', location_area='Detroit', appointment_date='4/22/2019'))
 
         self.login_user('User2', 'Pw2')
-
         response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(),
         data=json.dumps(dict(request_id=meal_request_data[0].get('id')+1)),
         mimetype='application/json')
@@ -468,17 +470,8 @@ class TestCase(unittest.TestCase):
         self.create_minimal_user('User1', 'Pw1')
         self.create_minimal_user('User2', 'Pw2')
         self.create_minimal_user('User3', 'Pw3')
-        self.login_user('User1','Pw1')
 
-        response = self.app.post('/v1/requests',  query_string=self.get_api_key_dict_of_current_user(),
-        data=json.dumps(dict(meal_type='Pizza', location_area='Detroit', appointment_date='4/22/2019')), mimetype='application/json')
-        self.assertEqual(response.status_code,201)
-
-        response = self.app.get('/v1/requests', query_string=self.get_api_key_dict_of_current_user())
-        self.assertEqual(response.status_code,200)
-        self.assertTrue(self.does_data_contain_substring(response.data, 'Detroit'))
-        meal_request_data = response.get_json()
-        self.logout_user()
+        meal_request_data = self.create_user_meal_request('User1','Pw1', dict(meal_type='Pizza', location_area='Detroit', appointment_date='4/22/2019'))
 
         self.login_user('User2','Pw2')
         response = self.app.post('/v1/proposals', query_string=self.get_api_key_dict_of_current_user(),
@@ -499,14 +492,17 @@ class TestCase(unittest.TestCase):
         self.logout_user()
 
         self.login_user('User3','Pw3')
-
         response = self.app.get('/v1/proposals', query_string=self.get_api_key_dict_of_current_user())
         self.assertEqual(response.status_code,200)
         self.assertTrue(self.does_data_contain_substring(response.data,'[]'))
         self.logout_user()
 
     def testDev(self):
-        print("asd")
+        self.create_minimal_user('User1', 'ab')
+        self.create_minimal_user('User2', 'ab')
+        self.create_minimal_user('User3', 'ab')
+
+
 
 if __name__ == '__main__':
     #@Hint:

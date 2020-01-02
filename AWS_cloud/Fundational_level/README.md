@@ -8,7 +8,7 @@
 </div>
 
 ## List of Tutorials
-This section lists some tutorials which I did, some of them are not worth doing it but everyone needs to decide on that by himself. The recommendable list is already ordered in a way I would start with the tutorials if I don't have any experience with AWS at all.
+This section lists some tutorials which I did, some of them are not worth doing it but everyone needs to decide on that by himself. The recommendable list is already ordered in a way I would start with the tutorials if I don't have any experience with AWS at all. The AWS training and certification platform provides some good tutorial to start with, see [here](https://www.aws.training/LearningLibrary?filters=classification%3A6&filters=language%3A1&search=&tab=digital_courses).
 
 **Not worth the pain:**
 - Introduction to AWS Inferentia and Amazon EC2 Inf1 Instances
@@ -17,6 +17,9 @@ This section lists some tutorials which I did, some of them are not worth doing 
 - IAM Best Practices
 - The AWS Well-Architected Framework
 - Introduction to AWS Inferentia and Amazon EC2 Inf1 Instances
+- AWS Cloud Practitioner Essentials (Second Edition): Introduction to the AWS Cloud
+- AWS Cloud Practitioner Essentials (Second Edition): Module 4 Architecture
+
 - Javapoint AWS-Tutorial
 
 ### IAM Best Practices
@@ -61,6 +64,31 @@ AWS offers tree ways to create and manage resources.:
   Integration into different programming languages.
 
 The course can be found [here](https://www.aws.training/Details/eLearning?id=29699).
+
+### AWS Cloud Practitioner Essentials (Second Edition): Module 2 AWS Core Services
+This module talks about key services and their common uses cases, covering the following services:
+- Elastic Compute Cloud (EC2)
+A service which spins off virtual machines.
+- Elastic Block Store (EBS)
+A storage device for EC2 instances.
+- Simple Storage Service (S3)
+A standalone storage service.
+- Virtual Private Cloud (VPC)
+Isolate networks of services within the cloud.
+
+This module shows a lot of set up using the AWS Management Console which I will not be covering.
+
+The course can be found [here](https://www.aws.training/Details/eLearning?id=29700).
+
+### AWS Cloud Practitioner Essentials (Second Edition): Module 3 AWS Integrated Services
+See [here](https://www.aws.training/Details/eLearning?id=29701)
+
+
+### AWS Cloud Practitioner Essentials (Second Edition): Module 4 Architecture
+
+See [here](https://www.aws.training/Details/eLearning?id=29702).
+
+
 
 ### Javapoint AWS-Tutorial
 Tis tutorial is giving a overall overview of the most important things of AWS for a beginner.

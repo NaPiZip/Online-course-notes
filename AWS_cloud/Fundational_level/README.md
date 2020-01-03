@@ -81,7 +81,51 @@ This module shows a lot of set up using the AWS Management Console which I will 
 The course can be found [here](https://www.aws.training/Details/eLearning?id=29700).
 
 ### AWS Cloud Practitioner Essentials (Second Edition): Module 3 AWS Integrated Services
-See [here](https://www.aws.training/Details/eLearning?id=29701)
+The integrated services module focuses on services which are helpful for managing, logging or scaling to truly provide the power of the cloud, see [here](https://www.aws.training/Details/eLearning?id=29701) for details.
+
+**Application Load Balancer**
+A common load balancer distributes workloads across multiple computing resources or in our case services. A example use case, is the ability to use container to host micro services and route to those services on the same EC2 instance but on different ports, via setting up routing routes.
+
+- Listeners
+A process who checks for a specified connection requests.
+- Target
+A destination for traffic, based on the setup rules.
+- Target Group
+A collection of targets for the load balancer.
+
+
+**Auto Scaling**
+Ensure to have the right amount of EC2 instance running, based on the application need, e.g. a maximum CPU utilization threshold as trigger. Auto scaling needs tree elements:
+- Launch Configuration
+Defines what will be launched, what kind of EC2 instance and what image does it have.
+- Auto Scaling Group
+Defines where and what the boundaries of the deployment are.
+- Auto Scaling Policy
+Describes when the auto scaling happens, or on what events.
+
+**Route 53**
+Is a basic DNS (Domain Name System) service which provides domain names for IP routes of AWS services endpoints.
+
+**Amazon Relational Database Services (RDS)**
+Provides a database instance running a preferred database stack. There is no need for managing the instance OS, storage and scaling, since the service provides build in measures.
+
+**AWS Lambda**
+Is a compute service which lets you run code without managing instances. It uses a event driven execution policy. It can be used for server less applications, or as simple executors.
+
+**AWS Elastic Bean Stalk**
+A platform as a service system for launching apps with as minimal overhead as possible. "With Elastic Beanstalk, you can quickly deploy and manage applications in the AWS Cloud without having to learn about the infrastructure that runs those applications. Elastic Beanstalk reduces management complexity without restricting choice or control. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.", source can be found [here](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html).
+
+**Simple Notification Service (SNS)**
+Is a messaging and notification service. "Amazon Simple Notification Service (Amazon SNS) is a web service that coordinates and manages the delivery or sending of messages to subscribing endpoints or clients. In Amazon SNS, there are two types of clients—publishers and subscribers—also referred to as producers and consumers.", see source [here](https://docs.aws.amazon.com/sns/latest/dg/welcome.html).
+
+**Amazon CloudWatch**
+Is a monitoring system for tracking various information such as CPU utilization, data transfer, monitor services ... It can be used to trigger alarms via SNS or for auto scaling events. CloudWatch can also create logs in real time.
+
+**Amazon CloudFront**
+Is a content delivery network (CDN) which caches content, such that the content is faster accessible in different regions.
+
+**Amazon CloudFormation**
+A fully managed service to create stacks consisting of different resource types such as EC2 instances, VPC, databases ... Its one of the most powerful tools of AWS.
 
 
 ### AWS Cloud Practitioner Essentials (Second Edition): Module 4 Architecture

@@ -129,9 +129,37 @@ A fully managed service to create stacks consisting of different resource types 
 
 
 ### AWS Cloud Practitioner Essentials (Second Edition): Module 4 Architecture
+The architecture module describes the 5 pillars of the `Well-Architected-Framework` in a very brief manner which consists of the following five pillars (the tutorial can be found [here](https://www.aws.training/Details/eLearning?id=29702)):
+- Security
+- Reliability
+- Performance Efficiency
+- Cost Optimization
+- Operational Excellence
 
-See [here](https://www.aws.training/Details/eLearning?id=29702).
+For more details take a look at the [Well-Architected-Framework](https://www.aws.training/Details/eLearning?id=42036) tutorial.
 
+**Fault Tolerance**
+The ability for a system to maintain operational after faults, build in redundant manner. The following services can be used to increase the fault tolerance:
+- Simple Queue Service SQS
+Messages system for distribution of notifications.
+- Simple Storage Service S3
+Fault tolerant redundant data storage.
+- Relational Database Service RDS
+Fault tolerant database, via automated back ups, snapshot and multi availability zone deployment.  
+
+
+**High Availability**
+System is always functioning, with as less down time as possible. This can be achieved with multiple server, on different regions as well availability zones. The following services can be used to increase the availability:
+- Elastic Load Balancer
+Distributes incoming loads between instances.
+- Elastic IP Address
+Static IP's for masking failure between resources.
+- Route 53
+DNS service for translating domain names and IP addresses.
+- Auto Scaling
+Launching and terminating instances based on events.
+- CloudWatch
+Monitoring of events, by creating metrics.
 
 
 ### Javapoint AWS-Tutorial

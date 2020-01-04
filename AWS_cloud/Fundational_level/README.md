@@ -145,7 +145,7 @@ Messages system for distribution of notifications.
 - Simple Storage Service S3
 Fault tolerant redundant data storage.
 - Relational Database Service RDS
-Fault tolerant database, via automated back ups, snapshot and multi availability zone deployment.  
+Fault tolerant database, via automated back ups, snapshot and multi availability zone deplo  
 
 
 **High Availability**

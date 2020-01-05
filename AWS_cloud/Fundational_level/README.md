@@ -8,7 +8,7 @@
 </div>
 
 ## List of Tutorials
-This section lists some tutorials which I did, some of them are not worth doing it but everyone needs to decide on that by himself. The recommendable list is already ordered in a way I would start with the tutorials if I don't have any experience with AWS at all. The AWS training and certification platform provides some good tutorial to start with, see [here](https://www.aws.training/LearningLibrary?filters=classification%3A6&filters=language%3A1&search=&tab=digital_courses).
+This section lists some tutorials which I did, some of them are not worth doing it but everyone needs to decide on that by himself. The recommendable list is already ordered in a way I would start with the tutorials if you don't have any experience with AWS at all. The AWS training and certification platform provides some good tutorials to start with, see [here](https://www.aws.training/LearningLibrary?filters=classification%3A6&filters=language%3A1&search=&tab=digital_courses).
 
 **Not worth the pain:**
 - Introduction to AWS Inferentia and Amazon EC2 Inf1 Instances
@@ -16,9 +16,7 @@ This section lists some tutorials which I did, some of them are not worth doing 
 **Recommendable:**
 - IAM Best Practices
 - The AWS Well-Architected Framework
-- Introduction to AWS Inferentia and Amazon EC2 Inf1 Instances
-- AWS Cloud Practitioner Essentials (Second Edition): Introduction to the AWS Cloud
-- AWS Cloud Practitioner Essentials (Second Edition): Module 4 Architecture
+- AWS Cloud Practitioner Essentials (Second Edition): Module 1 - 6
 
 - Javapoint AWS-Tutorial
 
@@ -51,7 +49,7 @@ The key is to understand `design decisions in a cloud native way` and it's impac
 
 The course can be found [here](https://www.aws.training/Details/eLearning?id=42036).
 
-### AWS Cloud Practitioner Essentials (Second Edition): Introduction to the AWS Cloud
+### AWS Cloud Practitioner Essentials (Second Edition): Module 1 Introduction to the AWS Cloud
 The key concept of the cloud is the on-demand content delivery of IT resources. Before cloud computing, it was important to host own server and recourses, which meant a lot of architectural design choices had to be made in advance, which needed a lot of work up front as well as assumptions which where likely to change during the product development live cycle. Cloud computing introduced `elasticity` the possibility to adapt infrastructure on demand. This lead to reducing operational risks and increasing flexibility and scalability also known as `agility`.
 
 AWS offers tree ways to create and manage resources.:
@@ -145,7 +143,7 @@ Messages system for distribution of notifications.
 - Simple Storage Service S3
 Fault tolerant redundant data storage.
 - Relational Database Service RDS
-Fault tolerant database, via automated back ups, snapshot and multi availability zone deplo  
+Fault tolerant database, via automated back ups, snapshot and multi availability zones for deployment.  
 
 
 **High Availability**
@@ -161,13 +159,49 @@ Launching and terminating instances based on events.
 - CloudWatch
 Monitoring of events, by creating metrics.
 
+### AWS Cloud Practitioner Essentials (Second Edition): Module 5 AWS Security
+This tutorial covers a basic introduction into security and the shared responsibility model.
+
+**Shared Responsibility Model**
+The application stack gets divided into several pieces depending on if AWS or the app owner is responsible for securing. The key concept lies in the fact that the responsibility is shared between owner and AWS, such that both parties have to make sure security measures are given. The tutorial can be found [here](https://www.aws.training/Details/eLearning?id=29703).
+
+<center>
+
+|  User Data  |
+|:-----------:|
+| Application |
+|   Guest OS  |
+|  Hypervisor |
+|   Network   |
+|   Physical  |
+
+</center>
+
+Amazon is ensuring that the data centers are <b>physical</b> secured using access control, security guards as, cameras etc. The <b>network</b> is also covered by Amazon. Amazon does not provide a lot of information about these two topics due to security concerns, AWS is certified by third parties which can be found [here](https://aws.amazon.com/compliance/). <b>Hypervisor</b> is [Xen](https://en.wikipedia.org/wiki/Xen) based and also disclosed by Amazon. The user is responsible for the <b> guest OS, application and user data</b>.
+
+**Identity and Access Management IAM**
+Describes user, groups, roles and policies:
+- User
+Is a permanent named operator.
+- Group
+Is a collection of users.
+- Role
+Is not a permission, it is an authentication method which is temporarily.
+- Policy
+Are permissions sets which defines actions among user, group, and roles.
+
+**Amazon Inspector**
+Is an automated security assessment service, it helps to identify security issues and vulnerabilities in order to asses compliance. "Amazon Inspector helps you discover potential security issues by using security rules to analyze your AWS resources. Amazon Inspector monitors and collects behavioral data (telemetry) about your resources. The data includes information about the use of secure channels, network traffic among running processes, and details of communication with AWS services.", see reference [here](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_assessments.html).
+
+**AWS Shield**
+AWS shield is a managed DDos protection service. Web application firewalls WAFs can be used in order to complement application layer based attacks. Traffic analysis, anomaly detection and different measures are used to prevent downtime.
+
+
+
+
 
 ### Javapoint AWS-Tutorial
 Tis tutorial is giving a overall overview of the most important things of AWS for a beginner.
-
-
-
-
 
 To Do:
 https://www.javatpoint.com/aws-tutorial
@@ -176,7 +210,6 @@ https://www.guru99.com/aws-tutorial.html
 
 ### Not worth doing: Introduction to AWS Inferentia and Amazon EC2 Inf1 Instances
 [AWS Inferentia](https://www.aws.training/Details/Video?id=42195) covers machine learning inference processing challenges. This video gives just a brief introduction into the `AWS Inf1` service, its more of an sales pitch, thus barely having technical information.
-
 
 ## Overview of most important AWS services
 

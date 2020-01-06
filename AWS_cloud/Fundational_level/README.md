@@ -197,8 +197,18 @@ Is an automated security assessment service, it helps to identify security issue
 AWS shield is a managed DDos protection service. Web application firewalls WAFs can be used in order to complement application layer based attacks. Traffic analysis, anomaly detection and different measures are used to prevent downtime.
 
 
+### AWS Cloud Practitioner Essentials (Second Edition): Module 6 Pricing and Support
+This module describes the way how pricing works on AWS, see [here](https://www.aws.training/Details/eLearning?id=29704) for the tutorial. AWS pricing is dependent on the type of service you choose and many other factors, such as:
+- Outbound data transfer
+- Machine type
+- Region
+- Storage size
+- etc.
 
+The most important thing is to check the costs up front depending on the service, a link can be found [here](https://aws.amazon.com/pricing/).
 
+**AWS Trusted Advisor**
+It is a service which helps to uncover cost saving potential, performance issues, security issues as well as fault tolerance problems. Its main goal consists of optimizing usage. 
 
 ### Javapoint AWS-Tutorial
 Tis tutorial is giving a overall overview of the most important things of AWS for a beginner.

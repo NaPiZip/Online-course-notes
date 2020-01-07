@@ -208,7 +208,24 @@ This module describes the way how pricing works on AWS, see [here](https://www.a
 The most important thing is to check the costs up front depending on the service, a link can be found [here](https://aws.amazon.com/pricing/).
 
 **AWS Trusted Advisor**
-It is a service which helps to uncover cost saving potential, performance issues, security issues as well as fault tolerance problems. Its main goal consists of optimizing usage. 
+It is a service which helps to uncover cost saving potential, performance issues, security issues as well as fault tolerance problems. Its main goal consists of optimizing usage.
+
+### Run a Serverless "Hello, World!"
+Tis hands on example shows how to run a serverless function using the AWS Lambda service. The descriptions can be found [here](https://aws.amazon.com/getting-started/tutorials/run-serverless-code/?trk=gs_card&e=gs&p=gsrc). The tutorial is pretty straight forward but there are a couple of questions coming up in my mind:
+- What is a real use case?
+- How can I trigger a lambda function with custom input?
+- How can I access different services within a lambda?
+
+I found a blog addressing some of my questions, see [www.contino.io](https://www.contino.io/insights/5-killer-use-cases-for-aws-lambda). The suggested use cases are:
+- Operating serverless websites
+- Log analysis on the fly
+- Automated backups and everyday tasks
+- Processing uploaded S3 objects
+- Filtering and transforming data on the fly
+
+The first point sounds very interesting to me, hosting a websites on S3 and serving the dynamic content with the help of an RDS and embedded HTTPS API calls. I will try to set up an example.
+
+@TODO S3, RDS and Lambda hosted static website with lambda invocation for serving dynamic content.
 
 ### Javapoint AWS-Tutorial
 Tis tutorial is giving a overall overview of the most important things of AWS for a beginner.

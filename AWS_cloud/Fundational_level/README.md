@@ -226,6 +226,7 @@ I found a blog addressing some of my questions, see [www.contino.io](https://www
 The first point sounds very interesting to me, hosting a websites on S3 and serving the dynamic content with the help of an RDS and embedded HTTPS API calls. I will try to set up an example.
 
 @TODO S3, RDS and Lambda hosted static website with lambda invocation for serving dynamic content.
+startingpoint is [here])(https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html).
 
 ### Javapoint AWS-Tutorial
 Tis tutorial is giving a overall overview of the most important things of AWS for a beginner.

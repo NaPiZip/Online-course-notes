@@ -231,9 +231,7 @@ The first point sounds very interesting to me, hosting a websites on S3 and serv
 starting point is [here](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html).
 
 ### A bit more practical content using AWS Lambda
-Because of the previous tutorial I still had questions about a real use case and wanted more exposure. I think the AWS Lambda function is a good starting point as it provides quick and easy compute access, I decided to that the AWS API Gateway getting started would be a good start to get more information about the lambda service. Here is the [link](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html). I am not going into detail since the getting started is pretty self explanatory.
-
-And also a couple of pretty nice tutorial videos, link [here](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-videos.html).
+Because of the previous tutorial I still had questions about a real use case and wanted more exposure. I think the AWS Lambda function is a good starting point as it provides quick and easy compute access, I decided that the AWS API Gateway getting started would be a good start to get more information about the lambda service. Here is the [link](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html). I am not going into detail since the getting started is pretty self explanatory. And also, a couple of pretty nice tutorial videos, can be found [here](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-videos.html).
 
 ### The AWS recommended learning path
 Link is [here](https://d1.awsstatic.com/training-and-certification/ramp-up-guides/RampUp_Developer_122019_final.pdf)

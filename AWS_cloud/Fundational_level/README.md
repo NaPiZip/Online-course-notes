@@ -234,7 +234,11 @@ starting point is [here](https://docs.aws.amazon.com/apigateway/latest/developer
 Because of the previous tutorial I still had questions about a real use case and wanted more exposure. I think the AWS Lambda function is a good starting point as it provides quick and easy compute access, I decided that the AWS API Gateway getting started would be a good start to get more information about the lambda service. Here is the [link](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html). I am not going into detail since the getting started is pretty self explanatory. And also, a couple of pretty nice tutorial videos, can be found [here](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-videos.html).
 
 ### The AWS recommended learning path
-Link is [here](https://d1.awsstatic.com/training-and-certification/ramp-up-guides/RampUp_Developer_122019_final.pdf)
+Link is [here](https://d1.awsstatic.com/training-and-certification/ramp-up-guides/RampUp_Developer_122019_final.pdf), some content was already covered in the previous tutorials, such that I am only covering new content.
+
+#### Phase 0: Overview of Amazon Web Services
+See [here](https://d1.awsstatic.com/whitepapers/aws-overview.pdf).
+
 
 ### Javapoint AWS-Tutorial
 Tis tutorial is giving a overall overview of the most important things of AWS for a beginner.
@@ -243,11 +247,14 @@ To Do:
 https://www.javatpoint.com/aws-tutorial
 https://www.guru99.com/aws-tutorial.html
 
+## Overview of most important AWS services
+
 
 ### Not worth doing: Introduction to AWS Inferentia and Amazon EC2 Inf1 Instances
 [AWS Inferentia](https://www.aws.training/Details/Video?id=42195) covers machine learning inference processing challenges. This video gives just a brief introduction into the `AWS Inf1` service, its more of an sales pitch, thus barely having technical information.
 
-## Overview of most important AWS services
+[Job Roles in the Cloud](https://www.aws.training/Details/eLearning?id=11987).
+This tutorial describes roles in the AWS cloud, I think this tutorial is not adding to much value, since the roles are not important for learning the usage of the AWS cloud.
 
 ## Contributing
 To get started with contributing to my GitHub repository, please contact me [Slack](https://join.slack.com/t/napi-friends/shared_invite/enQtNDg3OTg5NDc1NzUxLWU1MWNhNmY3ZTVmY2FkMDM1ODg1MWNlMDIyYTk1OTg4OThhYzgyNDc3ZmE5NzM1ZTM2ZDQwZGI0ZjU2M2JlNDU).

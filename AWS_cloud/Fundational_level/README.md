@@ -237,7 +237,17 @@ Because of the previous tutorial I still had questions about a real use case and
 Link is [here](https://d1.awsstatic.com/training-and-certification/ramp-up-guides/RampUp_Developer_122019_final.pdf), some content was already covered in the previous tutorials, such that I am only covering new content.
 
 #### Phase 0: Overview of Amazon Web Services
-See [here](https://d1.awsstatic.com/whitepapers/aws-overview.pdf).
+See [here](https://d1.awsstatic.com/whitepapers/aws-overview.pdf). Some helpful definitions are:
+
+**Cloud Computing Models**
+Infrastructure as a Service (IaaS)
+Provides building blocks of IT infrastructure like virtual or dedicated hardware and storage.
+
+Platform as a Service (PaaS)
+Removes the need for organizing the underneath infrastructure. It provides the environment where the software is executed.
+
+Software as a Service (SaaS)
+SaaS is most commonly know as the provision of a software product which is hosted and maintained by the vendor e.g. a web based e-mail client.
 
 
 ### Javapoint AWS-Tutorial

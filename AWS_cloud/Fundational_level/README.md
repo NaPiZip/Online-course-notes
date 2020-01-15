@@ -225,10 +225,8 @@ I found a blog addressing some of my questions, see [www.contino.io](https://www
 
 The first point sounds very interesting to me, hosting a websites on S3 and serving the dynamic content with the help of an RDS and embedded HTTPS API calls. I will try to set up an example.
 
-@TODO Try some basic AWS Lambda tutorials in order to get more familiar with it.
-
 @TODO S3, RDS and Lambda hosted static website with lambda invocation for serving dynamic content.
-starting point is [here](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html).
+starting point is [here](https://d0.awsstatic.com/whitepapers/AWS_Serverless_Multi-Tier_Architectures.pdf).
 
 ### A bit more practical content using AWS Lambda
 Because of the previous tutorial I still had questions about a real use case and wanted more exposure. I think the AWS Lambda function is a good starting point as it provides quick and easy compute access, I decided that the AWS API Gateway getting started would be a good start to get more information about the lambda service. Here is the [link](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html). I am not going into detail since the getting started is pretty self explanatory. And also, a couple of pretty nice tutorial videos, can be found [here](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-videos.html).
@@ -249,6 +247,8 @@ Removes the need for organizing the underneath infrastructure. It provides the e
 Software as a Service (SaaS)
 SaaS is most commonly know as the provision of a software product which is hosted and maintained by the vendor e.g. a web based e-mail client.
 
+#### Phase 1: Architecting for the Cloud AWS Best Practices
+See [here](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf). This whitepaper introduces best practices and design patterns particular tailored for cloud development.
 
 ### Javapoint AWS-Tutorial
 Tis tutorial is giving a overall overview of the most important things of AWS for a beginner.

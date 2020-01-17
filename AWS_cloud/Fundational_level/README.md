@@ -232,7 +232,7 @@ starting point is [here](https://d0.awsstatic.com/whitepapers/AWS_Serverless_Mul
 Because of the previous tutorial I still had questions about a real use case and wanted more exposure. I think the AWS Lambda function is a good starting point as it provides quick and easy compute access, I decided that the AWS API Gateway getting started would be a good start to get more information about the lambda service. Here is the [link](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html). I am not going into detail since the getting started is pretty self explanatory. And also, a couple of pretty nice tutorial videos, can be found [here](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-videos.html).
 
 ### The AWS recommended learning path
-Link is [here](https://d1.awsstatic.com/training-and-certification/ramp-up-guides/RampUp_Developer_122019_final.pdf), some content was already covered in the previous tutorials, such that I am only covering new content.
+A link can be found [here](https://d1.awsstatic.com/training-and-certification/ramp-up-guides/RampUp_Developer_122019_final.pdf). Some content was already covered in the previous tutorials, because of that I am only covering new content.
 
 #### Phase 0: Overview of Amazon Web Services
 See [here](https://d1.awsstatic.com/whitepapers/aws-overview.pdf). Some helpful definitions are:
@@ -248,7 +248,7 @@ Software as a Service (SaaS)
 SaaS is most commonly know as the provision of a software product which is hosted and maintained by the vendor e.g. a web based e-mail client.
 
 #### Phase 1: Architecting for the Cloud AWS Best Practices
-See [here](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf). This whitepaper introduces best practices and design patterns particular tailored for cloud development.
+See [here](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf). This whitepaper introduces best practices and design patterns particular tailored for cloud development. Most stuff is pretty generic and I am only capturing a couple things which I thought stand out.
 
 ### Javapoint AWS-Tutorial
 Tis tutorial is giving a overall overview of the most important things of AWS for a beginner.

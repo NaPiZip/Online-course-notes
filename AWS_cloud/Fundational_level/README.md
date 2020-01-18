@@ -250,6 +250,26 @@ SaaS is most commonly know as the provision of a software product which is hoste
 #### Phase 1: Architecting for the Cloud AWS Best Practices
 See [here](https://d1.awsstatic.com/whitepapers/AWS_Cloud_Best_Practices.pdf). This whitepaper introduces best practices and design patterns particular tailored for cloud development. Most stuff is pretty generic and I am only capturing a couple things which I thought stand out.
 
+**Differences Between Traditional and Cloud Computing Environments**
+In a traditional computing environment, capacity is based on an estimation of the theoretical maximal peak usage. Where as in cloud computing you could dynamically scale based on current usage. In cloud computing you optimize for performance as well as for costs, not only focus on the functional architecture is important.
+
+**Design Principles**
+Some key principle of the AWS Cloud include scalability, disposable resources, automation, loose coupling. Some important elements to keep track off are:
+  - Scalability
+  Support the growth in users, traffic and data size, without loosing performance. Either by scaling horizontally, e.g. with the help of more instances or by scaling vertically by using a more performant instance.
+  - Stateless applications
+  A stateless app is an app which does not need knowledge of previous operations, and thus can easily scale horizontally.
+  - Distribute loads
+  A push model e.g. an Elastic Load Balancer (ELB) can help to distribute traffic. A pull model can be used with the help of a Simple Queue Service (SQS), processing asynchronous events.
+  - Distributed processing
+  Divide big loads of data processing into smaller work loads.
+  - Automate bootstrapping
+  Scripts which install software, copy dat or bring instances into a certain state. Golden images can be created form Elastic Block Storage (EBS), also Amazon Machine Images (AMI) can be generated for faster scaling.
+  - Loose coupling
+  A desirable attribute of an IT system is that it can be broken into smaller, loosely coupled components. Design in a way which reduces dependencies.  
+
+
+
 ### Javapoint AWS-Tutorial
 Tis tutorial is giving a overall overview of the most important things of AWS for a beginner.
 

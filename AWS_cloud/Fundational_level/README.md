@@ -233,6 +233,10 @@ Because of the previous tutorial I still had questions about a real use case and
 
 @TODO Work through those tutorials.
 
+### AWS Serveless Application Model (SAM)
+The AWS Serverless Application Model (SAM) is an open-source framework for building serverless applications, see [here](https://www.youtube.com/watch?v=CIdUU6rNdk4). The nice thing about it is that you can run it localy and use upload it into Cloud Formation for deployment. 
+
+
 ### The AWS recommended learning path
 A link can be found [here](https://d1.awsstatic.com/training-and-certification/ramp-up-guides/RampUp_Developer_122019_final.pdf). Some content was already covered in the previous tutorials, because of that I am only covering new content.
 

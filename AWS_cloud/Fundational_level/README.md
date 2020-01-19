@@ -211,7 +211,7 @@ The most important thing is to check the costs up front depending on the service
 It is a service which helps to uncover cost saving potential, performance issues, security issues as well as fault tolerance problems. Its main goal consists of optimizing usage.
 
 ### Run a Serverless "Hello, World!"
-Tis hands on example shows how to run a serverless function using the AWS Lambda service. The descriptions can be found [here](https://aws.amazon.com/getting-started/tutorials/run-serverless-code/?trk=gs_card&e=gs&p=gsrc). The tutorial is pretty straight forward but there are a couple of questions coming up in my mind:
+This hands on example shows how to run a serverless function using the AWS Lambda service. The descriptions can be found [here](https://aws.amazon.com/getting-started/tutorials/run-serverless-code/?trk=gs_card&e=gs&p=gsrc). The tutorial is pretty straight forward but there are a couple of questions coming up in my mind:
 - What is a real use case?
 - How can I trigger a lambda function with custom input?
 - How can I access different services within a lambda?
@@ -230,6 +230,8 @@ starting point is [here](https://d0.awsstatic.com/whitepapers/AWS_Serverless_Mul
 
 ### A bit more practical content using AWS Lambda
 Because of the previous tutorial I still had questions about a real use case and wanted more exposure. I think the AWS Lambda function is a good starting point as it provides quick and easy compute access, I decided that the AWS API Gateway getting started would be a good start to get more information about the lambda service. Here is the [link](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html). I am not going into detail since the getting started is pretty self explanatory. And also, a couple of pretty nice tutorial videos, can be found [here](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-videos.html).
+
+@TODO Work through those tutorials.
 
 ### The AWS recommended learning path
 A link can be found [here](https://d1.awsstatic.com/training-and-certification/ramp-up-guides/RampUp_Developer_122019_final.pdf). Some content was already covered in the previous tutorials, because of that I am only covering new content.

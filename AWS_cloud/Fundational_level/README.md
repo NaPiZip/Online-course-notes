@@ -50,7 +50,7 @@ The key is to understand `design decisions in a cloud native way` and it's impac
 The course can be found [here](https://www.aws.training/Details/eLearning?id=42036).
 
 ### AWS Cloud Practitioner Essentials (Second Edition): Module 1 Introduction to the AWS Cloud
-The key concept of the cloud is the on-demand content delivery of IT resources. Before cloud computing, it was important to host own server and recourses, which meant a lot of architectural design choices had to be made in advance, which needed a lot of work up front as well as assumptions which where likely to change during the product development live cycle. Cloud computing introduced `elasticity` the possibility to adapt infrastructure on demand. This lead to reducing operational risks and increasing flexibility and scalability also known as `agility`.
+The key concept of the cloud is the on-demand content delivery of IT resources. Before cloud computing, it was important to host own server and resources, which meant a lot of architectural design choices had to be made in advance, which needed a lot of work up front as well as assumptions which where likely to change during the product development live cycle. Cloud computing introduced `elasticity` the possibility to adapt infrastructure on demand. This lead to reducing operational risks and increasing flexibility and scalability also known as `agility`.
 
 AWS offers tree ways to create and manage resources.:
 

@@ -256,6 +256,8 @@ The AWS Serverless Application Model (SAM) is an open-source framework for build
   $ curl http://127.0.0.1:3000/hello
   {"message": "hello world"}
   ```
+  **Task**
+  I would like to invoke a lambda when a file gets uploaded to a S3 bucket, the lambda should perform an action on the file. A pretty good example can be found [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-example-s3.html).
 
 ### The AWS recommended learning path
 A link can be found [here](https://d1.awsstatic.com/training-and-certification/ramp-up-guides/RampUp_Developer_122019_final.pdf). Some content was already covered in the previous tutorials, because of that I am only covering new content.

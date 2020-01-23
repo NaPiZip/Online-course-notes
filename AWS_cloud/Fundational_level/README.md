@@ -257,7 +257,31 @@ The AWS Serverless Application Model (SAM) is an open-source framework for build
   {"message": "hello world"}
   ```
   **Task**
-  I would like to invoke a lambda when a file gets uploaded to a S3 bucket, the lambda should perform an action on the file. A pretty good example can be found [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-example-s3.html).
+  I would like to invoke a lambda when a file gets uploaded to a S3 bucket, the lambda should perform an action on the file. A pretty good example can be found [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-example-s3.html). The following tasks should be performed:
+  - Trigger lambda on file upload in S3 with synthetic generated payload.
+  invoke: `sam local invoke --event SampleEvent.json` [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-example-s3.html#serverless-example-s3-test-locally).
+  - Lambda display file information e.g. file name and type.
+  - Lambda read content of file.
+  - Lambda perform operation on content.
+  - Lambda save operation result in special S3 location.
+
+  sam init --location https://github.com/aws-samples/cookiecutter-aws-sam-s3-rekognition-dynamodb-python --no-input
+
+*Note:*
+Sometimes while building the following error message occurs:
+```
+$sam build                Building resource 'DetectTextInImage'
+
+Build Failed
+Error: PythonPipBuilder:None - Binary validation failed!
+```
+Use run the build using the debug option `--debug`. The debug message showed the issue:
+```
+...
+Expected version: python3.6, Found version: C:\Program Files\Python38\python.EXE.
+...
+```
+The problem is that the python version needs to be the same on the local platform and as defined in `template.yaml`.
 
 ### The AWS recommended learning path
 A link can be found [here](https://d1.awsstatic.com/training-and-certification/ramp-up-guides/RampUp_Developer_122019_final.pdf). Some content was already covered in the previous tutorials, because of that I am only covering new content.

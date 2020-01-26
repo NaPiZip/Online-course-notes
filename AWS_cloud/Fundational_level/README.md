@@ -231,8 +231,6 @@ starting point is [here](https://d0.awsstatic.com/whitepapers/AWS_Serverless_Mul
 ### A bit more practical content using AWS Lambda
 Because of the previous tutorial I still had questions about a real use case and wanted more exposure. I think the AWS Lambda function is a good starting point as it provides quick and easy compute access, I decided that the AWS API Gateway getting started would be a good start to get more information about the lambda service. Here is the [link](https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html). I am not going into detail since the getting started is pretty self explanatory. And also, a couple of pretty nice tutorial videos, can be found [here](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-videos.html).
 
-@TODO Work through those tutorials.
-
 ### AWS Serveless Application Model (SAM)
 The AWS Serverless Application Model (SAM) is an open-source framework for building serverless applications, see [here](https://www.youtube.com/watch?v=CIdUU6rNdk4). The nice thing about it is that you can run it locally and use upload it into Cloud Formation for deployment. To run the SAM tutorial follow the steps below:
   1. Create a new service application
@@ -256,35 +254,51 @@ The AWS Serverless Application Model (SAM) is an open-source framework for build
   $ curl http://127.0.0.1:3000/hello
   {"message": "hello world"}
   ```
-  *Note:*
-  Sometimes while building the following error message occurs:
+*Note:*
+Sometimes while building the following error message occurs:
   ```
   $sam build                Building resource 'DetectTextInImage'
 
   Build Failed
   Error: PythonPipBuilder:None - Binary validation failed!
   ```
-  Use run the build using the debug option `--debug`. The debug message showed the issue:
+Use run the build using the debug option `--debug`. The debug message showed the issue:
+```
+...
+Expected version: python3.6, Found version: C:\Program Files\Python38\python.EXE.
+...
+```
+The problem is that the python version needs to be the same on the local platform and as defined in `template.yaml`.
+
+### Small project: S3 image OCR parser with AWS Lambda
+I would like to invoke a lambda when a file gets uploaded to a S3 bucket, the lambda should perform an action on the file. A pretty good example can be found [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-example-s3.html). I am using `localstack` for testing purposes. `localstack` is a nice tool for running AWS services locally, see [link](https://localstack.cloud/). This comes in handy for development, so you don't have to actually use the paid AWS service.
+
+  <p align="center">
+  <img src="https://localstack.cloud/images/diagram.png" alt="localstack example"/></p>
+
+  The exercise contains of the following tasks:
+  1. Trigger lambda on file upload in S3.
+   `sam local invoke --event SampleEvent.json` [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-example-s3.html#serverless-example-s3-test-locally).
+  2. Lambda display file information e.g. file name and type, but using a local s3 endpoint.
+  ```python
+    s3 = boto3.resource('s3', endpoint_url = 'http://192.168.99.100:4572',
+                              aws_access_key_id     = 'AccessKey',
+                              aws_secret_access_key = 'SecertKey')
+
+    bucket = s3.Bucket('my-bucket')
+
+    def lambda_handler(event, context):
+      for obj in bucket.objects.all():
+            print(obj.key)
+            # display content
+            print(obj.get()['Body'].read().decode(encoding="utf-8",errors="ignore"))
   ```
-  ...
-  Expected version: python3.6, Found version: C:\Program Files\Python38\python.EXE.
-  ...
-  ```
-  The problem is that the python version needs to be the same on the local platform and as defined in `template.yaml`.
+  3. Lambda download file locally file.
+  4. Lambda perform operation on file.
+  5. Lambda save operation result in special S3 location.
 
-  **Task**
-  I would like to invoke a lambda when a file gets uploaded to a S3 bucket, the lambda should perform an action on the file. A pretty good example can be found [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-example-s3.html). The following tasks should be performed:
-  - Trigger lambda on file upload in S3 with synthetic generated payload.
-  invoke: `sam local invoke --event SampleEvent.json` [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-example-s3.html#serverless-example-s3-test-locally).
-  - Lambda display file information e.g. file name and type.
-  - Lambda read content of file.
-  - Lambda perform operation on content.
-  - Lambda save operation result in special S3 location.
 
-I am using `localstack` for testing purposes. `localstack` is a nice tool for running AWS services locally, see [link](https://localstack.cloud/). This comes in handy for development, so you dont have to actually use the paid AWS service.
 
-<p align="center">
-<img src="https://localstack.cloud/images/diagram.png" alt="localstack example"/></p>
 
 
 ### The AWS recommended learning path
@@ -323,7 +337,6 @@ Some key principle of the AWS Cloud include scalability, disposable resources, a
   Scripts which install software, copy dat or bring instances into a certain state. Golden images can be created form Elastic Block Storage (EBS), also Amazon Machine Images (AMI) can be generated for faster scaling.
   - Loose coupling
   A desirable attribute of an IT system is that it can be broken into smaller, loosely coupled components. Design in a way which reduces dependencies.  
-
 
 
 ### Javapoint AWS-Tutorial

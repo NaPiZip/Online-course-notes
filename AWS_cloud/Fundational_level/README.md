@@ -270,37 +270,6 @@ Expected version: python3.6, Found version: C:\Program Files\Python38\python.EXE
 ```
 The problem is that the python version needs to be the same on the local platform and as defined in `template.yaml`.
 
-### Small project: S3 image OCR parser with AWS Lambda
-I would like to invoke a lambda when a file gets uploaded to a S3 bucket, the lambda should perform an action on the file. A pretty good example can be found [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-example-s3.html). I am using `localstack` for testing purposes. `localstack` is a nice tool for running AWS services locally, see [link](https://localstack.cloud/). This comes in handy for development, so you don't have to actually use the paid AWS service.
-
-  <p align="center">
-  <img src="https://localstack.cloud/images/diagram.png" alt="localstack example"/></p>
-
-  The exercise contains of the following tasks:
-  1. Trigger lambda on file upload in S3.
-   `sam local invoke --event SampleEvent.json` [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-example-s3.html#serverless-example-s3-test-locally).
-  2. Lambda display file information e.g. file name and type, but using a local s3 endpoint.
-  ```python
-    s3 = boto3.resource('s3', endpoint_url = 'http://192.168.99.100:4572',
-                              aws_access_key_id     = 'AccessKey',
-                              aws_secret_access_key = 'SecertKey')
-
-    bucket = s3.Bucket('my-bucket')
-
-    def lambda_handler(event, context):
-      for obj in bucket.objects.all():
-            print(obj.key)
-            # display content
-            print(obj.get()['Body'].read().decode(encoding="utf-8",errors="ignore"))
-  ```
-  3. Lambda download file locally file.
-  4. Lambda perform operation on file.
-  5. Lambda save operation result in special S3 location.
-
-
-
-
-
 ### The AWS recommended learning path
 A link can be found [here](https://d1.awsstatic.com/training-and-certification/ramp-up-guides/RampUp_Developer_122019_final.pdf). Some content was already covered in the previous tutorials, because of that I am only covering new content.
 
@@ -338,16 +307,12 @@ Some key principle of the AWS Cloud include scalability, disposable resources, a
   - Loose coupling
   A desirable attribute of an IT system is that it can be broken into smaller, loosely coupled components. Design in a way which reduces dependencies.  
 
-
 ### Javapoint AWS-Tutorial
 Tis tutorial is giving a overall overview of the most important things of AWS for a beginner.
 
 To Do:
 https://www.javatpoint.com/aws-tutorial
 https://www.guru99.com/aws-tutorial.html
-
-## Overview of most important AWS services
-
 
 ### Not worth doing: Introduction to AWS Inferentia and Amazon EC2 Inf1 Instances
 [AWS Inferentia](https://www.aws.training/Details/Video?id=42195) covers machine learning inference processing challenges. This video gives just a brief introduction into the `AWS Inf1` service, its more of an sales pitch, thus barely having technical information.

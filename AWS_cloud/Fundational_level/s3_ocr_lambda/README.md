@@ -47,6 +47,14 @@ The exercise contains of the following tasks:
 4. Lambda perform operation on file.
 5. Lambda save operation result in special S3 location.
 
+**Notes**
+I realized that for some reason on WSL the paths within docker container do not work so you need to make sure that you run the following commands in order to mount properly, [link](https://github.com/awslabs/aws-sam-cli/issues/336):
+
+```
+$ sudo mkdir /c
+$ sudo mount --bind /mnt/c /c
+$ cd /c/path/to/project
+```
 
 ## Contributing
 To get started with contributing to my GitHub repository, please contact me [Slack](https://join.slack.com/t/napi-friends/shared_invite/enQtNDg3OTg5NDc1NzUxLWU1MWNhNmY3ZTVmY2FkMDM1ODg1MWNlMDIyYTk1OTg4OThhYzgyNDc3ZmE5NzM1ZTM2ZDQwZGI0ZjU2M2JlNDU).

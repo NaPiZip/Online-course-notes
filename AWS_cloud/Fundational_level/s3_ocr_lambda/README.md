@@ -12,6 +12,11 @@ In this project I would like to improve my skills in and knowledge about the `AW
 
 @TODO Adding a architecture image
 
+The plan is to use `python 3.8` as well es the following libs:
+- py-tesseract
+- PIL
+
+
 ## The Toolchain
 I am using `SAM` and `localstack` for development, they can both be executed locally, this comes in handy for development, so you don't have to actually use the paid AWS service.
 
@@ -24,6 +29,23 @@ I use `localstack` for testing purposes. `localstack` is a nice tool for running
 
 <p align="center">
 <img src="https://localstack.cloud/images/diagram.png" alt="localstack example"/></p>
+
+## Prerequisite
+In order to use `tesseract` in labmda there is a little bit of work needed, since the `py-tesseract` library is only a wrapper, I need to provide the binary to the lambda function as well. This means I need to build `tesseract` on the target. The aws documentation [link](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html), provides the following information in a python 3.8 environment:
+
+| Name | Identifier | AWS SDK for Python | Operating System |
+| Python 3.8 | python3.8 |boto3-1.12.22 botocore-1.15.22 | Amazon Linux 2 |
+	
+In order to build everything I am folowing this stackoverflow [post](https://stackoverflow.com/questions/33588262/tesseract-ocr-on-aws-lambda-via-virtualenv).
+
+**Notes**
+I after building `leptonica` you need to make sure the linker is able to find the library files, after `make install`. It just copied the `pkgconfig` file:
+
+```
+$ cd /usr/lib64/pkgconf
+$ sudo cp /usr/local/lib/pkgconfig/* .
+```
+
 
 ## Getting it done
 The exercise contains of the following tasks:

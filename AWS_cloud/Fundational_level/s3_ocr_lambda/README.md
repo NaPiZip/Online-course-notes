@@ -34,6 +34,7 @@ I use `localstack` for testing purposes. `localstack` is a nice tool for running
 In order to use `tesseract` in labmda there is a little bit of work needed, since the `py-tesseract` library is only a wrapper, I need to provide the binary to the lambda function as well. This means I need to build `tesseract` on the target. The aws documentation [link](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html), provides the following information in a python 3.8 environment:
 
 | Name | Identifier | AWS SDK for Python | Operating System |
+| :------------- | :------------- | :------------- | :------------- | 
 | Python 3.8 | python3.8 |boto3-1.12.22 botocore-1.15.22 | Amazon Linux 2 |
 	
 In order to build everything I am folowing this stackoverflow [post](https://stackoverflow.com/questions/33588262/tesseract-ocr-on-aws-lambda-via-virtualenv).

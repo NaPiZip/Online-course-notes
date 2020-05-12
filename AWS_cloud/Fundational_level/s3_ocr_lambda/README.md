@@ -8,13 +8,39 @@
 </div>
 
 # Introduction
-In this project I would like to improve my skills in and knowledge about the `AWS Lambda` service. I would like to trigger a Lambda function based on an image file upload into a S3 bucket. After the upload, the invoked Lambda function should extract the text out of the image using a generic optical character recognition (OCR) library in Python. A pretty similar example can be found [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-example-s3.html).
+In this project I would like to improve my skills in and knowledge about the `AWS Lambda` service. I would like create a REST API which I can send either a link of an image file or in some way the raw image data. After the API requests, the invoked Lambda function should extract the text out of the image using a generic optical character recognition (OCR) library. A pretty similar example can be found [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-example-s3.html).
 
 @TODO Adding a architecture image
 
 The plan is to use `python 3.8` as well es the following libs:
-- py-tesseract
+- tesseract-ocr
 - PIL
+
+## Prerequisite
+In order to use `tesseract` in labmda there is a little bit of work needed, since the `py-tesseract` library is only a wrapper, I need to provide the binary to the lambda function as well. This means I need to build `tesseract` on the target. The aws documentation [link](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html), provides the following information in a python 3.8 environment:
+
+| Name | Identifier | AWS SDK for Python | Operating System |
+| :------------- | :------------- | :------------- | :------------- | 
+| Python 3.8 | python3.8 |boto3-1.12.22 botocore-1.15.22 | Amazon Linux 2 |
+	
+In order to build everything I am folowing this stackoverflow [post](https://stackoverflow.com/questions/33588262/tesseract-ocr-on-aws-lambda-via-virtualenv). After building an packaging all into a `.zip` file, the functionality can be tested as follwo:
+
+```
+$ cd tesseract-lambda 
+
+tesseract-lambda$ export LD_LIBRARY_PATH=$PWD/lib
+tesseract-lambda$ export TESSDATA_PREFIX=/PWD/tessdata
+
+tesseract-lambda$ ./tesseract --help
+```
+
+**Notes**
+After building `leptonica` you need to make sure the linker is able to find the library files, after `make install`. It therfore made a sybolic link to the `pkgconfig` file:
+
+```
+$ cd /usr/lib64/pkgconf
+$ sudo ln -s /usr/local/lib/pkgconfig/lept.pc lept.pc
+```
 
 
 ## The Toolchain
@@ -30,23 +56,38 @@ I use `localstack` for testing purposes. `localstack` is a nice tool for running
 <p align="center">
 <img src="https://localstack.cloud/images/diagram.png" alt="localstack example"/></p>
 
-## Prerequisite
-In order to use `tesseract` in labmda there is a little bit of work needed, since the `py-tesseract` library is only a wrapper, I need to provide the binary to the lambda function as well. This means I need to build `tesseract` on the target. The aws documentation [link](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html), provides the following information in a python 3.8 environment:
-
-| Name | Identifier | AWS SDK for Python | Operating System |
-| :------------- | :------------- | :------------- | :------------- | 
-| Python 3.8 | python3.8 |boto3-1.12.22 botocore-1.15.22 | Amazon Linux 2 |
-	
-In order to build everything I am folowing this stackoverflow [post](https://stackoverflow.com/questions/33588262/tesseract-ocr-on-aws-lambda-via-virtualenv).
-
-**Notes**
-I after building `leptonica` you need to make sure the linker is able to find the library files, after `make install`. It just copied the `pkgconfig` file:
+## ToDo
+Looks like the SAM local docker container is missing a s*** load of dependencies, which I also need to provide:
 
 ```
-$ cd /usr/lib64/pkgconf
-$ sudo cp /usr/local/lib/pkgconfig/* .
+linux-vdso.so.1 (0x00007fff909fd000)
+        libtesseract.so.4 => /var/task/lib/libtesseract.so.4 (0x00007f9cea870000)
+        liblept.so.5 => /var/task/lib/liblept.so.5 (0x00007f9cea403000)
+        libpng15.so.15 => /var/task/lib/libpng15.so.15 (0x00007f9cea1d8000)
+        libjpeg.so.62 => not found
+        libtiff.so.5 => not found
+        libz.so.1 => /lib64/libz.so.1 (0x00007f9ce9fc3000)
+        librt.so.1 => /lib64/librt.so.1 (0x00007f9ce9dbb000)
+        libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f9ce9b9d000)
+        libstdc++.so.6 => /lib64/libstdc++.so.6 (0x00007f9ce981b000)
+        libm.so.6 => /lib64/libm.so.6 (0x00007f9ce94db000)
+        libgomp.so.1 => not found
+        libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00007f9ce92c5000)
+        libc.so.6 => /lib64/libc.so.6 (0x00007f9ce8f1a000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f9cead9c000)
+        libjpeg.so.62 => not found
+        libtiff.so.5 => not found
+        libgomp.so.1 => not found
+        libjpeg.so.62 => not found
+        libtiff.so.5 => not found
 ```
 
+## Random Notes section
+In order to configure the api endpoint for using `localstack` the following route needs to be provided when calling the aws CLI, here is an example:
+
+```
+$ aws s3 --endpoint-url http://localhost:4566/ ls
+```
 
 ## Getting it done
 The exercise contains of the following tasks:

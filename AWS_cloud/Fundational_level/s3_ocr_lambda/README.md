@@ -82,6 +82,33 @@ linux-vdso.so.1 (0x00007fff909fd000)
         libtiff.so.5 => not found
 ```
 
+Same picture on the AWS instance wich is running the lambda function:
+
+```
+linux-vdso.so.1 (0x00007ffeaa563000)
+	libtesseract.so.4 => /var/task/lib/libtesseract.so.4 (0x00007f427f197000)
+	liblept.so.5 => /var/task/lib/liblept.so.5 (0x00007f427ed2a000)
+	libpng15.so.15 => /var/task/lib/libpng15.so.15 (0x00007f427eaff000)
+	libjpeg.so.62 => not found
+	libtiff.so.5 => not found
+	libz.so.1 => /lib64/libz.so.1 (0x00007f427e8ea000)
+	librt.so.1 => /lib64/librt.so.1 (0x00007f427e6e2000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f427e4c4000)
+	libstdc++.so.6 => /lib64/libstdc++.so.6 (0x00007f427e142000)
+	libm.so.6 => /lib64/libm.so.6 (0x00007f427de02000)
+	libgomp.so.1 => not found
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00007f427dbec000)
+	libc.so.6 => /lib64/libc.so.6 (0x00007f427d841000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f427f6c3000)
+	libjpeg.so.62 => not found
+	libtiff.so.5 => not found
+	libgomp.so.1 => not found
+	libjpeg.so.62 => not found
+	libtiff.so.5 => not found
+```
+
+This is a good sign since it proofs that the docker image is actualy the correct one which really runs on the aws servers.
+
 ## Random Notes section
 In order to configure the api endpoint for using `localstack` the following route needs to be provided when calling the aws CLI, here is an example:
 

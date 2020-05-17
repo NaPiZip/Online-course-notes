@@ -56,7 +56,7 @@ def apigw_event():
             "Accept-Encoding": "gzip, deflate, sdch",
         },
         "pathParameters": {"proxy": "/examplepath"},
-        "httpMethod": "POST",
+        "httpMethod": "GET",
         "stageVariables": {"baz": "qux"},
         "path": "/examplepath",
     }

@@ -1,6 +1,6 @@
 import os
 import json
-import subprocess
+from subprocess import check_output
 
 # import requests
 
@@ -42,13 +42,13 @@ def lambda_handler(event, context):
         )
 
     
-    print(command)    
-  
-    try:              
-        output = subprocess.check_output(command, shell=True) 
+
+    try: 
+        output = check_output(command, shell=True) 
         result = str(output,'utf-8')
+
     except :
-        result = "Failed with: {}".format(output)
+        result = "Failed executing: {}".format(command)
         pass
 
     print("\n",result)

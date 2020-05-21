@@ -1,4 +1,5 @@
 import json
+import os
 
 import pytest
 
@@ -71,3 +72,8 @@ def test_lambda_handler(apigw_event, mocker):
     assert ret["statusCode"] == 200
     assert "result" in ret["body"]    
     assert("Tesseract" in data["result"])
+
+def test_dev(apigw_event, mocker):
+	print(os.listdir())
+	with open('hello_world/example.png') as f:
+		print(f)		

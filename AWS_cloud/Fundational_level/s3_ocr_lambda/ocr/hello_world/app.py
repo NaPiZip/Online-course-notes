@@ -2,8 +2,6 @@ import os
 import json
 from subprocess import check_output
 
-# import requests
-
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 LIB_DIR = os.path.join(SCRIPT_DIR, 'lib')

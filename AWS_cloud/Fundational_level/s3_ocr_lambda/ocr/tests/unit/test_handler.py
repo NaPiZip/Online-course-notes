@@ -4,15 +4,20 @@ import base64
 
 import pytest
 
+from tests.unit import helper
+
 from hello_world import app
+from hello_world import transform
 
 
 @pytest.fixture()
 def apigw_event():
     """ Generates API GW Event"""
+    image_file = "hello_world/example.png"
+    json_payload = transform.encode_to_json(image_file)
 
     return {
-        "body": '{ "test": "body"}',
+        "body": json_payload,
         "resource": "/{proxy+}",
         "requestContext": {
             "resourceId": "123456",
@@ -63,6 +68,27 @@ def apigw_event():
         "path": "/examplepath",
     }
 
+def test_image_to_json_and_back(apigw_event, mocker):
+    image_file = "hello_world/example.png"
+
+    with open(image_file, 'rb') as fid:
+        raw_image_data = fid.read()
+
+    json_payload = transform.encode_to_json(image_file)
+    decoded_data = transform.decode_from_json(json_payload)
+        
+    assert(raw_image_data == decoded_data)
+
+def test_trivial_write_and_read(apigw_event, mocker):
+    image_file  = "tests/unit/example.png"
+    json_file   = "tests/unit/example.json"
+
+    json_payload = transform.encode_to_json(image_file)
+
+    helper.save_json_to_file(json_payload , json_file)
+    json_file_content = helper.read_json_from_file(json_file)
+
+    assert(json_file_content == json_payload)
 
 def test_lambda_handler(apigw_event, mocker):
     app.check_output = mocker.MagicMock(return_value=b'G Tesseract OCR')
@@ -74,33 +100,5 @@ def test_lambda_handler(apigw_event, mocker):
     assert "result" in ret["body"]    
     assert("Tesseract" in data["result"])
 
-
-def image_to_json_payload(image_file):
-    _, full_file_name = os.path.split(image_file)
-    file_name, extention = full_file_name.split('.')
-
-    with open( image_file, 'rb') as f:
-        data = base64.b64encode(f.read()) 
-    
-    with open('tests/unit/'+ file_name +'.json', 'w', encoding='utf-8') as json_file:
-        json.dump({ 'name':         file_name,
-                    'format':       extention,
-                    'encoding':     'base64',
-                    'payload':      data.decode('utf-8')}, json_file, indent=1)
-
-
-def read_json_payload_file(json_file):
-    json_file = "tests/unit/example.json"
-    with open(json_file, 'rb') as fid:
-        data = fid.read()
-        content = json.loads(data)
-    return content
-
-
-def test_dev(apigw_event, mocker):
-    image_to_json_payload("hello_world/example.png")
-    json_data = read_json_payload_file("")
-
-    image_file= "tests/unit/{}.{}".format(json_data['name'], json_data['format'])
-    with open(image_file, 'wb') as fid:
-        fid.write(base64.b64decode(str.encode(json_data['payload'])))
+def test_dev(apigw_event):
+    print(apigw_event['body'])

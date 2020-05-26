@@ -1,7 +1,12 @@
 import os
 import json
+
 from subprocess import check_output
 
+try:    
+    import transform
+except ModuleNotFoundError:
+    from . import transform
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 LIB_DIR = os.path.join(SCRIPT_DIR, 'lib')
@@ -27,19 +32,40 @@ def lambda_handler(event, context):
 
         Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
     """
+   
 
+    if not event['body']:
+        return {'statusCode': 400,
+                'body': json.dumps({'result': 'Bad Request!'})}
 
-    image_file_path = 'example.png'
-    language = 'deu'
     
+    decoded_payload = transform.decode_from_json(event['body'])
+    
+    if not decoded_payload:
+        return {'statusCode': 415,
+                'body': json.dumps({'result': 'Unsupported Media Type!'})}
+
+    data = json.loads(event['body'])
+
+    if 'language' in data:
+        language = data['language']
+    else:
+        language = 'eng'
+
+
+    image_file = '/tmp/image.{}'.format(data['type'])
+
+    with open(image_file, 'wb') as fid:
+        fid.write(decoded_payload)
+    
+
+      
     command = 'LD_LIBRARY_PATH={} TESSDATA_PREFIX={} ./tesseract {} stdout -l {}'.format(
             LIB_DIR,
             SCRIPT_DIR+'/tessdata',
-            image_file_path,
+            image_file,
             language
         )
-
-    
 
     try: 
         output = check_output(command, shell=True) 
@@ -49,11 +75,5 @@ def lambda_handler(event, context):
         result = "Failed executing: {}".format(command)
         pass
 
-    print("\n",result)
-
-    return {
-        "statusCode": 200,
-        "body": json.dumps({
-            "result": result
-        }),
-    }
+    return { 'statusCode': 200,
+             'body': json.dumps({'result': result})}

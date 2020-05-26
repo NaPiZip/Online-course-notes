@@ -90,15 +90,43 @@ def test_trivial_write_and_read(apigw_event, mocker):
 
     assert(json_file_content == json_payload)
 
-def test_lambda_handler(apigw_event, mocker):
+def lambda_handler(apigw_event, mocker):
     app.check_output = mocker.MagicMock(return_value=b'G Tesseract OCR')
 
     ret = app.lambda_handler(apigw_event, "")
-    data = json.loads(ret["body"])
+    data = json.loads(ret['body'])
 
     assert ret["statusCode"] == 200
-    assert "result" in ret["body"]    
-    assert("Tesseract" in data["result"])
+    assert "result" in ret['body']    
+    assert("Tesseract" in data['result'])
 
-def test_dev(apigw_event):
-    print(apigw_event['body'])
+def test_bad_request(apigw_event):
+    apigw_event['body'] = ''
+    ret = app.lambda_handler(apigw_event, "")
+
+    assert(ret['statusCode'] == 400)
+    assert 'Bad Request!' in ret['body']
+
+def test_unsupported_media_type(apigw_event, mocker):
+    app.check_output = mocker.MagicMock(return_value=b'G Tesseract OCR')
+
+    apigw_event['body'] = 'encoding'
+    ret = app.lambda_handler(apigw_event, "")
+
+    assert(ret['statusCode'] == 415)
+    assert 'Unsupported Media Type!' in ret['body']
+
+    apigw_event['body'] =  json.dumps({'encoding':'', 'payload':'PUks1Q1lJST0iCn0='})
+    ret = app.lambda_handler(apigw_event, "")
+
+    assert(ret['statusCode'] == 415)
+    assert 'Unsupported Media Type!' in ret['body']
+
+    apigw_event['body'] =  json.dumps({ 'encoding':'base64',
+                                        'type' : 'png',
+                                        'payload':'PUks1Q1lJST0iCn0='})
+    ret = app.lambda_handler(apigw_event, "")   
+    assert(ret['statusCode'] == 200)
+
+def test_dev(apigw_event, mocker):
+    helper.covert_image_to_json('tests/unit/phototest.tif','tests/unit/phototest.json')

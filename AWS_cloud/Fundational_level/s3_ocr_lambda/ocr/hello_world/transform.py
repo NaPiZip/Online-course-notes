@@ -8,8 +8,7 @@ def encode_to_json(image_file, encoding = 'base64', compression = '', language =
 
     with open( image_file, 'rb') as f:
         data = base64.b64encode(f.read()) 
-    
-    return json.dumps({ 'name':         file_name,
+    return json.dumps({ 'name':       file_name,
                         'type':       extention,
                         'encoding':     encoding,
                         'compression':  compression,

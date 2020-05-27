@@ -69,14 +69,13 @@ def apigw_event():
     }
 
 def test_image_to_json_and_back(apigw_event, mocker):
-    image_file = "hello_world/example.png"
+    image_file = "tests/unit/example.png"
 
     with open(image_file, 'rb') as fid:
         raw_image_data = fid.read()
 
     json_payload = transform.encode_to_json(image_file)
-    decoded_data = transform.decode_from_json(json_payload)
-        
+    decoded_data = transform.decode_from_json(json_payload)        
     assert(raw_image_data == decoded_data)
 
 def test_trivial_write_and_read(apigw_event, mocker):
@@ -84,8 +83,8 @@ def test_trivial_write_and_read(apigw_event, mocker):
     json_file   = "tests/unit/example.json"
 
     json_payload = transform.encode_to_json(image_file)
-
     helper.save_json_to_file(json_payload , json_file)
+
     json_file_content = helper.read_json_from_file(json_file)
 
     assert(json_file_content == json_payload)

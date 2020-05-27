@@ -6,8 +6,8 @@ import pytest
 
 from tests.unit import helper
 
-from hello_world import app
-from hello_world import transform
+from main import app
+from main import transform
 
 
 @pytest.fixture()

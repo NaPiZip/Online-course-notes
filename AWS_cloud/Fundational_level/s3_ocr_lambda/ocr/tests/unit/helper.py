@@ -1,4 +1,4 @@
-from hello_world import transform
+from main import transform
 
 def covert_image_to_json(image_file, json_file):
     json_payload = transform.encode_to_json(image_file)

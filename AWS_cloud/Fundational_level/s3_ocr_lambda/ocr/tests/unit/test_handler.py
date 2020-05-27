@@ -13,7 +13,7 @@ from hello_world import transform
 @pytest.fixture()
 def apigw_event():
     """ Generates API GW Event"""
-    image_file = "hello_world/example.png"
+    image_file = "tests/unit/resources/example.png"
     json_payload = transform.encode_to_json(image_file)
 
     return {
@@ -69,7 +69,7 @@ def apigw_event():
     }
 
 def test_image_to_json_and_back(apigw_event, mocker):
-    image_file = "tests/unit/example.png"
+    image_file = "tests/unit/resources/example.png"
 
     with open(image_file, 'rb') as fid:
         raw_image_data = fid.read()
@@ -79,8 +79,8 @@ def test_image_to_json_and_back(apigw_event, mocker):
     assert(raw_image_data == decoded_data)
 
 def test_trivial_write_and_read(apigw_event, mocker):
-    image_file  = "tests/unit/example.png"
-    json_file   = "tests/unit/example.json"
+    image_file  = "tests/unit/resources/example.png"
+    json_file   = "tests/unit/resources/example.json"
 
     json_payload = transform.encode_to_json(image_file)
     helper.save_json_to_file(json_payload , json_file)
@@ -128,4 +128,4 @@ def test_unsupported_media_type(apigw_event, mocker):
     assert(ret['statusCode'] == 200)
 
 def test_dev(apigw_event, mocker):
-    helper.covert_image_to_json('tests/unit/phototest.tif','tests/unit/phototest.json')
+    helper.covert_image_to_json('tests/unit/resources/phototest.tif','tests/unit/resources/phototest.json')

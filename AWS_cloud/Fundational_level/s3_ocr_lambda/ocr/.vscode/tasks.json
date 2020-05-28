@@ -6,7 +6,7 @@
         {
             "label": "Docker-run",
             "type": "shell",
-            "command": "sam local invoke -e events/event_example.json OcrFunction",
+            "command": "sam local invoke -e events/event_phototest.json OcrFunction",
             "problemMatcher": [],
             "group": {
                 "kind": "build",

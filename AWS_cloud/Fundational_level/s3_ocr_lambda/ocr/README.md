@@ -52,7 +52,7 @@ I am using `SAM` and `localstack` for development, they can both be executed loc
 <p align="center">
 <img src="https://image.slidesharecdn.com/09112017-serverless-local-test-92e8f092-7d1c-43e4-809c-a40335e29637-2097706900-170913194001/95/local-testing-and-deployment-best-practices-for-serverless-applications-aws-online-tech-talks-19-638.jpg?cb=1505331628" alt="SAM example"/></p>
 
-"The AWS Serverless Application Model (SAM) is an open-source framework for building serverless applications. It provides shorthand syntax to express functions, APIs, databases, and event source mappings. With just a few lines of configuration, you can define the application you want and model it." see [here](https://github.com/awslabs/aws-sam-cli).
+The AWS Serverless Application Model (SAM) is an open-source framework for building serverless applications. It provides shorthand syntax to express functions, APIs, databases, and event source mappings. With just a few lines of configuration, you can define the application you want and model it." see [here](https://github.com/awslabs/aws-sam-cli).
 
 I use `localstack` for testing purposes. `localstack` is a nice tool for running AWS services locally, see [link](https://localstack.cloud/).
 
@@ -69,7 +69,7 @@ def test_sending_example_image(mocker):
 Here is an example of an image I used to test the lamda function:
 <p align="center">
 <img src="https://github.com/NaPiZip/Online-course-notes/raw/master/AWS_cloud/Fundational_level/s3_ocr_lambda/ocr/tests/unit/resources/phototest.tif" alt="ocr parsed text"/></p>
-And the result:
+And the result:<br>
 ```python
 {"statusCode":200,
 "body":
